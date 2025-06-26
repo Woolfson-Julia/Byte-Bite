@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 80px;
+  background-color: rgba(82, 67, 67, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #f8f2ee;
+}

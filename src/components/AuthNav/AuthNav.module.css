@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.link {
+  text-decoration: none;
+  color: #f8f2ee;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+  font-size: 16px;
+}
+
+.link:hover {
+  color: #f6bb62;
+}
+
+.active {
+  color: #f6bb62;
+  font-weight: 600;
+  border-bottom: 2px solid #f6bb62;
+}
