@@ -1,67 +1,50 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { refreshUser } from "../../redux/auth/operations";
-import { selectIsRefreshing } from "../../redux/auth/selectors";
-import { RestrictedRoute } from "../RestrictedRoute";
+
 import { PrivateRoute } from "../PrivateRoute";
-import Layout from "../Layout/Layout";
 import Loader from "../Loader/Loader";
 
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
-const RegisterPage = lazy(() =>
-  import("../../pages/RegistrationPage/RegistrationPage")
-);
-const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
-const ContactsPage = lazy(() =>
-  import("../../pages/ContactsPage/ContactsPage")
-);
+const Layout = lazy(() => import("../Layout/Layout"));
+const NotFound = lazy(() => import("../NotFound/NotFound"));
+
+
+const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
+const RecipeViewPage = lazy(() => import("../../pages/RecipeViewPage/RecipeViewPage"));
+const AddRecipePage = lazy(() => import("../../pages/AddRecipePage/AddRecipePage"));
+const ProfilePage = lazy(() => import("../../pages/ProfilePage/ProfilePage"));
+const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage"));
+
 
 export default function App() {
-  const isRefreshing = useSelector(selectIsRefreshing);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  return isRefreshing ? (
-    <>
-      <strong>Getting user data please wait</strong>
-      <Loader />
-    </>
-  ) : (
+  return (
     <Layout>
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                component={<RegisterPage />}
-                redirectTo="/contacts"
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                component={<LoginPage />}
-                redirectTo="/contacts"
-              />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
-            }
-          />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<MainPage />} />
+            <Route path="recipes/:id" element={<RecipeViewPage />} />
+            <Route
+              path="add-recipe"
+              element={
+                <PrivateRoute>
+                  <AddRecipePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="profile/:recipeType"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="auth/:authType" element={<AuthPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </Suspense>
     </Layout>
   );
 }
+
