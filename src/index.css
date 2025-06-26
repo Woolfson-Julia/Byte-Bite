@@ -1,6 +1,7 @@
 body {
-  font-family: Roboto, sans-serif;
-  background-color: #f8f2ee;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fbfcf8;
+  color: #000;
 }
 
 h1,
@@ -34,10 +35,31 @@ img {
 button {
   cursor: pointer;
   font-family: inherit;
-  color: currentColor;
+  border: none;
 }
 
-input {
-  font-family: inherit;
+.container {
+  min-width: 320px;
+  max-width: 380px; /* 360 контент (по макету) + 2*10 падинги */
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 auto;
+}
+.section {
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 735px; /* 705 контент (по макету) + 2*15 падинги */
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1254px; /* 1224 контент (по макету) + 2*15 падинги */
+  }
+}

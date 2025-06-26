@@ -1,8 +1,38 @@
-# React + Vite
+🍽 Tasteorama — Recipe Sharing Web App
+RecipeHub is a full-featured web application where users can:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📖 Browse a variety of recipes
 
-Currently, two official plugins are available:
+➕ Add and manage their own recipes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔍 Search by title and filter by category or ingredients
+
+❤️ Save favorite recipes
+
+👤 Register and log in for a personalized experience
+
+🚀 Built With
+React + Vite — fast development and modern tooling
+
+React Router — client-side routing
+
+MongoDB — backend and database
+
+CSS Modules / SCSS  — styling
+
+Optional: Formik + Yup, React Hook Form, Axios, etc.
+
+🔧 Features
+User authentication and registration
+
+Create, edit, and delete personal recipes
+
+View detailed recipe pages
+
+Search and filter functionality
+
+Search recipes by title
+
+Add to favorites (for logged-in users)
+
+Responsive design for mobile, tablet and desktop
