@@ -1,0 +1,51 @@
+.loginWrapper {
+  border-radius: 32px;
+  padding: 48px 32px;
+  width: 420px;
+  background: #faf3e0;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+}
+.description {
+  /* font-weight: 400;
+  font-size: 16px; */
+  line-height: 1.55;
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 356px;
+}
+
+.inputField {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 8px;
+  width: 356px;
+  height: 41px;
+  background: #fff;
+
+  /* font-weight: 400; */
+  /* font-size: 16px; */
+  line-height: 1.55;
+  /* color: #000; */
+}
+
+.inputField::placeholder {
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-weight: 400;
+  font-size: 16px; */
+  line-height: 1.55;
+  color: #9f9f9f;
+}
