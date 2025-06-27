@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { PrivateRoute } from "../PrivateRoute";
+import { RestrictedRoute } from "../RestrictedRoute";
 import Loader from "../Loader/Loader";
 
 const Layout = lazy(() => import("../Layout/Layout"));
@@ -24,23 +25,35 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="recipes/:id" element={<RecipeViewPage />} />
+
+          {/* Приватні роути - тільки для залогінених */}
           <Route
             path="add-recipe"
             element={
-              <PrivateRoute>
-                <AddRecipePage />
-              </PrivateRoute>
+              <PrivateRoute
+                component={<AddRecipePage />}
+                redirectTo="/auth/login"
+              />
             }
           />
           <Route
             path="profile/:recipeType"
             element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
+              <PrivateRoute
+                component={<ProfilePage />}
+                redirectTo="/auth/login"
+              />
             }
           />
-          <Route path="auth/:authType" element={<AuthPage />} />
+
+          {/* Обмежені роути - тільки для незалогінених */}
+          <Route
+            path="auth/:authType"
+            element={
+              <RestrictedRoute component={<AuthPage />} redirectTo="/" />
+            }
+          />
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
