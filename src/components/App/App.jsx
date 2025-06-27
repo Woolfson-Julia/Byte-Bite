@@ -1,50 +1,67 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { PrivateRoute } from "../PrivateRoute";
-import Loader from "../Loader/Loader";
+import { PrivateRoute } from "../PrivateRoute.jsx";
+import { RestrictedRoute } from "../RestrictedRoute.jsx";
+// import Loader from "../Loader/Loader";
+import Layout from "../Layout/Layout.jsx";
 
-const Layout = lazy(() => import("../Layout/Layout"));
 const NotFound = lazy(() => import("../NotFound/NotFound"));
 
-
 const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
-const RecipeViewPage = lazy(() => import("../../pages/RecipeViewPage/RecipeViewPage"));
-const AddRecipePage = lazy(() => import("../../pages/AddRecipePage/AddRecipePage"));
+const RecipeViewPage = lazy(() =>
+  import("../../pages/RecipeViewPage/RecipeViewPage")
+);
+const AddRecipePage = lazy(() =>
+  import("../../pages/AddRecipePage/AddRecipePage")
+);
 const ProfilePage = lazy(() => import("../../pages/ProfilePage/ProfilePage"));
-const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage"));
-
+const OwnRecipesList = lazy(() =>
+  import("../OwnRecipesList/OwnRecipesList.jsx")
+);
+const FavoriteRecipesList = lazy(() =>
+  import("../FavoriteRecipesList/FavoriteRecipesList.jsx")
+);
+const RegistrationPage = lazy(() =>
+  import("../../pages/RegistrationPage/RegistrationPage.jsx")
+);
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage.jsx"));
 
 export default function App() {
   return (
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<MainPage />} />
-            <Route path="recipes/:id" element={<RecipeViewPage />} />
-            <Route
-              path="add-recipe"
-              element={
-                <PrivateRoute>
-                  <AddRecipePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="profile/:recipeType"
-              element={
-                <PrivateRoute>
-                  <ProfilePage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="auth/:authType" element={<AuthPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </Layout>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainPage />} />
+        <Route path="recipes/:id" element={<RecipeViewPage />} />
+        <Route
+          path="add-recipe"
+          element={
+            <PrivateRoute redirectTo="/login" component={<AddRecipePage />} />
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ProfilePage />} />
+          }
+        >
+          <Route path="own" element={<OwnRecipesList />} />
+          <Route path="favorites" element={<FavoriteRecipesList />} />
+        </Route>
+
+        <Route
+          path="auth/register"
+          element={
+            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
+          }
+        />
+        <Route
+          path="auth/login"
+          element={<RestrictedRoute redirectTo="/" component={<LoginPage />} />}
+        />
+
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
-
