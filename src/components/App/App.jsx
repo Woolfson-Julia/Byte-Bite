@@ -36,13 +36,16 @@ export default function App() {
         <Route
           path="add-recipe"
           element={
-            <PrivateRoute redirectTo="/login" component={<AddRecipePage />} />
+            <PrivateRoute
+              redirectTo="auth/login"
+              component={<AddRecipePage />}
+            />
           }
         />
         <Route
           path="profile"
           element={
-            <PrivateRoute redirectTo="/login" component={<ProfilePage />} />
+            <PrivateRoute redirectTo="auth/login" component={<ProfilePage />} />
           }
         >
           <Route path="own" element={<OwnRecipesList />} />
