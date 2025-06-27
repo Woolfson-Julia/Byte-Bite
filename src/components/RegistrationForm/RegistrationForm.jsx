@@ -3,8 +3,8 @@ import { useId } from "react";
 import { Link } from "react-router-dom";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-
+import { validationSchema } from "./validationSchema";
+import FixedErrorMessage from "./FixedErrorMessage";
 export default function RegistrationForm() {
   const nameFieldId = useId();
   const emailFieldId = useId();
@@ -31,10 +31,11 @@ export default function RegistrationForm() {
           checkPassword: "",
           acceptedTerms: false,
         }}
+        validationSchema={validationSchema}
         onSubmit={handleSumbit}
       >
         <Form className={css.form}>
-          <label htmlFor={nameFieldId} className={css.label}>
+          <label htmlFor={nameFieldId} className={css.inputLabel}>
             Enter your name
           </label>
           <Field
@@ -44,8 +45,12 @@ export default function RegistrationForm() {
             name="username"
             placeholder="Max"
           ></Field>
-
-          <label htmlFor={emailFieldId} className={css.label}>
+          {/* <ErrorMessage name="username" component="div" className={css.error} /> */}
+          <FixedErrorMessage
+            name="username"
+            className={css.error}
+          ></FixedErrorMessage>
+          <label htmlFor={emailFieldId} className={css.inputLabel}>
             Enter your email address
           </label>
           <Field
@@ -55,8 +60,13 @@ export default function RegistrationForm() {
             name="email"
             placeholder="email@gmail.com"
           ></Field>
+          {/* <ErrorMessage name="email" component="div" className={css.error} /> */}
+          <FixedErrorMessage
+            name="email"
+            className={css.error}
+          ></FixedErrorMessage>
 
-          <label htmlFor={passwordFieldId} className={css.label}>
+          <label htmlFor={passwordFieldId} className={css.inputLabel}>
             Create a strong password
           </label>
           <Field
@@ -66,8 +76,13 @@ export default function RegistrationForm() {
             name="password"
             placeholder="********"
           ></Field>
+          {/* <ErrorMessage name="password" component="div" className={css.error} /> */}
+          <FixedErrorMessage
+            name="password"
+            className={css.error}
+          ></FixedErrorMessage>
 
-          <label htmlFor={checkPasswordFieldId} className={css.label}>
+          <label htmlFor={checkPasswordFieldId} className={css.inputLabel}>
             Repeat your password
           </label>
           <Field
@@ -77,10 +92,19 @@ export default function RegistrationForm() {
             name="checkPassword"
             placeholder="********"
           ></Field>
+          {/* <ErrorMessage
+            name="checkPassword"
+            component="div"
+            className={css.error}
+          /> */}
+          <FixedErrorMessage
+            name="checkPassword"
+            className={css.error}
+          ></FixedErrorMessage>
 
           <label
             htmlFor={privacyPolicyId}
-            className={`${css.label} ${css.checkBoxLabel}`}
+            className={`${css.inputLabel} ${css.checkBoxLabel}`}
           >
             <Field
               className={css.checkBox}
@@ -112,6 +136,16 @@ export default function RegistrationForm() {
               </a>
             </span>
           </label>
+          {/* <ErrorMessage
+            name="acceptedTerms"
+            component="div"
+            className={css.error}
+          /> */}
+
+          <FixedErrorMessage
+            name="acceptedTerms"
+            className={css.error}
+          ></FixedErrorMessage>
           <button type="submit" className={css.submitButton}>
             Create account
           </button>

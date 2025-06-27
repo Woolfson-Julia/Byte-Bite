@@ -33,24 +33,28 @@
   height: 41px;
   background: #fff;
 
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 
   line-height: 1.55;
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.label {
+.inputLabel {
   font-size: 12px;
   color: #000;
   margin-bottom: 4px;
 }
 .inputField::placeholder {
-  /* font-family: "Montserrat", sans-serif; */
-  /* font-weight: 400;
-  font-size: 16px; */
   line-height: 1.55;
   color: #9f9f9f;
 }
+.inputField:focus {
+  border: 1.5px solid #9b6c43;
+  outline: none;
 
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+}
 .checkBoxLabel {
   display: flex;
   align-items: center;
@@ -83,18 +87,27 @@
 }
 
 .customCheckbox > svg {
-  /* maybe will have to  */
-  /* fill: transparent; */
-  display: none;
-  transition: display 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* display: none; is imposible to trasition with effect*/
+
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 250ms ease, transform 250ms ease;
 }
 .checkBox:checked + .customCheckbox > svg {
-  display: block;
+  /* display: block; */
+  opacity: 1;
+  transform: scale(1);
 }
 
 .checkBox:checked + .customCheckbox {
   background-color: #9b6c43;
   border: none;
+}
+/* for tab effect */
+.checkBox:focus + .customCheckbox {
+  border: 1.5px solid #9b6c43;
+  outline: none;
+  /* outline-offset: 2px; */
 }
 
 .submitButton {
@@ -120,4 +133,12 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
   /* this is on the InspectStyles but not seen on the actual example */
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  
+  margin-bottom: 16px;
 }
