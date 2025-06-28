@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { PrivateRoute } from "../PrivateRoute";
 import Loader from "../Loader/Loader";
 
+
 const Layout = lazy(() => import("../Layout/Layout"));
 const NotFound = lazy(() => import("../NotFound/NotFound"));
 
