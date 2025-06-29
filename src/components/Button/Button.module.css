@@ -14,46 +14,46 @@
 }
 
 /* Варианты */
-.dark-button {
+.darkButton {
   background: #9b6c43;
   color: #fff; 
 }
 
-.dark-button:hover {
+.darkButton:hover {
   background: #6d554b;
 }
 
-.dark-button:focus {
+.darkButton:focus {
   background: #9b6c43;
   box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
 }
 
-.dark-button:disabled {
+.darkButton:disabled {
   background: #9b6c43;
   box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
 }
 
 
-.light-button {
+.lightButton {
   border: 1px solid #000;
   color: #000;
   background: transparent;
 }
 
-.light-button:hover {
+.lightButton:hover {
   background: #6d554b;
   border-color: #6d554b;
   color: #fff;
 }
 
-.light-button:focus {
+.lightButton:focus {
   background:  #9b6c43;
   color: #fff;
   border-color: #6d554b;
   box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
 }
 
-.light-button:disabled {
+.lightButton:disabled {
   background:  #9b6c43;
   color: #fff;
   border-color: #6d554b;
