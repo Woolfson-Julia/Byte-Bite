@@ -1,0 +1,54 @@
+.btn {
+  border: 1px solid #000;
+  padding: 8px;
+  width: 267px;
+  height: 40px;
+}
+
+.btnSecond {
+  padding: 12px 16px;
+  width: 329px;
+  height: 46px;
+}
+
+.svg {
+  stroke-width: 1px;
+  stroke: #000;
+
+}
+.btnSvg {
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  }
+.btnSvg:hover {
+  background-color: rgb(145, 215, 141);
+  }
+@media screen and (min-width: 768px) {
+  .btn {
+    width: 267px;
+    height: 40px;
+  }
+  .btnSecond {
+    width: 176px;
+    height: 46px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .btn {
+    width: 216px;
+    height: 40px;
+  }
+  .btnSecond {
+    width: 190px;
+    height: 46px;
+  }
+}

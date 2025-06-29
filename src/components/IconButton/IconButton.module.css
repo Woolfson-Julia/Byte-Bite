@@ -1,0 +1,21 @@
+/* Варианты */
+.dark-svg {
+  stroke: #000;
+  stroke-width: 1px;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+
+.dark-svg:hover,
+.dark-button:focus {
+  stroke: #fff;
+}
+
+.light-svg {
+  stroke-width: 1px;
+  stroke: #fff;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+.light-svg:hover,
+.light-svg:focus {
+  stroke: #000;
+}
