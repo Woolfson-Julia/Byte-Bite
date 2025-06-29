@@ -1,7 +1,8 @@
 .loginWrapper {
   border-radius: 32px;
   padding: 48px 32px;
-  width: 420px;
+  width: 362px;
+  min-width: 320px;
   background: #faf3e0;
   margin: 0 auto;
 }
@@ -22,14 +23,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 356px;
 }
 
 .inputField {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   padding: 8px;
-  width: 356px;
+  /* width: 356px; */
+  width: 100%;
   height: 41px;
   background: #fff;
 
@@ -55,11 +56,28 @@
 
   box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
 }
+
+.passwordWrapper {
+  position: relative;
+  /* display: flex;
+  align-items: center; */
+}
+
+.toggleButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .checkBoxLabel {
   display: flex;
   align-items: center;
 
   margin-bottom: 27px;
+  margin-right: -32px;
 }
 .checkBox {
   position: absolute;
@@ -112,8 +130,8 @@
 
 .submitButton {
   border-radius: 8px;
-  padding: 8px;
-  width: 356px;
+  padding: 8px 0px;
+  width: 100%;
   height: 36px;
   background: #9b6c43;
 
@@ -139,6 +157,22 @@
   color: red;
   font-size: 0.875rem;
   margin-top: 4px;
-  
+
   margin-bottom: 16px;
+}
+
+@media screen and (min-width: 1440px) {
+  .loginWrapper {
+    width: 420px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .loginWrapper {
+    width: 522px;
+  }
+
+  .checkBoxLabel {
+    margin-right: 0px;
+  }
 }
