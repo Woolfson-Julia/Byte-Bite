@@ -1,42 +1,35 @@
-// import axios from 'axios';
-// import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
+export const genericErrorMessage =
+  "There was an error. Try to update page a bit later";
 
-// axios.defaults.baseURL = 'https://connections-api.goit.global';
+axios.defaults.baseURL = "https://byte-bite-two.vercel.app/";
 
+export const fetchRecipes = generateThunk("recipes/fetchAll", () => {
+  return axios.get("/recipes");
+});
 
-// export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_, thunkAPI) => {
-//   try {
-//     const res = await axios.get('/contacts');
-//     return res.data;
-//   } catch (error){
-//     return thunkAPI.rejectWithValue(error.message); 
-//   }
-// })
+export const addRecipe = generateThunk("recipes/add", (contact) => {
+  return axios.post("/recipes", contact);
+});
 
-// export const addContact = createAsyncThunk('contacts/addContact', async (newContact, thunkAPI) => {
-//   try {
-//     const res = await axios.post('/contacts', newContact);
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
+export const deleteRecipe = generateThunk("recipes/delete", (contactId) => {
+  return axios.delete(`/recipes/${contactId}`);
+});
 
-// export const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId, thunkAPI) => {
-//   try {
-//     const res = await axios.delete(`/contacts/${contactId}`);
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
+export const updateRecipe = generateThunk("recipes/update", (contact) => {
+  const data = { name: contact.name, number: contact.number };
+  return axios.patch(`/recipes/${contact.id}`, data);
+});
 
-// export const changeContact = createAsyncThunk('contacts/changeContact', async ({ id, name, number }, thunkAPI) => {
-//   try {
-//     const res = await axios.patch(`/contacts/${id}`, {name: name, number:number});
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
+function generateThunk(name, requestFunc) {
+  return createAsyncThunk(name, async (arg, thunkAPI) => {
+    try {
+      const response = await requestFunc(arg);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  });
+}
