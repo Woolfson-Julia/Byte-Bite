@@ -1,0 +1,194 @@
+.container {
+  padding: 48px 16px;
+}
+.title {
+  margin-bottom: 16px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.lastButton {
+  display: flex;
+  flex-direction: column;
+}
+.leftside {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 40px;
+}
+.rightside {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+textarea {
+  resize: none;
+}
+.group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ingredients .group {
+  flex-direction: column;
+}
+.formField {
+  gap: 8px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.textarea {
+  width: 144px;
+}
+.input,
+.select,
+.textarea {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.input:focus,
+.textarea:focus {
+  border: 1.5px solid #9b6c43;
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+}
+.general,
+.ingredients,
+.instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rightside input {
+  display: none;
+}
+.upload {
+  width: 100%;
+  height: 383px;
+  background: #9f9f9f;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-weight: 600;
+  font-size: 40px;
+  color: #000;
+}
+.subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  color: #000;
+}
+.button {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 16px;
+  background-color: #9b6c43;
+  cursor: pointer;
+}
+.removeButton {
+  color: #000;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+}
+.lastButton {
+  margin-top: 40px;
+}
+.select {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 48px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 48px 32px;
+  }
+  .ingredients .group {
+    flex-direction: row;
+  }
+  .group {
+    gap: 24px;
+  }
+  .removeButton {
+    display: none;
+  }
+  .ingredients .formField:last-child {
+    max-width: 249px;
+  }
+  .smallbutton {
+    margin-top: 24px;
+    width: 249px;
+    align-self: flex-end;
+    box-sizing: border-box;
+  }
+  .general {
+    gap: 32px;
+  }
+  .ingredients {
+    gap: 0;
+  }
+  .ingredients .subtitle {
+    margin-bottom: 32px;
+  }
+  .instructions {
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    padding: 48px 107px;
+  }
+  .textarea {
+    height: 144px;
+  }
+  .form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .leftside {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+  }
+  .rightside {
+    order: 2;
+    width: 391px;
+    flex-shrink: 0;
+  }
+  .upload {
+    width: 391px;
+    height: 374px;
+  }
+  .ingredients .button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .title {
+    margin-bottom: 40px;
+  }
+  .subtitle {
+    font-size: 32px;
+  }
+}
