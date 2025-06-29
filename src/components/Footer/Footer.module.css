@@ -11,11 +11,6 @@
   height: 46px;
 }
 
-.svg {
-  stroke-width: 1px;
-  stroke: #000;
-
-}
 .btnSvg {
   border: 1px solid #000;
   border-radius: 8px;
@@ -25,12 +20,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
-  transition: all .25s cubic-bezier(.4,0,.2,1);
   }
-.btnSvg:hover {
-  background-color: rgb(145, 215, 141);
-  }
+
+
 @media screen and (min-width: 768px) {
   .btn {
     width: 267px;

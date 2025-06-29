@@ -1,21 +1,76 @@
-/* Варианты */
-.dark-svg {
+/* Варианты button */
+.darkButtonSvg {
+  background: #9b6c43;
+  color: #fff; 
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+
+.darkButtonSvg:hover {
+  background: #6d554b;
+}
+
+.darkButtonSvg:focus {
+  background: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  outline: none;
+}
+
+.darkButtonSvg:disabled {
+  background: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+
+.lightButtonSvg {
+  border: 1px solid #000;
+  color: #000;
+  background: transparent;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+
+.lightButtonSvg:hover {
+  background: #6d554b;
+  border-color: #6d554b;
+  color: #fff;
+}
+
+.lightButtonSvg:focus {
+  background:  #9b6c43;
+  color: #fff;
+  border-color: #6d554b;
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+  outline: none;
+}
+
+.lightButtonSvg:disabled {
+  background:  #9b6c43;
+  color: #fff;
+  border-color: #6d554b;
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/* Варианты svg */
+.darkSvg {
   stroke: #000;
   stroke-width: 1px;
   transition: all .25s cubic-bezier(.4,0,.2,1);
 }
 
-.dark-svg:hover,
-.dark-button:focus {
+.darkSvg:hover,
+.darkSvg:focus {
   stroke: #fff;
 }
 
-.light-svg {
+.lightSvg {
   stroke-width: 1px;
   stroke: #fff;
   transition: all .25s cubic-bezier(.4,0,.2,1);
 }
-.light-svg:hover,
-.light-svg:focus {
+.lightSvg:hover,
+.lightSvg:focus {
   stroke: #000;
 }
