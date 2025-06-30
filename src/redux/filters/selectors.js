@@ -1,10 +1,14 @@
-// import { createSelector } from '@reduxjs/toolkit';
-// import { selectContacts } from '../contacts/selectors';
+import { createSelector } from '@reduxjs/toolkit';
+import { selectRecipes } from '../recipes/selectors'; 
 
+export const selectFilter = (state) => state.filters.recipe;
 
-// export const selectContactDataFilter = (state) => state.filters.contactData;
-
-// export const selectFilteredContacts = createSelector([selectContacts, selectContactDataFilter], (contacts, contactsFilter) => {
-//   return contacts.filter((contact) => contact.name.toLowerCase().includes(contactsFilter.toLowerCase().trim()) || contact.number.toLowerCase().includes(contactsFilter.toLowerCase().trim()))
-// });
-
+export const selectFilteredRecipes = createSelector(
+  [selectRecipes, selectFilter],
+  (recipes, filter) => {
+    const normalized = filter.toLowerCase().trim();
+    return recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(normalized)
+    );
+  }
+);

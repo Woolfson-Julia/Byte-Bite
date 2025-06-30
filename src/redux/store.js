@@ -10,8 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-// import filtersReducer from './filters/slice';
+import filtersReducer from './filters/slice';
 import authReducer from './auth/slice'
+import  recipesReducer  from './recipes/slice'; 
 
 
 const persistedAuthReducer = persistReducer({
@@ -22,8 +23,9 @@ const persistedAuthReducer = persistReducer({
 
 export const store = configureStore({
   reducer: {
-    // filters: filtersReducer,
+    filters: filtersReducer,
     auth: persistedAuthReducer,
+    recipes: recipesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
