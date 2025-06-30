@@ -1,11 +1,12 @@
 import css from "./SearchBox.module.css";
+import Button from "../Button/Button"
 
 
 export default function SearchBox() {
 
   // const dispatch = useDispatch();
 
-  // const filter = useSelector(selectContactDataFilter);
+  // const filter = useSelector(selectRecipesFilter);
 
   // const handleChange = (event) => {
   //   dispatch(changeFilter(event.target.value));
@@ -21,7 +22,7 @@ export default function SearchBox() {
           className={css.input}
           placeholder="Search recipes"
         />
-        <button type="submit" className={css.btn}>Search</button>
+       <Button className={css.btn}>Search</Button>
       </div>
     </div>
     </div>
