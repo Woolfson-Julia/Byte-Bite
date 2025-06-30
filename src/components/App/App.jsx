@@ -6,7 +6,8 @@ import { RestrictedRoute } from "../RestrictedRoute";
 import Loader from "../Loader/Loader";
 
 const Layout = lazy(() => import("../Layout/Layout"));
-const NotFound = lazy(() => import("../NotFound/NotFound"));
+// const NotFound = lazy(() => import("../NotFound/NotFound"));
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
 const RecipeViewPage = lazy(() =>
@@ -53,9 +54,9 @@ export default function App() {
               <RestrictedRoute component={<AuthPage />} redirectTo="/" />
             }
           />
-
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
