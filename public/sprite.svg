@@ -115,5 +115,8 @@
 <symbol id="icon-timeclock-32px" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1" d="M16 10.154v6.577l4.385 3.654M25.5 16c0 5.247-4.253 9.5-9.5 9.5s-9.5-4.253-9.5-9.5c0-5.247 4.253-9.5 9.5-9.5s9.5 4.253 9.5 9.5z"></path>
 </symbol>
+<symbol id="icon-check" viewBox="0 0 48 32">
+<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="6" d="M6 13.88l13.332 14.12 22.668-24"></path>
+</symbol>
 </defs>
 </svg>
