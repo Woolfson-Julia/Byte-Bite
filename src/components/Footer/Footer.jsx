@@ -4,13 +4,13 @@ import IconButton from "../IconButton/IconButton";
 
 export default function Footer() {
   const handleClick = () => {
-    console.log("Добавить нажато");
+    console.log("Проверка");
   };
 
   return (
     <>
       <Button
-        variant="dark-button"
+        variant="darkButton"
         onClick={handleClick}
         className={css.btn}
         type="button"
@@ -18,15 +18,15 @@ export default function Footer() {
         Search
       </Button>
       <Button
-        variant="light-button"
+        variant="lightButton"
         type="submit"
         className={css.btnSecond}
-        disabled
       >
         Learn more
       </Button>
       <IconButton
-        variant="dark-svg"
+        variantBtn="lightButtonSvg"
+        variantSvg="darkSvg"
         onClick={handleClick}
         className={css.btnSvg}
         type="button"
