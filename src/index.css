@@ -38,6 +38,10 @@ button {
   border: none;
 }
 
+svg {
+  fill:none;
+}
+
 .container {
   min-width: 320px;
   max-width: 380px; /* 360 контент (по макету) + 2*10 падинги */
