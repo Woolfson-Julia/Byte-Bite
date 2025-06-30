@@ -8,7 +8,7 @@ const setAuthHeader = (value) => {
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
-    try { 
+    try {
       const res = await axios.post(
         "https://byte-bitebd.onrender.com/api/auth/register",
         credentials
@@ -25,7 +25,10 @@ export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post("https://byte-bitebd.onrender.com/api/auth/login", credentials);
+      const res = await axios.post(
+        "https://byte-bitebd.onrender.com/api/auth/login",
+        credentials
+      );
       setAuthHeader(`Bearer ${res.data.token}`);
       return res.data;
     } catch (error) {
@@ -35,7 +38,7 @@ export const logIn = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk("auth/logout", async () => {
-  await axios.post("/users/logout");
+  await axios.post("https://byte-bitebd.onrender.com/api/auth/logout");
   setAuthHeader("");
 });
 
@@ -45,7 +48,9 @@ export const refreshUser = createAsyncThunk(
     try {
       const reduxState = thunkAPI.getState();
       setAuthHeader(`Bearer ${reduxState.auth.token}`);
-      const res = await axios.get("/users/current");
+      const res = await axios.get(
+        "https://byte-bitebd.onrender.com/api/auth/refresh"
+      );
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

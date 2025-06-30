@@ -76,10 +76,23 @@
   cursor: pointer;
 
   background-color: transparent;
+  border-radius: 8px;
+}
+.toggleButton:focus-visible {
+  outline: none;
+  border: 1.5px solid #9b6c43;
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+}
+.toggleButton:focus > .eyeSvg {
+  stroke: rgb(92, 92, 92);
 }
 .eyeSvg {
   width: 24px;
   height: 24px;
+  stroke: #000;
+}
+.eyeSvg:hover {
+  stroke: rgb(92, 92, 92);
 }
 /* ----------------/password--------- */
 
@@ -117,7 +130,7 @@
   margin-right: 8px;
 }
 
-.customCheckbox > svg {
+/* .customCheckbox > svg {
   opacity: 0;
   transform: scale(0.8);
   transition: opacity 250ms ease, transform 250ms ease;
@@ -125,6 +138,18 @@
 .checkBox:checked + .customCheckbox > svg {
   opacity: 1;
   transform: scale(1);
+} */
+
+.checkmark {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 250ms ease, transform 250ms ease;
+  stroke: white;
+  
+}
+.checkBox:checked + .customCheckbox > .checkmark {
+  opacity: 1;
+  /* transform: scale(1); */
 }
 
 .checkBox:checked + .customCheckbox {
@@ -135,6 +160,11 @@
 .checkBox:focus + .customCheckbox {
   border: 1.5px solid #9b6c43;
   outline: none;
+}
+
+.icon {
+  stroke: black;
+  fill: black;
 }
 
 /* ----------------/privacy policy--------- */
@@ -194,7 +224,4 @@
   .loginWrapper {
     max-width: 420px;
   }
-}
-.icon {
-  stroke: black;
 }

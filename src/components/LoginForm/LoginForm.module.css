@@ -70,14 +70,39 @@
   cursor: pointer;
 
   background-color: transparent;
+  border-radius: 8px;
+}
+.toggleButton:focus-visible {
+  outline: none;
+  border: 1.5px solid #9b6c43;
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+}
+
+.toggleButton:focus > .eyeSvg {
+  stroke: rgb(92, 92, 92);
 }
 .eyeSvg {
   width: 24px;
   height: 24px;
+  stroke: #000;
+}
+.eyeSvg:hover {
+  stroke: rgb(92, 92, 92);
 }
 /* ----------------/password--------- */
 
 .submitButton {
   padding: 8px 0px;
   margin-bottom: 20px;
+}
+
+.registerPrompt {
+  text-align: center;
+  line-height: 1.55;
+}
+.registerLink {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  /* this is on the InspectStyles but not seen on the actual example */
 }
