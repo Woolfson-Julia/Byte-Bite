@@ -10,4 +10,4 @@ export default function FixedErrorMessage({ name, className }) {
     </div>
   );
 }
-//component for fixed height of an error, so the form doe not jump
+//component for fixed height of an error, so the form does not jump

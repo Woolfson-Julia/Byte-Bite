@@ -1,10 +1,15 @@
 import css from "./RegistrationForm.module.css";
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validationSchema } from "./validationSchema";
-import FixedErrorMessage from "./FixedErrorMessage";
+import { handleSubmit } from "./handleSubmit";
+import FixedErrorMessage from "../RegistrationForm/FixedErrorMessage";
+
+import IconButton from "../IconButton/IconButton";
+import Button from "../Button/Button";
 export default function RegistrationForm() {
   const nameFieldId = useId();
   const emailFieldId = useId();
@@ -15,12 +20,10 @@ export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCheckPassword, setShowCheckPassword] = useState(false);
 
-  const handleSumbit = (values, actions) => {
-    console.log("Form data:", values);
-    actions.resetForm();
-  };
+  const dispatch = useDispatch();
+
   return (
-    <div className={css.loginWrapper}>
+    <div className={css.registerWrapper}>
       <h1 className={css.heading}>Register</h1>
       <p className={css.description}>
         Join our community of culinary enthusiasts, save your favorite recipes,
@@ -35,9 +38,10 @@ export default function RegistrationForm() {
           acceptedTerms: false,
         }}
         validationSchema={validationSchema}
-        onSubmit={handleSumbit}
+        onSubmit={(values, actions) => handleSubmit(values, actions, dispatch)}
       >
         <Form className={css.form}>
+          {/* <div className={css.fieldWrapper}> */}
           <label htmlFor={nameFieldId} className={css.inputLabel}>
             Enter your name
           </label>
@@ -48,11 +52,17 @@ export default function RegistrationForm() {
             name="username"
             placeholder="Max"
           ></Field>
-          {/* <ErrorMessage name="username" component="div" className={css.error} /> */}
           <FixedErrorMessage
             name="username"
             className={css.error}
           ></FixedErrorMessage>
+          {/* <ErrorMessage
+              name="username"
+              component="span"
+              className={css.error}
+            /> */}
+          {/* </div> */}
+
           <label htmlFor={emailFieldId} className={css.inputLabel}>
             Enter your email address
           </label>
@@ -81,28 +91,18 @@ export default function RegistrationForm() {
               name="password"
               placeholder="********"
             ></Field>
-            <button
-              type="button"
+            <IconButton
               onClick={() => setShowPassword((prev) => !prev)}
               className={css.toggleButton}
-              aria-label="Toggle password visibility"
             >
-              {/* {showPassword ? "🙈" : "👁️"} */}
-
-              <svg
-                width="16"
-                height="14"
-                viewBox="0 0 16 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.4107 12.4874C9.59629 12.8656 8.69231 13.1118 7.74048 13.1118C4.15598 13.1118 1.25017 9.62068 1.25017 8.73362C1.25017 8.2308 2.18382 6.89131 3.64549 5.82521M13.452 10.1367C13.9487 9.53913 14.2308 9.00999 14.2308 8.73362C14.2308 7.84656 11.325 4.35549 7.74048 4.35549C9.31767 4.35549 10.5962 5.62382 10.5962 7.1884M7.74046 10.0213C6.16328 10.0213 4.88472 8.75297 4.88472 7.1884M14.75 4.35557C12.7732 2.7195 10.4653 1.7802 8.0001 1.7802C7.11158 1.7802 6.2435 1.90222 5.40397 2.13492M1.25017 4.35557C1.43341 4.20392 1.6195 4.05825 1.8083 3.91876M1.25 0.75L13.7856 13.4061"
-                  stroke="black"
-                  strokeLinecap="round"
-                />
+              <svg className={css.eyeSvg}>
+                {showPassword ? (
+                  <use xlinkHref="/sprite.svg#icon-eye-24px" />
+                ) : (
+                  <use xlinkHref="/sprite.svg#icon-eye-close-24px" />
+                )}
               </svg>
-            </button>
+            </IconButton>
           </div>
           {/* <ErrorMessage name="password" component="div" className={css.error} /> */}
           <FixedErrorMessage
@@ -121,28 +121,18 @@ export default function RegistrationForm() {
               name="checkPassword"
               placeholder="********"
             ></Field>
-            <button
-              type="button"
+            <IconButton
               onClick={() => setShowCheckPassword((prev) => !prev)}
               className={css.toggleButton}
-              aria-label="Toggle check password visibility"
             >
-              {/* {showPassword ? "🙈" : "👁️"} */}
-
-              <svg
-                width="16"
-                height="14"
-                viewBox="0 0 16 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.4107 12.4874C9.59629 12.8656 8.69231 13.1118 7.74048 13.1118C4.15598 13.1118 1.25017 9.62068 1.25017 8.73362C1.25017 8.2308 2.18382 6.89131 3.64549 5.82521M13.452 10.1367C13.9487 9.53913 14.2308 9.00999 14.2308 8.73362C14.2308 7.84656 11.325 4.35549 7.74048 4.35549C9.31767 4.35549 10.5962 5.62382 10.5962 7.1884M7.74046 10.0213C6.16328 10.0213 4.88472 8.75297 4.88472 7.1884M14.75 4.35557C12.7732 2.7195 10.4653 1.7802 8.0001 1.7802C7.11158 1.7802 6.2435 1.90222 5.40397 2.13492M1.25017 4.35557C1.43341 4.20392 1.6195 4.05825 1.8083 3.91876M1.25 0.75L13.7856 13.4061"
-                  stroke="black"
-                  strokeLinecap="round"
-                />
+              <svg className={css.eyeSvg}>
+                {showCheckPassword ? (
+                  <use xlinkHref="/sprite.svg#icon-eye-24px" />
+                ) : (
+                  <use xlinkHref="/sprite.svg#icon-eye-close-24px" />
+                )}
               </svg>
-            </button>
+            </IconButton>
           </div>
           {/* <ErrorMessage
             name="checkPassword"
@@ -198,9 +188,16 @@ export default function RegistrationForm() {
             name="acceptedTerms"
             className={css.error}
           ></FixedErrorMessage>
-          <button type="submit" className={css.submitButton}>
+          <Button
+            type="submit"
+            variant={`dark-button`}
+            className={css.submitButton}
+          >
             Create account
-          </button>
+          </Button>
+          {/* <button type="submit" className={css.submitButton}>
+            Create account
+          </button> */}
         </Form>
       </Formik>
       <p className={css.loginPrompt}>
