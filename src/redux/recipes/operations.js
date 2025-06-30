@@ -4,24 +4,23 @@ import axios from "axios";
 export const genericErrorMessage =
   "There was an error. Try to update page a bit later";
 
-axios.defaults.baseURL = "https://byte-bite-two.vercel.app/";
+axios.defaults.baseURL = "http://byte-bitebd.onrender.com/api";
 
-export const fetchRecipes = generateThunk("recipes/fetchAll", () => {
+export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
   return axios.get("/recipes");
 });
 
-export const addRecipe = generateThunk("recipes/add", (contact) => {
-  return axios.post("/recipes", contact);
+export const addRecipe = generateThunk("recipes/addRecipe", (formData) => {
+  return axios.post("/recipes/add-recipe", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 });
 
-export const deleteRecipe = generateThunk("recipes/delete", (contactId) => {
-  return axios.delete(`/recipes/${contactId}`);
-});
-
-export const updateRecipe = generateThunk("recipes/update", (contact) => {
-  const data = { name: contact.name, number: contact.number };
-  return axios.patch(`/recipes/${contact.id}`, data);
-});
+export const fetchRecipeById = generateThunk("recipes/fetchById", (id) =>
+  axios.get(`/recipes/${id}`)
+);
 
 function generateThunk(name, requestFunc) {
   return createAsyncThunk(name, async (arg, thunkAPI) => {
