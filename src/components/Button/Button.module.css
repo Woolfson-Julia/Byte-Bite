@@ -1,0 +1,62 @@
+.button {
+  border-radius: 8px;
+  border:none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+.button:focus {
+  outline: none;
+}
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/* Варианты */
+.darkButton {
+  background: #9b6c43;
+  color: #fff; 
+}
+
+.darkButton:hover {
+  background: #6d554b;
+}
+
+.darkButton:focus {
+  background: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+}
+
+.darkButton:disabled {
+  background: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+}
+
+
+.lightButton {
+  border: 1px solid #000;
+  color: #000;
+  background: transparent;
+}
+
+.lightButton:hover {
+  background: #6d554b;
+  border-color: #6d554b;
+  color: #fff;
+}
+
+.lightButton:focus {
+  background:  #9b6c43;
+  color: #fff;
+  border-color: #6d554b;
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+}
+
+.lightButton:disabled {
+  background:  #9b6c43;
+  color: #fff;
+  border-color: #6d554b;
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+}
+
