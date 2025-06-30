@@ -1,0 +1,14 @@
+.name {
+  text-transform: capitalize;
+}
+
+@media (max-width: 393px) {
+  .menu {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .info {
+    display: flex;
+  }
+}

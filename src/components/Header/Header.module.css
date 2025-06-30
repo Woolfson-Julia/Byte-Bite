@@ -1,0 +1,27 @@
+.logoWrapper {
+  position: relative;
+  z-index: 1100; /* вище, ніж 1000 у MobileMenu */
+}
+
+/* мобілка */
+@media (max-width: 393px) {
+  .navDesktop {
+    display: none;
+  }
+
+  .burgerMenu {
+    display: block;
+  }
+}
+
+/* десктоп (вище за 393px) */
+@media (min-width: 394px) {
+  .navDesktop {
+    display: flex;
+    gap: 15px;
+  }
+
+  .burgerMenu {
+    display: none;
+  }
+}
