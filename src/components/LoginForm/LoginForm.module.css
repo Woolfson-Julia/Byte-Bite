@@ -106,3 +106,17 @@
   text-decoration-skip-ink: none;
   /* this is on the InspectStyles but not seen on the actual example */
 }
+
+@media screen and (min-width: 768px) {
+  .loginWrapper {
+    max-width: 522px;
+  }
+  .checkBoxLabel {
+    margin-right: 0px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .loginWrapper {
+    max-width: 420px;
+  }
+}

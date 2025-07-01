@@ -5,12 +5,14 @@ import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useAsyncError } from "react-router-dom";
 
-import { selectLoading } from "../../redux/auth/selectors";
+import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Loader from "../Loader/Loader";
 
 import { validationSchema } from "./validationSchema";
-import { handleSubmit } from "./handleSubmit";
+// import { handleSubmit } from "./handleSubmit";
 import FixedErrorMessage from "../RegistrationForm/FixedErrorMessage";
+
+import { logIn } from "../../redux/auth/operations";
 
 import IconButton from "../IconButton/IconButton";
 import Button from "../Button/Button";
@@ -18,12 +20,19 @@ import ToastInfo from "../ToastInfo/ToastInfo";
 
 export default function LoginForm() {
   const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
   const dispatch = useDispatch();
 
+  const handleSubmit = async (values, actions) => {
+    dispatch(logIn(values));
+
+    actions.resetForm();
+  };
   return (
     <>
       {isLoading ? (
@@ -36,9 +45,7 @@ export default function LoginForm() {
               email: "",
               password: "",
             }}
-            onSubmit={(values, actions) =>
-              handleSubmit(values, actions, dispatch)
-            }
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             <Form className={css.form}>
@@ -100,14 +107,14 @@ export default function LoginForm() {
             </Form>
           </Formik>
           <p className={css.registerPrompt}>
-            Don’t have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link to="/auth/register" className={css.registerLink}>
               Register
             </Link>
           </p>
         </div>
       )}
-      <ToastInfo />
+      {isError && <ToastInfo />}
     </>
   );
 }

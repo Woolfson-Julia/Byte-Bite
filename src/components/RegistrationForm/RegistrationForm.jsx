@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectLoading } from "../../redux/auth/selectors";
-import Loader from "../Loader/Loader";
+import { selectLoading, selectError } from "../../redux/auth/selectors";
 
 import { validationSchema } from "./validationSchema";
 import { handleSubmit } from "./handleSubmit";
@@ -15,6 +14,7 @@ import FixedErrorMessage from "../RegistrationForm/FixedErrorMessage";
 import IconButton from "../IconButton/IconButton";
 import Button from "../Button/Button";
 import ToastInfo from "../ToastInfo/ToastInfo";
+import Loader from "../Loader/Loader";
 
 export default function RegistrationForm() {
   const nameFieldId = useId();
@@ -27,7 +27,9 @@ export default function RegistrationForm() {
   const [showCheckPassword, setShowCheckPassword] = useState(false);
 
   const dispatch = useDispatch();
+
   const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
 
   return (
     <>
@@ -42,7 +44,7 @@ export default function RegistrationForm() {
           </p>
           <Formik
             initialValues={{
-              username: "",
+              name: "",
               email: "",
               password: "",
               checkPassword: "",
@@ -62,19 +64,13 @@ export default function RegistrationForm() {
                 className={css.inputField}
                 id={nameFieldId}
                 type="text"
-                name="username"
+                name="name"
                 placeholder="Max"
               ></Field>
               <FixedErrorMessage
                 name="username"
                 className={css.error}
               ></FixedErrorMessage>
-              {/* <ErrorMessage
-              name="username"
-              component="span"
-              className={css.error}
-            /> */}
-              {/* </div> */}
 
               <label htmlFor={emailFieldId} className={css.inputLabel}>
                 Enter your email address
@@ -86,7 +82,6 @@ export default function RegistrationForm() {
                 name="email"
                 placeholder="email@gmail.com"
               ></Field>
-              {/* <ErrorMessage name="email" component="div" className={css.error} /> */}
               <FixedErrorMessage
                 name="email"
                 className={css.error}
@@ -119,7 +114,6 @@ export default function RegistrationForm() {
                   </svg>
                 </IconButton>
               </div>
-              {/* <ErrorMessage name="password" component="div" className={css.error} /> */}
               <FixedErrorMessage
                 name="password"
                 className={css.error}
@@ -151,11 +145,7 @@ export default function RegistrationForm() {
                   </svg>
                 </IconButton>
               </div>
-              {/* <ErrorMessage
-            name="checkPassword"
-            component="div"
-            className={css.error}
-          /> */}
+
               <FixedErrorMessage
                 name="checkPassword"
                 className={css.error}
@@ -184,11 +174,6 @@ export default function RegistrationForm() {
                   </a>
                 </span>
               </label>
-              {/* <ErrorMessage
-            name="acceptedTerms"
-            component="div"
-            className={css.error}
-          /> */}
 
               <FixedErrorMessage
                 name="acceptedTerms"
@@ -201,9 +186,6 @@ export default function RegistrationForm() {
               >
                 Create account
               </Button>
-              {/* <button type="submit" className={css.submitButton}>
-            Create account
-          </button> */}
             </Form>
           </Formik>
           <p className={css.loginPrompt}>
@@ -214,7 +196,7 @@ export default function RegistrationForm() {
           </p>
         </div>
       )}
-      <ToastInfo/>
+      {isError && <ToastInfo />}
     </>
   );
 }
