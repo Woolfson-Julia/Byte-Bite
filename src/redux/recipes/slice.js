@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
-import { logout } from "../auth/operations";
+import { logOut } from "../auth/operations";
 
 const slice = createSlice({
   name: "recipes",
@@ -43,7 +43,7 @@ const slice = createSlice({
       }
     });*/
 
-    builder.addCase(logout.fulfilled, (state) => {
+    builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
     }).addCase;
   },

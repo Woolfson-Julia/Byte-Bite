@@ -2,34 +2,34 @@ import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { fetchRecipes, fetchRecipeById, addRecipe } from "./operations";
 import toast from "react-hot-toast";
 
-const recipeListenerMiddleware = createListenerMiddleware();
+const recipesListenerMiddleware = createListenerMiddleware();
 
-recipeListenerMiddleware.startListening({
+recipesListenerMiddleware.startListening({
   actionCreator: fetchRecipes.rejected,
   effect: async () => {
     toast.error("Failed to load the recipes");
   },
 });
 
-recipeListenerMiddleware.startListening({
+recipesListenerMiddleware.startListening({
   actionCreator: fetchRecipeById.rejected,
   effect: async () => {
     toast.error("Failed to load the recipe");
   },
 });
 
-recipeListenerMiddleware.startListening({
+recipesListenerMiddleware.startListening({
   actionCreator: addRecipe.fulfilled,
   effect: async () => {
     toast.success("Recipe successfully added");
   },
 });
 
-recipeListenerMiddleware.startListening({
+recipesListenerMiddleware.startListening({
   actionCreator: addRecipe.rejected,
   effect: async () => {
     toast.error("Failed to add the recipe");
   },
 });
 
-export default recipeListenerMiddleware;
+export default recipesListenerMiddleware;

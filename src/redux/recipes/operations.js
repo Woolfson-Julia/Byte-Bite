@@ -4,7 +4,7 @@ import axios from "axios";
 export const genericErrorMessage =
   "There was an error. Try to update page a bit later";
 
-axios.defaults.baseURL = "http://byte-bitebd.onrender.com/api";
+axios.defaults.baseURL = "https://byte-bitebd.onrender.com/api";
 
 export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
   return axios.get("/recipes");
@@ -26,7 +26,7 @@ function generateThunk(name, requestFunc) {
   return createAsyncThunk(name, async (arg, thunkAPI) => {
     try {
       const response = await requestFunc(arg);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
