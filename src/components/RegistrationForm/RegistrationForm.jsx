@@ -1,6 +1,6 @@
 import css from "./RegistrationForm.module.css";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import { Link } from "react-router-dom";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 
 import { validationSchema } from "./validationSchema";
-import { handleSubmit } from "./handleSubmit";
+import { register } from "../../redux/auth/operations";
 import FixedErrorMessage from "../RegistrationForm/FixedErrorMessage";
 
 import IconButton from "../IconButton/IconButton";
@@ -31,6 +31,17 @@ export default function RegistrationForm() {
   const isLoading = useSelector(selectLoading);
   const isError = useSelector(selectError);
 
+  const handleSubmit = (values, actions) => {
+    const { name, email, password } = values;
+    const valuesToSend = {
+      name,
+      email,
+      password,
+    };
+    dispatch(register(valuesToSend));
+    actions.resetForm();
+  };
+
   return (
     <>
       {isLoading ? (
@@ -51,12 +62,9 @@ export default function RegistrationForm() {
               acceptedTerms: false,
             }}
             validationSchema={validationSchema}
-            onSubmit={(values, actions) =>
-              handleSubmit(values, actions, dispatch)
-            }
+            onSubmit={handleSubmit}
           >
             <Form className={css.form}>
-              {/* <div className={css.fieldWrapper}> */}
               <label htmlFor={nameFieldId} className={css.inputLabel}>
                 Enter your name
               </label>

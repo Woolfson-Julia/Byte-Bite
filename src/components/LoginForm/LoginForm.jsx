@@ -3,13 +3,12 @@ import css from "./LoginForm.module.css";
 import { Formik, Form, Field } from "formik";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useAsyncError } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Loader from "../Loader/Loader";
 
 import { validationSchema } from "./validationSchema";
-// import { handleSubmit } from "./handleSubmit";
 import FixedErrorMessage from "../RegistrationForm/FixedErrorMessage";
 
 import { logIn } from "../../redux/auth/operations";
