@@ -1,14 +1,19 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { PrivateRoute } from "../PrivateRoute";
 import { RestrictedRoute } from "../RestrictedRoute";
 import Loader from "../Loader/Loader";
 
+import { refreshUser } from "../../redux/auth/operations";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 
 const Layout = lazy(() => import("../Layout/Layout"));
 
-const NotFoundPage = lazy(() => import ("../../pages/NotFoundPage/NotFoundPage"));
+const NotFoundPage = lazy(() =>
+  import("../../pages/NotFoundPage/NotFoundPage")
+);
 
 const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
 const RecipeViewPage = lazy(() =>
@@ -21,7 +26,17 @@ const ProfilePage = lazy(() => import("../../pages/ProfilePage/ProfilePage"));
 const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage"));
 
 export default function App() {
-  return (
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>

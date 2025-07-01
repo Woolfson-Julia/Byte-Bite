@@ -14,12 +14,14 @@ import filtersReducer from './filters/slice';
 import authReducer from './auth/slice'
 import  recipesReducer  from './recipes/slice'; 
 
-
-const persistedAuthReducer = persistReducer({
-  key: 'user-token',
-  storage,
-  whitelist: ['token'],
-}, authReducer)
+const persistedAuthReducer = persistReducer(
+  {
+    key: "user-token",
+    storage,
+    whitelist: ["accessToken"], //добавила "user", "isLoggedIn"
+  },
+  authReducer
+);
 
 export const store = configureStore({
   reducer: {
@@ -38,4 +40,3 @@ export const store = configureStore({
 export default store;
 
 export const persistor = persistStore(store);
-
