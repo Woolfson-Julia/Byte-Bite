@@ -1,18 +1,19 @@
-// import axios from 'axios';
-// import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
-// axios.defaults.baseURL = 'https://connections-api.goit.global';
+axios.defaults.baseURL = 'https://byte-bitebd.onrender.com/';
 
 
-// export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_, thunkAPI) => {
-//   try {
-//     const res = await axios.get('/contacts');
-//     return res.data;
-//   } catch (error){
-//     return thunkAPI.rejectWithValue(error.message); 
-//   }
-// })
+export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async (_, thunkAPI) => {
+  try {
+    const res = await axios.get('api/recipes'); 
+    return res.data.data.data;
+  } catch (error){
+    return thunkAPI.rejectWithValue(error.message); 
+  }
+});
+
 
 // export const addContact = createAsyncThunk('contacts/addContact', async (newContact, thunkAPI) => {
 //   try {
