@@ -1,0 +1,155 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.image {
+    width: 100%;
+    border-radius: 8px;
+
+    order: -1
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info_container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info_wrapper {
+    width: 100%;
+    border-radius: 16px;
+    padding: 16px;
+
+    background-color: #faf3e0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text {
+    line-height: 155%;
+}
+
+.info_accent_text {
+    font-weight: 600;
+    line-height: normal;
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 16px;
+
+    background-color: #9b6c43;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+    fill: none;
+    stroke: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.main_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about_title {
+    margin-bottom: 8px;
+}
+
+.ingredients_list {
+    padding-left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    list-style-type: disc;
+}
+
+.instruction_title {
+    margin-bottom: 24px;
+}
+
+.instruction_list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media screen and (min-width: 768px) { 
+    .title {
+        font-size: 48px;
+        line-height: 110%;
+    }
+    
+    .image {
+        order: 0;
+    }
+    
+    .info_container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .info_wrapper {
+        width: 431px;
+        padding: 24px;
+    }
+    
+    .btn {
+        flex: 1;
+    }
+}
+
+@media screen and (min-width: 1440px) { 
+    .wrapper {
+        flex-direction: row-reverse;
+    }
+
+    .info_container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+    
+    .info_wrapper {
+        width: 393px;
+    }
+    
+    .btn {
+        flex: 0;
+    }
+
+    .subtitle {
+        font-size: 32px;
+    }
+}
