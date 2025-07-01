@@ -20,22 +20,24 @@ export default function SearchBox() {
   };
 
   return (
-    <div className={css.wrapper}>
-      <div className={css.container}>
-        <h1 className={css.text}>Plan, Cook, and Share Your Flavors</h1>
+    <div>
+      <div className={css.wrapper}>
+        <div className={`${css.container} container`}>
+          <h1 className={css.text}>Plan, Cook, and Share Your Flavors</h1>
 
-        <form onSubmit={handleFormSubmit} className={css.containerInput}>
-          <input
-            type="text"
-            className={css.input}
-            placeholder="Search recipes"
-            value={searchValue}
-            onChange={handleInputChange}
-          />
-          <Button type="submit" className={css.btn}>
-            Search
-          </Button>
-        </form>
+          <form onSubmit={handleFormSubmit} className={css.containerInput}>
+            <input
+              type="text"
+              className={css.input}
+              placeholder="Search recipes"
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <Button type="submit" className={css.btn}>
+              Search
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );

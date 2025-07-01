@@ -8,11 +8,8 @@
 }
 
 .container {
-  min-width: 320px;
-  max-width: 380px;
   padding-left: 26px;
   padding-right: 26px;
-  margin: 0 auto;
 }
 
 .text {
@@ -84,8 +81,6 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 735px;
-    /* 705 контент (по макету) + 2*15 падинги */
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -132,11 +127,6 @@
  }
 
 @media screen and (min-width: 1440px) {
-  .container {
-    max-width: 1254px;
-    /* 1224 контент (по макету) + 2*15 падинги */
-  }
-
     .wrapper {
       background-image: url('../../assets/hero-desktop@1x.jpg');
       min-width: 1440px;
