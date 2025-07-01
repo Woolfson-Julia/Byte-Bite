@@ -1,0 +1,8 @@
+.recipe {
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+  padding: 10px;
+  line-height: 1.7;
+  font-size: 18px;
+}

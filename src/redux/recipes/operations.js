@@ -1,43 +1,40 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
-axios.defaults.baseURL = 'https://byte-bitebd.onrender.com/';
+export const genericErrorMessage =
+  "There was an error. Try to update page a bit later";
 
 
-export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async (_, thunkAPI) => {
-  try {
-    const res = await axios.get('api/recipes'); 
-    return res.data.data.data;
-  } catch (error){
-    return thunkAPI.rejectWithValue(error.message); 
-  }
+axios.defaults.baseURL = "https://byte-bitebd.onrender.com/api";
+
+
+export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
+  return axios.get("/recipes");
 });
 
 
-// export const addContact = createAsyncThunk('contacts/addContact', async (newContact, thunkAPI) => {
-//   try {
-//     const res = await axios.post('/contacts', newContact);
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
+export const addRecipe = generateThunk("recipes/addRecipe", (formData) => {
+  return axios.post("/recipes/add-recipe", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
-// export const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId, thunkAPI) => {
-//   try {
-//     const res = await axios.delete(`/contacts/${contactId}`);
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
 
-// export const changeContact = createAsyncThunk('contacts/changeContact', async ({ id, name, number }, thunkAPI) => {
-//   try {
-//     const res = await axios.patch(`/contacts/${id}`, {name: name, number:number});
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// })
+export const fetchRecipeById = generateThunk("recipes/fetchById", (id) =>
+  axios.get(`/recipes/${id}`)
+);
+
+function generateThunk(name, requestFunc) {
+  return createAsyncThunk(name, async (arg, thunkAPI) => {
+    try {
+      const response = await requestFunc(arg);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  });
+}
