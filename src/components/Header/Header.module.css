@@ -1,27 +1,28 @@
-.logoWrapper {
+.header {
   position: relative;
-  z-index: 1100; /* вище, ніж 1000 у MobileMenu */
+  background-color: #3d2218; /* var(--Darck-brown) */
+  min-height: 74px;
+  padding: 16px 0;
 }
 
-/* мобілка */
-@media (max-width: 393px) {
-  .navDesktop {
-    display: none;
-  }
-
-  .burgerMenu {
-    display: block;
-  }
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* десктоп (вище за 393px) */
-@media (min-width: 394px) {
-  .navDesktop {
-    display: flex;
-    gap: 15px;
-  }
+.btnSvg {
+  background-color: transparent;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .burgerMenu {
-    display: none;
-  }
+.icon {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
 }

@@ -1,18 +1,13 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
-
-import UserMenu from "../UserMenu/UserMenu.jsx";
-import AuthNav from "../AuthNav/AuthNav.jsx";
-import Navigation from "../Navigation/Navigation.jsx";
+import Logo from "../Logo/Logo.jsx";
+import IconButton from "../IconButton/IconButton.jsx";
+import NavPanel from "../NavPanel/NavPanel.jsx";
 import css from "./MobileMenu.module.css";
 
 export default function MobileMenu({ onClose }) {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
   useEffect(() => {
-    const handleKeypress = (event) => {
-      if (event.key === "Escape") {
+    const handleKeypress = (e) => {
+      if (e.key === "Escape") {
         onClose();
       }
     };
@@ -24,12 +19,23 @@ export default function MobileMenu({ onClose }) {
 
   return (
     <div className={css.wrapper}>
-      <button className={css.closeButton} onClick={onClose}>
-        X
-      </button>
+      <div className="container">
+        <div className={css.topBar}>
+          <Logo />
+          <IconButton
+            onClick={onClose}
+            className={css.btnSvg}
+            type="button"
+            aria-label="Close mobile menu"
+          >
+            <svg className={css.icon} width="32" height="32">
+              <use href="/sprite.svg#icon-close-32px" />
+            </svg>
+          </IconButton>
+        </div>
 
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        <NavPanel onLinkClick={onClose} />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
+import css from "./AuthNav.module.css";
 
-export default function AuthNav() {
+export default function AuthNav({ onLinkClick }) {
   return (
-    <>
-      <Link to="/auth/login">Log in</Link>
-      <Link to="/auth/register">Register</Link>
-    </>
+    <div className={css.wrapper}>
+      <Link onClick={onLinkClick} to="/auth/login">
+        Log in
+      </Link>
+      <Link
+        className={css.registerBtn}
+        onClick={onLinkClick}
+        to="/auth/register"
+      >
+        Register
+      </Link>
+    </div>
   );
 }

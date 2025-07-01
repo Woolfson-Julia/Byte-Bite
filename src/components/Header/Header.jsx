@@ -1,34 +1,42 @@
 import { useState } from "react";
-import css from "./Header.module.css";
+import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import Logo from "../Logo/Logo.jsx";
-import NavDesktop from "../NavDesktop/NavDesktop.jsx";
+import NavPanel from "../NavPanel/NavPanel.jsx";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
+import IconButton from "../IconButton/IconButton.jsx";
+import css from "./Header.module.css";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   const openMobileMenu = () => setIsMobileMenuOpen(true);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="container">
-      <div className={css.logoWrapper}>
-        <Logo />
-      </div>
+    <>
+      <header className={css.header}>
+        <div className={`container ${css.wrapper}`}>
+          <Logo />
 
-      <div className={css.navDesktop}>
-        <NavDesktop />
-      </div>
+          {isMobile ? (
+            <IconButton
+              onClick={openMobileMenu}
+              className={css.btnSvg}
+              type="button"
+              aria-label="Open mobile menu"
+            >
+              <svg className={css.icon} width="32" height="32">
+                <use href="/sprite.svg#icon-burger-32px" />
+              </svg>
+            </IconButton>
+          ) : (
+            <NavPanel />
+          )}
+        </div>
+      </header>
 
-      <div className={css.burgerMenu}>
-        {isMobileMenuOpen ? (
-          <MobileMenu onClose={closeMobileMenu} />
-        ) : (
-          <button type="button" onClick={openMobileMenu}>
-            Burger
-          </button>
-        )}
-      </div>
-    </header>
+      {isMobile && isMobileMenuOpen && <MobileMenu onClose={closeMobileMenu} />}
+    </>
   );
 }

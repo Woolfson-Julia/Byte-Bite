@@ -9,16 +9,16 @@ const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 
-export default function Navigation() {
+export default function Navigation({ onLinkClick }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <nav className={css.nav}>
-      <NavLink className={buildLinkClass} to="/">
+      <NavLink className={buildLinkClass} onClick={onLinkClick} to="/">
         Recipes
       </NavLink>
       {isLoggedIn && (
-        <NavLink className={buildLinkClass} to="/profile">
+        <NavLink className={buildLinkClass} onClick={onLinkClick} to="/profile">
           My Profile
         </NavLink>
       )}

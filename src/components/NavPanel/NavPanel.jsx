@@ -5,13 +5,17 @@ import UserMenu from "../UserMenu/UserMenu.jsx";
 import AuthNav from "../AuthNav/AuthNav.jsx";
 import Navigation from "../Navigation/Navigation.jsx";
 
-export default function NavDesktop() {
+export default function NavPanel({ onLinkClick }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      <Navigation onLinkClick={onLinkClick} />
+      {isLoggedIn ? (
+        <UserMenu onLinkClick={onLinkClick} />
+      ) : (
+        <AuthNav onLinkClick={onLinkClick} />
+      )}
     </>
   );
 }

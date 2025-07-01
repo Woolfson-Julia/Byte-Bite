@@ -1,20 +1,33 @@
 .wrapper {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 100%;
+  max-height: 100vh;
+  background-color: #3d2218;
+  z-index: 999;
+  padding: 14px 0 40px 0;
 }
 
-.closeButton {
-  align-self: flex-end;
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.btnSvg {
+  background-color: transparent;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
 }
