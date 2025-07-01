@@ -13,8 +13,9 @@ export default function SearchBox() {
     setSearchValue(e.target.value);
   };
 
-  const handleSearchClick = () => {
-    dispatch(changeFilter(searchValue))
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(changeFilter(searchValue));
     dispatch(fetchRecipes());
   };
 
@@ -22,7 +23,8 @@ export default function SearchBox() {
     <div className={css.wrapper}>
       <div className={css.container}>
         <h1 className={css.text}>Plan, Cook, and Share Your Flavors</h1>
-        <div className={css.containerInput}>
+
+        <form onSubmit={handleFormSubmit} className={css.containerInput}>
           <input
             type="text"
             className={css.input}
@@ -30,10 +32,10 @@ export default function SearchBox() {
             value={searchValue}
             onChange={handleInputChange}
           />
-          <Button onClick={handleSearchClick} className={css.btn}>
+          <Button type="submit" className={css.btn}>
             Search
           </Button>
-        </div>
+        </form>
       </div>
     </div>
   );
