@@ -8,25 +8,26 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-// import filtersReducer from './filters/slice';
-import authReducer from "./auth/slice";
-import recipesReducer from "./recipes/slice";
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import filtersReducer from './filters/slice';
+import authReducer from './auth/slice'
+import  recipesReducer  from './recipes/slice'; 
 import recipesListenerMiddleware from "./recipes/middlewares";
+
 
 const persistedAuthReducer = persistReducer(
   {
     key: "user-token",
     storage,
-    whitelist: ["token"],
+    whitelist: ["accessToken"], 
   },
   authReducer
 );
 
 export const store = configureStore({
   reducer: {
-    // filters: filtersReducer,
+    filters: filtersReducer,
     auth: persistedAuthReducer,
     recipes: recipesReducer,
   },
