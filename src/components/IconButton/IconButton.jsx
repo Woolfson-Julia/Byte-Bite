@@ -4,6 +4,7 @@ export default function IconButton({
   children,
   variantBtn = "dark-button-svg",
   variantSvg = "light-svg",
+  type = "button",
   disabled = false,
   className = "",
   onClick,
@@ -14,6 +15,7 @@ export default function IconButton({
       className={`${css[variantBtn]} ${css[variantSvg]} ${
         disabled ? css.disabled : ""
       } ${className}`}
+      type={type}
       disabled={disabled}
       onClick={onClick}
       {...props}

@@ -3,6 +3,7 @@ import css from "./Button.module.css";
 export default function Button({
   children,
   variant = "lightButton",
+  type = "button",
   disabled = false,
   className = "",
   onClick,
@@ -13,6 +14,7 @@ export default function Button({
       className={`${css.button} ${css[variant]} ${
         disabled ? css.disabled : ""
       } ${className}`}
+      type = {type}
       disabled={disabled}
       onClick={onClick}
       {...props}

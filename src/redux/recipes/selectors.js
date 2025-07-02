@@ -1,4 +1,6 @@
-// export const selectContacts = (state) => state.contacts.items;
-// export const selectLoading = (state) => state.contacts.loading;
-// export const selectError = (state) => state.contacts.error;
+export const selectRecipes = (state) => state.recipes.items;
+
+export const selectCurrentRecipe = (state) => state.recipes.currentRecipe;
+export const selectRecipesLoading = (state) => state.recipes.loading;
+export const selectRecipesError = (state) => state.recipes.error;
 

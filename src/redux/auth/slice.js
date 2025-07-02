@@ -9,7 +9,7 @@ const authSlice = createSlice({
       name: null,
       email: null,
     },
-    token: null,
+    accessToken: null,
     isLoggedIn: false,
     isRefreshing: false,
     loading: false,
@@ -23,7 +23,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, actions) => {
         state.user = actions.payload.user;
-        state.token = actions.payload.token;
+        state.accessToken = actions.payload.accessToken;
         state.isLoggedIn = true;
         state.loading = false;
       })
@@ -38,7 +38,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, actions) => {
         state.user = actions.payload.user;
-        state.token = actions.payload.token;
+        state.accessToken = actions.payload.accessToken;
         state.isLoggedIn = true;
         state.loading = false;
       })
@@ -54,7 +54,7 @@ const authSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.loading = false;
         state.user = { name: null, email: null };
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
       .addCase(refreshUser.pending, (state) => {

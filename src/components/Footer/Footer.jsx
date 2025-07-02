@@ -21,13 +21,12 @@ export default function Footer() {
         variant="lightButton"
         type="submit"
         className={css.btnSecond}
-        disabled
       >
         Learn more
       </Button>
       <IconButton
-        variantBtn="darkButtonSvg"
-        variantSvg="lightSvg"
+        variantBtn="lightButtonSvg"
+        variantSvg="darkSvg"
         onClick={handleClick}
         className={css.btnSvg}
         type="button"
