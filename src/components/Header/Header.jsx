@@ -8,7 +8,7 @@ import css from "./Header.module.css";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery("(max-width: 767.98px)");
 
   const openMobileMenu = () => setIsMobileMenuOpen(true);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -31,10 +31,14 @@ export default function Header() {
               </svg>
             </IconButton>
           ) : (
-            <NavPanel />
+            <div className={css.desktopTabletNav}>
+              <NavPanel />
+            </div>
           )}
         </div>
-        {isMobile && isMobileMenuOpen && <MobileMenu onClose={closeMobileMenu} />}
+        {isMobile && isMobileMenuOpen && (
+          <MobileMenu onClose={closeMobileMenu} />
+        )}
       </header>
     </>
   );
