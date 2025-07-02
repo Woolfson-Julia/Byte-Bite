@@ -1,0 +1,10 @@
+.cancelBtn {
+  padding: 16px;
+  width: 100%;
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 16px;
+  background-color: #c80000;
+}
