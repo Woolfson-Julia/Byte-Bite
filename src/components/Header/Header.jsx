@@ -27,7 +27,7 @@ export default function Header() {
               aria-label="Open mobile menu"
             >
               <svg className={css.icon} width="32" height="32">
-                <use href="/sprite.svg#icon-burger-32px" />
+                <use href="/sprite.svg#icon-burger-24px" />
               </svg>
             </IconButton>
           ) : (
