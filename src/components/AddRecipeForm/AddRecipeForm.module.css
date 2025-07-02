@@ -8,19 +8,21 @@
   display: flex;
   flex-direction: column;
 }
+.phoneTabletGroup {
+  display: flex;
+  flex-direction: column-reverse;
+}
 .lastButton {
   display: flex;
   flex-direction: column;
 }
 .leftside {
-  order: 2;
   display: flex;
   flex-direction: column;
   margin-top: 24px;
   gap: 40px;
 }
 .rightside {
-  order: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -48,7 +50,6 @@ textarea {
   width: 144px;
 }
 .input,
-.select,
 .textarea {
   width: 100%;
   border: 1px solid #d9d9d9;
@@ -57,6 +58,37 @@ textarea {
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s ease;
+}
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+.select {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 12px;
+  padding-right: 40px;
+  font-size: 16px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+.select:focus {
+  border-color: #a0a0a0;
+}
+.selectIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  fill: #999;
 }
 .input:focus,
 .textarea:focus {
@@ -115,6 +147,9 @@ textarea {
   padding: 12px;
   max-height: 48px;
 }
+.phoneTabletRemove {
+  display: none;
+}
 
 @media screen and (min-width: 768px) {
   .container {
@@ -156,24 +191,26 @@ textarea {
   .container {
     padding: 48px 107px;
   }
+  .phoneTabletGroup {
+    width: 100%;
+
+    flex-direction: row;
+  }
   .textarea {
     height: 144px;
   }
   .form {
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 24px;
   }
   .leftside {
-    order: 1;
     flex: 1;
     min-width: 0;
     margin-top: 0;
+    margin-right: 24px;
   }
   .rightside {
-    order: 2;
     width: 391px;
     flex-shrink: 0;
   }
@@ -190,5 +227,11 @@ textarea {
   }
   .subtitle {
     font-size: 32px;
+  }
+  .descRemove {
+    display: none;
+  }
+  .phoneTabletRemove {
+    display: block;
   }
 }
