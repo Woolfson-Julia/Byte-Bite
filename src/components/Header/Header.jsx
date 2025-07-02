@@ -34,9 +34,8 @@ export default function Header() {
             <NavPanel />
           )}
         </div>
+        {isMobile && isMobileMenuOpen && <MobileMenu onClose={closeMobileMenu} />}
       </header>
-
-      {isMobile && isMobileMenuOpen && <MobileMenu onClose={closeMobileMenu} />}
     </>
   );
 }
