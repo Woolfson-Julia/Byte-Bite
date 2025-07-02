@@ -2,9 +2,16 @@
   /* Typography */
   --font-family: "Montserrat", sans-serif;
 
-  /* Colors */
-  --color-bg: #fbfcf8;
-  --color-text: #000;
+  /* Neutral colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-bg-light: #fbfcf8; 
+
+  /* Brown palette */
+  --color-brown-500: #9b6c43; 
+  --color-brown-700: #6d554b; 
+/*500 — базовый, основной цвет (часто используется как default)
+  700 — тёмный оттенок этого цвета */
 
   /* Container paddings */
   --padding-mobile: 10px;

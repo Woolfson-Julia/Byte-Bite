@@ -15,48 +15,48 @@
 
 /* Варианты */
 .darkButton {
-  background: #9b6c43;
-  color: #fff; 
+  background: var(--color-brown-500);
+  color: var(--color-white);
 }
 
 .darkButton:hover {
-  background: #6d554b;
+  background: var(--color-brown-700);
 }
 
 .darkButton:focus {
-  background: #9b6c43;
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--color-brown-500);
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
 }
 
 .darkButton:disabled {
   background: #9b6c43;
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
 }
 
 
 .lightButton {
-  border: 1px solid #000;
-  color: #000;
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
   background: transparent;
 }
 
 .lightButton:hover {
-  background: #6d554b;
-  border-color: #6d554b;
-  color: #fff;
+  background: var(--color-brown-700);
+  border-color: var(--color-brown-700);
+  color: var(--color-white);
 }
 
 .lightButton:focus {
-  background:  #9b6c43;
-  color: #fff;
-  border-color: #6d554b;
+  background: var(--color-brown-500);
+  color: var(--color-white);
+  border-color: var(--color-brown-700);
   box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
 }
 
 .lightButton:disabled {
-  background:  #9b6c43;
-  color: #fff;
-  border-color: #6d554b;
+  background:  var(--color-brown-500);
+  color: var(--color-white);
+  border-color: var(--color-brown-700);
   box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
 }
 
