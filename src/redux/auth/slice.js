@@ -57,6 +57,13 @@ const authSlice = createSlice({
         state.accessToken = null;
         state.isLoggedIn = false;
       })
+      .addCase(logOut.rejected, (state) => {
+        state.loading = false;
+        state.user = { name: null, email: null };
+        state.accessToken = null;
+        state.isLoggedIn = false;
+        toast.error("Session expired. Please log in again.");
+      })
       .addCase(refreshUser.pending, (state) => {
         state.loading = true;
         state.error = null;

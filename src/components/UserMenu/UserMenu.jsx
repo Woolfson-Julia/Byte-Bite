@@ -5,7 +5,7 @@ import { logOut } from "../../redux/auth/operations.js";
 import css from "./UserMenu.module.css";
 import IconButton from "../IconButton/IconButton.jsx";
 
-export default function UserMenu({ onLinkClick = () => {} }) {
+export default function UserMenu({ onLinkClick }) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const firstLetter = user.name.split("")[0].toUpperCase();

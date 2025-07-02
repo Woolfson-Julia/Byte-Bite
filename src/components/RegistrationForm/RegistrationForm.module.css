@@ -1,3 +1,7 @@
+.container {
+  padding-bottom: 56px;
+}
+
 .registerWrapper {
   border-radius: 32px;
   padding: 48px 32px;
@@ -6,6 +10,7 @@
   max-width: 362px;
   background: #faf3e0;
   margin: 0 auto;
+  margin-top: 56px;
 }
 
 .heading {
@@ -174,15 +179,23 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    padding-bottom: 130px;
+  }
   .registerWrapper {
     max-width: 522px;
+    margin-top: 132px;
   }
   .checkBoxLabel {
     margin-right: 0px;
   }
 }
 @media screen and (min-width: 1440px) {
+  .container {
+    padding-bottom: 14px;
+  }
   .registerWrapper {
     max-width: 420px;
+    margin-top: 32px;
   }
 }
