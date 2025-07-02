@@ -1,27 +1,27 @@
-// import { useSelector } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
-// import { selectIsLoggedIn } from '../../redux/auth/selectors';
-// import clsx from "clsx";
-// import css from "./Navigation.module.css";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 
-// export default function Navigation() {
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import css from "./Navigation.module.css";
 
-//   const isLoggedIn = useSelector(selectIsLoggedIn);
+const buildLinkClass = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
-//   const getLinkStyles = ({ isActive }) => {
-//     return clsx(css.link, isActive && css.active);
-//   };
+export default function Navigation({ onLinkClick }) {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-//   return (
-//     <nav className={css.nav}>
-//       <NavLink to="/" className={getLinkStyles}>
-//         Home
-//       </NavLink>
-//       {isLoggedIn && (
-//         <NavLink to="/contacts" className={getLinkStyles}>
-//           Contacts
-//         </NavLink>
-//       )}
-//     </nav>
-//   );
-// }
+  return (
+    <nav className={css.nav}>
+      <NavLink className={buildLinkClass} onClick={onLinkClick} to="/">
+        Recipes
+      </NavLink>
+      {isLoggedIn && (
+        <NavLink className={buildLinkClass} onClick={onLinkClick} to="/profile">
+          My Profile
+        </NavLink>
+      )}
+    </nav>
+  );
+}

@@ -1,0 +1,52 @@
+.menu {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.addRecipeBtn {
+  display: block;
+  width: 100%;
+  background-color: #9b6c43;
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 8px;
+
+  color: inherit;
+  font-weight: 600;
+  font-size: 16px;
+
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.addRecipeBtn:hover,
+.addRecipeBtn:focus {
+  background-color: #6d554b;
+}
+
+.info {
+  display: flex;
+}
+
+.name {
+  text-transform: capitalize;
+}
+
+.btnSvg {
+  background-color: transparent;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+}

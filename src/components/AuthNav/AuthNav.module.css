@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.registerBtn {
+  display: block;
+  width: 100%;
+  background-color: #9b6c43;
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 8px;
+
+  color: inherit;
+  font-weight: 600;
+  font-size: 16px;
+
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.registerBtn:hover,
+.registerBtn:focus {
+  background-color: #6d554b;
+}
