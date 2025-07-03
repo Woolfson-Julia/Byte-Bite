@@ -1,3 +1,13 @@
+.modalContent {
+  max-width: 90vw;
+  width: 362px;
+  padding: 56px 24px 32px 24px;
+}
+
+.savedContent {
+  padding: 64px 16px;
+}
+
 .closeBtn {
   position: absolute;
   top: 16px;
@@ -7,11 +17,11 @@
 }
 
 .icon {
-  stroke: #000;
+  stroke: var(--color-black);
 }
 
 .title {
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   font-size: 32px;
   font-weight: 600;
@@ -19,7 +29,7 @@
 }
 
 .message {
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   font-size: 16px;
   font-weight: 400;
@@ -27,8 +37,13 @@
   margin-bottom: 20px;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+@media screen and (min-width: 768px) {
+  .modalContent {
+    padding: 56px 32px 32px 32px;
+    width: 420px;
+  }
+  .closeBtn {
+    top: 16px;
+    right: 32px;
+  }
 }

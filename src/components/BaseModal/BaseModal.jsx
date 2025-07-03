@@ -1,6 +1,15 @@
 import Modal from "react-modal";
-import css from "./BaseModal.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectIsModalOpen,
+  selectModalType,
+} from "../../redux/modal/selectors.js";
+import { closeModal } from "../../redux/modal/slice.js";
 import IconButton from "../IconButton/IconButton.jsx";
+import css from "./BaseModal.module.css";
+import NotAuthModalActions from "../NotAuthModalActions/NotAuthModalActions.jsx";
+import LogoutModalActions from "../LogoutModalActions/LogoutModalActions.jsx";
+import SavedModalActions from "../SavedModalActions/SavedModalActions.jsx";
 
 const customStyles = {
   overlay: {
@@ -14,9 +23,8 @@ const customStyles = {
     bottom: "auto",
     transform: "translate(-50%, -50%)",
 
-    padding: "56px 24px 32px",
-    width: "362px",
-    maxWidth: "90vw",
+    border: "none",
+    padding: "0",
     borderRadius: "32px",
     backgroundColor: "#faf3e0",
   },
@@ -24,35 +32,66 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function BaseModal({
-  isOpen,
-  onClose,
-  title,
-  message,
-  children,
-}) {
+export default function BaseModal() {
+  const isOpen = useSelector(selectIsModalOpen);
+  const modalType = useSelector(selectModalType);
+  const dispatch = useDispatch();
+
+  const handleClose = () => dispatch(closeModal());
+
+  let title = "";
+  let message = "";
+  let content = null;
+  let additionalClass = "";
+
+  switch (modalType) {
+    case "not-auth":
+      title = "Error while saving";
+      message = "To save this recipe, you need to authorize first";
+      content = <NotAuthModalActions />;
+      break;
+
+    case "logout":
+      title = "Are you sure?";
+      message = "We will miss you!";
+      content = <LogoutModalActions />;
+      break;
+
+    case "saved":
+      title = "Done! Recipe saved";
+      message = "You can find recipe in your profile";
+      content = <SavedModalActions />;
+      additionalClass = css.savedContent;
+      break;
+
+    default:
+      return null;
+  }
+
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={onClose}
+      onRequestClose={handleClose}
       style={customStyles}
       contentLabel={title}
     >
-      <IconButton
-        onClick={onClose}
-        className={css.closeBtn}
-        aria-label="Close modal"
-        type="button"
-      >
-        <svg className={css.icon} width="24" height="24">
-          <use href="/sprite.svg#icon-close-24px" />
-        </svg>
-      </IconButton>
+      <div className={`${css.modalContent} ${additionalClass}`}>
+        <IconButton
+          onClick={handleClose}
+          className={css.closeBtn}
+          aria-label="Close modal"
+          type="button"
+        >
+          <svg className={css.icon} width="24" height="24">
+            <use href="/sprite.svg#icon-close-24px" />
+          </svg>
+        </IconButton>
 
-      {title && <h2 className={css.title}>{title}</h2>}
-      {message && <p className={css.message}>{message}</p>}
+        {title && <h2 className={css.title}>{title}</h2>}
+        {message && <p className={css.message}>{message}</p>}
 
-      <div className={css.actions}>{children}</div>
+        {content}
+      </div>
     </Modal>
   );
 }
