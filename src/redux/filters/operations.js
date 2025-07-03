@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const genericErrorMessage =
-  "There was an error. Try to update page a bit later";
+  "There was an error. Please try again a bit later.";
 
 export const fetchCategories = generateThunk("filters/fetchCategories", () => {
   return axios.get("/categories");
@@ -21,7 +21,7 @@ function generateThunk(name, requestFunc) {
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || genericErrorMessage
+        error.response?.data?.message || error.message || genericErrorMessage
       );
     }
   });

@@ -8,6 +8,7 @@ import Loader from "../Loader/Loader";
 
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
+import { Toaster } from "react-hot-toast";
 
 const Layout = lazy(() => import("../Layout/Layout"));
 
@@ -38,6 +39,7 @@ export default function App() {
     <Loader />
   ) : (
     <Suspense fallback={<Loader />}>
+      <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
