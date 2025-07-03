@@ -1,8 +1,143 @@
+.recipeTittle{
+  font-weight: 700;
+  font-size: 24px;
+  color: #000;
+line-height: 1.1;
+}
+
 .recipe {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   position: relative;
-  padding: 10px;
+  padding: 12px;
   line-height: 1.7;
   font-size: 18px;
+  max-width: 361px;
+  width: 100%;
+  background-color: #faf3e0;
+  justify-content: space-between;
+}
+
+.recipe img {
+  border-radius: 8px;
+  width: 100%;
+  max-width: 337px;
+  height: 230px;
+}
+
+
+.buttonBox {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  border: 1px solid #000;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    max-width: 289px;
+    height: 40px;
+}
+
+.buttonSvg {
+  border: 1px solid #000;
+    border-radius: 8px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+}
+
+.tittleBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  color: #000;
+  border-radius: 8px;
+  width: 53px;
+  height: 28px;
+  margin-bottom: auto;
+}
+
+.icon {
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.buttonSvg:hover .icon {
+  color: #9b6c43;
+ 
+}
+
+.desc {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #000;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3em;
+}
+
+.cals{
+  margin-top: 8px;
+  font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #000;
+}
+
+
+
+
+@media screen and (min-width: 768px){
+  .recipe {
+    width: 339px;
+    height: 483px;
+  }
+
+    .tittleBox {
+      margin-top: auto;
+      margin-bottom: auto; }
+
+      .buttonBox {
+        margin-top: auto;
+        
+      }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1254px;
+    /* 1224 контент (по макету) + 2*15 падинги */
+  }
+
+    .recipe {
+      width: 288px;
+      height: 431px;
+    }
+
+    .recipe img {
+      width: 264px;
+      height: 178px;
+    }
+
 }

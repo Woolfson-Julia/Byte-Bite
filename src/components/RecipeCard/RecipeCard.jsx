@@ -1,30 +1,54 @@
-import { FaUser } from "react-icons/fa6";
-import { FaPhone } from "react-icons/fa";
 import css from "./RecipeCard.module.css";
-import { useDispatch } from "react-redux";
-import { setDeleteRecipeId, setEditRecipeId } from "../../redux/recipes/slice";
+import IconButton from "../IconButton/IconButton";
+import Button from "../Button/Button";
 
-function RecipeCard({ data }) {
-  const dispatch = useDispatch();
+export default function RecipeCard({ recipe }) {
 
-  const handleDeleteButton = () => {
-    dispatch(setDeleteRecipeId(data.id));
+  const handleBtnMore = (id) => {
+    console.log("Recipes ID:", id);
   };
 
-  const handleEditButton = () => {
-    dispatch(setEditRecipeId(data.id));
+  const handleBtnFav = (id) => {
+    console.log("Recipes ID:", id);
   };
-
-  console.log(data);
-
+  
   return (
     <div className={css.recipe}>
-      <div className={css.info}>{/* <FaUser /> {data.name} */}</div>
-      <div className={css.info}>{/* <FaPhone /> {data.number} */}</div>
-      <button onClick={handleDeleteButton}>Delete</button>{" "}
-      <button onClick={handleEditButton}>Edit</button>
-    </div>
+      
+      <img src={recipe.thumb} alt={recipe.title} />
+
+      <div className={css.tittleBox}>
+        
+        <h3 className={css.recipeTittle}>{recipe.title}</h3>
+
+        <div className={css.time}>
+        <svg width="24" height="24" stroke="currentColor">
+        <use href="/sprite.svg#icon-timeclock-24px" /></svg>
+          {recipe.time}
+        </div>
+        </div>
+    
+        <p className={css.desc}>{recipe.description}</p>
+        <p className={css.cals}>~{recipe.cals}cals</p>
+      
+        <div className={css.buttonBox}>
+  <Button className={css.button} type="button" onClick={() => handleBtnMore(recipe._id)}>
+    Learn More
+  </Button>
+  <IconButton
+  variantBtn="lightButtonSvg"
+  variantSvg="darkSvg"
+  type="button"
+  onClick={() => handleBtnFav(recipe._id)}
+  className={css.buttonSvg}
+>
+<svg width="20" height="20" stroke="currentColor">
+  <use href="/sprite.svg#icon-add-to-favorite-24px" />
+</svg>
+
+</IconButton>
+</div>
+
+      </div>
   );
 }
-
-export default RecipeCard;

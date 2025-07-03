@@ -32,7 +32,7 @@ function generateThunk(name, requestFunc) {
   return createAsyncThunk(name, async (arg, thunkAPI) => {
     try {
       const response = await requestFunc(arg);
-      return response.data.data;
+      return response.data.data.recipes;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import css from "./RecipesList.module.css";
 import {
   selectRecipesError,
@@ -7,27 +8,48 @@ import {
 } from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
 import RecipeCard from "../RecipeCard/RecipeCard";
+import { fetchRecipes } from "../../redux/recipes/operations.js";
+import Loader from "../Loader/Loader.jsx"
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx"
+import { selectFilter } from "../../redux/filters/selectors.js"
 
 function RecipesList() {
+  const dispatch = useDispatch();
+
+  const searchValue = useSelector(selectFilter)
   const recipes = useSelector(selectRecipes);
   const isLoading = useSelector(selectRecipesLoading);
   const error = useSelector(selectRecipesError);
 
+  useEffect(() => {
+    dispatch(fetchRecipes());
+  }, [dispatch]);
+
   return (
     <>
-      {isLoading && <p>Loading tasks...</p>}
+      <div className={css.container}>
+        <h2 className={css.tittle}>
+          {searchValue ? `Search results for "${searchValue}"` : 'Recepies'}
+        </h2>
+
+      {isLoading && <Loader/>}
       {error && <p>{genericErrorMessage}</p>}
       {!isLoading && !error && recipes.length > 0 && (
         <ul className={css.list}>
           {recipes.map((recipe) => {
             return (
-              <li key={recipe.id}>
-                <RecipeCard data={recipe} />
+              <li key={recipe._id}>
+                <RecipeCard recipe={recipe} />
               </li>
             );
           })}
         </ul>
-      )}
+        )}
+        
+        <LoadMoreBtn/>
+        
+      </div>
+      
     </>
   );
 }
