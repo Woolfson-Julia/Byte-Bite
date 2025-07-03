@@ -12,6 +12,7 @@ const buildLinkClass = ({ isActive }) => {
 export default function Navigation({ onLinkClick }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  
   return (
     <nav className={css.nav}>
       <NavLink className={buildLinkClass} onClick={onLinkClick} to="/">

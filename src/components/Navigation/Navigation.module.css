@@ -17,3 +17,21 @@
 .active {
   border-bottom: 2px solid #fff;
 }
+
+@media screen and (min-width: 768px) {
+  .nav {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 24px;
+    margin-bottom: 0;
+  }
+  .link {
+    font-size: 12px;
+  }
+  
+}
+@media screen and (min-width: 1440px) {
+  .nav {
+    gap: 32px;
+  }
+}

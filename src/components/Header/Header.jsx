@@ -8,7 +8,7 @@ import css from "./Header.module.css";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery("(max-width: 767.98px)");
 
   const openMobileMenu = () => setIsMobileMenuOpen(true);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -27,11 +27,13 @@ export default function Header() {
               aria-label="Open mobile menu"
             >
               <svg className={css.icon} width="32" height="32">
-                <use href="/sprite.svg#icon-burger-32px" />
+                <use href="/sprite.svg#icon-burger-24px" />
               </svg>
             </IconButton>
           ) : (
-            <NavPanel />
+            <div className={css.desktopTabletNav}>
+              <NavPanel />
+            </div>
           )}
         </div>
         {isMobile && isMobileMenuOpen && (

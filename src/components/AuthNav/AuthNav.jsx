@@ -4,7 +4,7 @@ import css from "./AuthNav.module.css";
 export default function AuthNav({ onLinkClick }) {
   return (
     <div className={css.wrapper}>
-      <Link onClick={onLinkClick} to="/auth/login">
+      <Link onClick={onLinkClick} className={css.loginBtn}  to="/auth/login">
         Log in
       </Link>
       <Link
