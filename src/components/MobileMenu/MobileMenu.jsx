@@ -24,12 +24,14 @@ export default function MobileMenu({ onClose }) {
           <Logo />
           <IconButton
             onClick={onClose}
+            variantBtn="none"
+            variantSvg="none"
             className={css.btnSvg}
             type="button"
             aria-label="Close mobile menu"
           >
             <svg className={css.icon} width="32" height="32">
-              <use href="/sprite.svg#icon-close-32px" />
+              <use href="/sprite.svg#icon-close" />
             </svg>
           </IconButton>
         </div>

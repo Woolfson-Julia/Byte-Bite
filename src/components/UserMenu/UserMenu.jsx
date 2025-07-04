@@ -23,8 +23,13 @@ export default function UserMenu({ onLinkClick }) {
       </Link>
 
       <div className={css.info}>
-        <div>{firstLetter}</div>
-        <p className={css.name}>{user.name}</p>
+        <div className={css.nameDiv}>
+          <p className={css.firstLetter}>{firstLetter}</p>
+          <p className={css.name}>{user.name}</p>
+        </div>
+        <svg className={css.iconLine} width="1" height="39">
+          <use href="/sprite.svg#icon-line" />
+        </svg>
         <IconButton
           onClick={handleLogout}
           className={css.btnSvg}
@@ -32,7 +37,7 @@ export default function UserMenu({ onLinkClick }) {
           aria-label="Log out"
         >
           <svg className={css.icon} width="24" height="24">
-            <use href="/sprite.svg#icon-logout-32px" />
+            <use href="/sprite.svg#icon-logout-24px" />
           </svg>
         </IconButton>
       </div>

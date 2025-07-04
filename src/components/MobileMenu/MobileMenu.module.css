@@ -6,8 +6,10 @@
   max-height: 100vh;
   background-color: #3d2218;
   z-index: 999;
-  padding: 14px 0 40px 0;
+  padding: 16px 0 40px 0;
 }
+
+
 
 .topBar {
   display: flex;
@@ -19,8 +21,6 @@
 .btnSvg {
   background-color: transparent;
   padding: 0;
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,4 +30,12 @@
   width: 32px;
   height: 32px;
   stroke: #fff;
+}
+
+@media screen and (min-width: 768px) {
+
+  
+}
+@media screen and (min-width: 1440px) {
+
 }
