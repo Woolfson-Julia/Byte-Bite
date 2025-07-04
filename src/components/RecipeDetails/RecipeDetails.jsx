@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import axios from "../../../axiosConfig";
+import { useEffect,  } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecipeToFavorite, deleteRecipeFromFavorite } from "../../redux/recipes/operations";
+import { selectRecipesError } from "../../redux/recipes/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./RecipeDetails.module.css";
 
@@ -10,40 +11,34 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useNavigate } from "react-router-dom";
 
 export default function RecipeDetails({ recipe }) {
-  const [isError, setIsError] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(recipe.isFavorite);
+  const dispatch = useDispatch();
+  const error = useSelector(selectRecipesError);
 
-  // console.log(recipe);
+  console.log(recipe);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
   
   const instruction = recipe.instructions.split(/\n/g);
 
   const handleButtonClick = async () => {
-    setIsError(false);
     
     if(!isLoggedIn) {
       navigate('/auth/login', { replace: true })
       return;
     }
-    try {
-      if(recipe.isFavorite) {
-        await axios.delete(`https://byte-bitebd.onrender.com/api/recipes/profile/favorites/${recipe._id}`);
-      } else {
-        await axios.post('https://byte-bitebd.onrender.com/api/recipes/profile/favorites', { "recipeId": recipe._id });
-      }
-      
-      setIsFavorite(!isFavorite);
-    } catch {
-      setIsError(true);
+
+    if(recipe.isFavorite) {
+      dispatch(deleteRecipeFromFavorite(recipe._id));
+    } else {
+      dispatch(addRecipeToFavorite(recipe._id));
     }
   }
   
   useEffect(() => {
-    if(isError) {
+    if(error) {
       toast.error("Something went wrong... Please try again");
     }
-  }, [isError]);
+  }, [error]);
 
   return <section className="section">
     <div className={clsx('container', css.container)}>
@@ -59,7 +54,7 @@ export default function RecipeDetails({ recipe }) {
             {recipe.cals && <p className={css.text}><span className={css.info_accent_text}>Caloric content:</span> Approximately {recipe.cals} kcal per serving</p>}
           </div>
 
-          {isFavorite ? (
+          {recipe.isFavorite ? (
             <Button variant="darkButton" className={css.btn} onClick={handleButtonClick}>
               Remove
               <svg className={css.icon_saved} width="24" height="24">

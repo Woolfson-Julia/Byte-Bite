@@ -1,38 +1,29 @@
-import axios from '../../../axiosConfig';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentRecipe, selectRecipesError, selectRecipesLoading } from '../../redux/recipes/selectors';
+import { fetchRecipeById } from '../../redux/recipes/operations';
+
 import NotFound from '../../components/NotFound/NotFound';
 import RecipeDetails from '../../components/RecipeDetails/RecipeDetails';
 import Loader from '../../components/Loader/Loader';
-import { useEffect, useState } from 'react';
 import css from './RecipeViewPage.module.css'
 
 export default function RecipeViewPage() {
   const { id } = useParams();
-  const [recipe, setRecipe] = useState(null);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const recipe = useSelector(selectCurrentRecipe);
+  const error = useSelector(selectRecipesError);
+  const isLoading = useSelector(selectRecipesLoading);
 
   useEffect(() => {
-    const getRecipe = async () => {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-        const response = await axios.get(`https://byte-bitebd.onrender.com/api/recipes/${id}`);
-
-        setRecipe(response.data.data.recipes);
-      } catch {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getRecipe();
-  }, [id]);
+    
+    dispatch(fetchRecipeById(id));
+  }, [id, dispatch]);
   return (
     <>
       {isLoading && <Loader />}
-      {isError && <NotFound />}
+      {error && <NotFound />}
       {recipe && <RecipeDetails recipe={recipe} />}
     </>
   );
