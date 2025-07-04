@@ -1,0 +1,62 @@
+.filters-container {
+  background: var(--color-bg-light);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(155, 108, 67, 0.08);
+}
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 320px;
+  max-width: 100vw;
+  height: 33px;
+  padding: 0 8px;
+  background: var(--color-bg-light, #fbfcf8);
+  border-radius: 8px;
+}
+
+.filters-count {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-black, #000);
+  letter-spacing: 0.01em;
+}
+
+.filters-modal-open-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: var(--color-brown-700, #6d554b);
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.filtersModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.filtersModal {
+  display: flex;
+  width: 362px;
+  padding: 56px 24px 32px 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}

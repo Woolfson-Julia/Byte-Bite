@@ -14,33 +14,39 @@ import {
   selectIngredients,
   selectCategory,
   selectIngredient,
+  selectFilter,
 } from "../../redux/filters/selectors";
 import { selectRecipesCount } from "../../redux/recipes/selectors.js";
 import IconButton from "../IconButton/IconButton";
-
-// import css from "./Filters.module.css";
+import { useIsMobileOrTablet } from "./useIsMobileOrTablet.js";
+import css from "./Filters.module.css";
 
 export default function Filter() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobileOrTablet = useIsMobileOrTablet();
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
     }
+  };
+  const handleFiltersBtnClick = () => {
+    setIsModalOpen(true);
   };
   const recipesCount = useSelector(selectRecipesCount);
   const categories = useSelector(selectCategories);
   const ingredients = useSelector(selectIngredients);
   const category = useSelector(selectCategory);
   const ingredient = useSelector(selectIngredient);
+  const title = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchIngredients());
   }, [dispatch]);
   useEffect(() => {
-    dispatch(fetchRecipesWithFilters({ category, ingredient }));
-  }, [category, ingredient, dispatch]);
+    dispatch(fetchRecipesWithFilters({ category, ingredient, title }));
+  }, [category, ingredient, title, dispatch]);
 
   const handleResetClick = (e) => {
     e.preventDefault();
@@ -61,87 +67,78 @@ export default function Filter() {
 
   return (
     <>
-      <div className="filters-container">
-        <div className="filters-row">
-          <span className="filters__count">{recipesCount}</span>
-          <div className="filters-inputs-container">
-            <form className="filters-form">
-              <button type="reset" onClick={handleResetClick}>
-                Reset filters
-              </button>
-              <select
-                className="filters-input-category"
-                value={category}
-                onChange={handleCategoryChange}
-              >
-                <option key="all-categories" value="">
-                  Category
-                </option>
-                {categories.map((category) => (
-                  <option key={category._id} value={category.name}>
-                    {category.name}
+      <div className="filtersContainer.section">
+        <div className={css.filtersRow}>
+          <span className={css.filtersCount}>
+            {recipesCount}
+            {recipesCount === 1 ? " recipe" : " recipes"}
+          </span>
+          {!isMobileOrTablet && (
+            <div className="filtersInputsWrapper">
+              <form className="filtersForm">
+                <button
+                  className="filtersResetBtn"
+                  type="reset"
+                  onClick={handleResetClick}
+                >
+                  Reset filters
+                </button>
+                <select
+                  className="filtersInputCategory"
+                  name="category"
+                  value={category}
+                  onChange={handleCategoryChange}
+                >
+                  <option key="all-categories" value="">
+                    Category
                   </option>
-                ))}
-              </select>
-              <select
-                className="filters-input-ingredient"
-                value={ingredient}
-                onChange={handleIngredientChange}
-              >
-                <option key="all-ingredients" value="">
-                  Ingredient
-                </option>
-                {ingredients.map((ingredient) => (
-                  <option key={ingredient._id} value={ingredient._id}>
-                    {ingredient.name}
+                  {categories.map((category) => (
+                    <option key={category._id} value={category.name}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className="filtersInputIngredient"
+                  name="ingredient"
+                  value={ingredient}
+                  onChange={handleIngredientChange}
+                >
+                  <option key="all-ingredients" value="">
+                    Ingredient
                   </option>
-                ))}
-              </select>
-            </form>
-          </div>
-          <button>Filter</button>
+                  {ingredients.map((ingredient) => (
+                    <option key={ingredient._id} value={ingredient._id}>
+                      {ingredient.name}
+                    </option>
+                  ))}
+                </select>
+              </form>
+            </div>
+          )}
           <IconButton
-            className="filters-modal-open-btn"
+            className="filtersModalOpenBtn"
             aria-label="Open filters"
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleFiltersBtnClick}
           >
+            <span className="filtersModalOpenBtnTxt">Filters</span>
             <svg width="24" height="24">
-              <use href="/sprite.svg#icon-filter-24px" />
+              <use xlinkHref="/sprite.svg#icon-filter-24px" />
             </svg>
           </IconButton>
-          {isModalOpen && (
+          {isMobileOrTablet && isModalOpen && (
             <div
-              className="filters-modal-overlay"
+              className={css.filtersModalOverlay}
               onClick={handleOverlayClick}
               role="dialog"
               aria-modal="true"
             >
-              <div className="filters-modal">
-                <button
-                  className="filters-modal-close-btn"
-                  aria-label="Close filters"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="black"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-                <form className="filters-modal-form">
+              <div className={css.filtersModal}>
+                <form className={css.filtersModalForm}>
                   <label>
                     Category
                     <select
-                      className="filters-modal-category"
+                      className="filtersModalCategory"
                       value={category}
                       onChange={handleCategoryChange}
                     >
@@ -158,7 +155,7 @@ export default function Filter() {
                   <label>
                     Ingredient
                     <select
-                      className="filters-modal-input-ingredient"
+                      className="filtersModalInputIngredient"
                       value={ingredient}
                       onChange={handleIngredientChange}
                     >
@@ -173,7 +170,7 @@ export default function Filter() {
                     </select>
                   </label>
                   <button
-                    className="filters-modal-reset-btn"
+                    className="filtersModalResetBtn"
                     type="button"
                     onClick={handleResetClick}
                   >
