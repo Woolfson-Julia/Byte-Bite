@@ -1,0 +1,62 @@
+.button {
+  border-radius: 8px;
+  border:none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+.button:focus {
+  outline: none;
+}
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/* Варианты */
+.darkButton {
+  background: var(--color-brown-500);
+  color: var(--color-white);
+}
+
+.darkButton:hover {
+  background: var(--color-brown-700);
+}
+
+.darkButton:focus {
+  background: var(--color-brown-500);
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
+}
+
+.darkButton:disabled {
+  background: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
+}
+
+
+.lightButton {
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
+  background: transparent;
+}
+
+.lightButton:hover {
+  background: var(--color-brown-700);
+  border-color: var(--color-brown-700);
+  color: var(--color-white);
+}
+
+.lightButton:focus {
+  background: var(--color-brown-500);
+  color: var(--color-white);
+  border-color: var(--color-brown-700);
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+}
+
+.lightButton:disabled {
+  background:  var(--color-brown-500);
+  color: var(--color-white);
+  border-color: var(--color-brown-700);
+  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+}
+

@@ -57,21 +57,19 @@
 }
 
 .btn {
-    border-radius: 8px;
     padding: 16px;
 
-    background-color: #9b6c43;
-
-    color: #ffffff;
     font-size: 18px;
-    font-weight: 600;
     line-height: normal;
-    fill: none;
     stroke: #ffffff;
 
     display: flex;
     justify-content: center;
     gap: 16px;
+}
+
+.icon_saved {
+    fill: #ffffff;
 }
 
 .main_text_wrapper {
