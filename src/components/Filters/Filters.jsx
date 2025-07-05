@@ -20,6 +20,7 @@ import { selectRecipesCount } from "../../redux/recipes/selectors.js";
 import IconButton from "../IconButton/IconButton";
 import { useIsMobileOrTablet } from "./useIsMobileOrTablet.js";
 import css from "./Filters.module.css";
+import ToastInfo from "../ToastInfo/ToastInfo.jsx";
 
 export default function Filter() {
   const dispatch = useDispatch();
@@ -192,6 +193,7 @@ export default function Filter() {
           )}
         </div>
       </div>
+      <ToastInfo />
     </>
   );
 }
