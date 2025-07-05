@@ -77,7 +77,7 @@ export default function RegistrationForm() {
                   placeholder="Max"
                 ></Field>
                 <FixedErrorMessage
-                  name="username"
+                  name="name"
                   className={css.error}
                 ></FixedErrorMessage>
 
