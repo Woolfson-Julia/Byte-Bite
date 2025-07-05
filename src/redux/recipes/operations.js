@@ -26,6 +26,17 @@ export const fetchRecipeById = generateThunk("recipes/fetchById", (id) =>
   axios.get(`/recipes/${id}`)
 );
 
+export const addRecipeToFavorite = generateThunk("recipes/addToFavorite", (id) => axios.post('/recipes/profile/favorites', { "recipeId": id })
+);
+
+export const deleteRecipeFromFavorite = createAsyncThunk("recipes/deleteFromFavorite", async (id, thunkAPI) => {
+  try {
+    await axios.delete(`recipes/profile/favorites/${id}`);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
 function generateThunk(name, requestFunc) {
   return createAsyncThunk(name, async (arg, thunkAPI) => {
     try {
