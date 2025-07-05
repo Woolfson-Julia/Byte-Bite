@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../axiosConfig";
 
 export const genericErrorMessage =
   "There was an error. Try to update page a bit later";
 
-axios.defaults.baseURL = "https://byte-bitebd.onrender.com/api";
 
 export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
   return axios.get("/recipes");
