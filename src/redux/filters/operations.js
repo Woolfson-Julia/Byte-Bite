@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../axiosConfig.js";
 
 export const genericErrorMessage =
   "There was an error. Please try again a bit later.";

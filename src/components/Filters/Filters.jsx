@@ -72,10 +72,10 @@ export default function Filter() {
           </span>
           {!isMobileOrTablet && (
             <div className="filtersInputsWrapper">
-              <form className="filtersForm">
+              <form className={css.filtersForm}>
                 <button
-                  className="filtersResetBtn"
-                  type="reset"
+                  className={css.filtersResetBtn}
+                  type="button"
                   onClick={handleResetClick}
                 >
                   Reset filters
@@ -86,7 +86,7 @@ export default function Filter() {
                   value={category}
                   onChange={handleCategoryChange}
                 >
-                  <option key="all-categories" value="">
+                  <option key="all-categories" value="" disabled>
                     Category
                   </option>
                   {categories.map((category) => (
@@ -101,7 +101,7 @@ export default function Filter() {
                   value={ingredient}
                   onChange={handleIngredientChange}
                 >
-                  <option key="all-ingredients" value="">
+                  <option key="all-ingredients" value="" disabled>
                     Ingredient
                   </option>
                   {ingredients.map((ingredient) => (
@@ -159,8 +159,8 @@ export default function Filter() {
                       value={category}
                       onChange={handleCategoryChange}
                     >
-                      <option key="modal-all-categories" value="">
-                        Category
+                      <option key="modal-all-categories" value="" disabled>
+                        e.g. Soup
                       </option>
                       {categories.map((category) => (
                         <option key={category._id} value={category.name}>
@@ -176,8 +176,8 @@ export default function Filter() {
                       value={ingredient}
                       onChange={handleIngredientChange}
                     >
-                      <option key="all-ingredients" value="">
-                        Ingredient
+                      <option key="all-ingredients" value="" disabled>
+                        e.g. Broccoli
                       </option>
                       {ingredients.map((ingredient) => (
                         <option key={ingredient._id} value={ingredient._id}>
