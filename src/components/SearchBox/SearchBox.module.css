@@ -112,12 +112,24 @@
     max-width: 471px;
     margin: 0;
   } 
+
+    .inputError {
+      border: 1.50px solid #c80000;
+ }
   
+ .error {
+  position: absolute;
+   color: #d32f2f;
+   font-size: 18px;
+   margin-top: 50px;
+ }
+
   .btn{
     width: 176px;
     
   }
 }
+
 
 
  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {

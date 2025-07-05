@@ -2,11 +2,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
+import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    favorites: [],
     loading: false,
     error: null,
   },
@@ -15,6 +17,10 @@ const slice = createSlice({
     buildReducers(builder, fetchRecipes, (state, action) => {
       state.items = action.payload;
     });
+    buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
+      state.items = action.payload;
+    });
+
 
     // Додавання рецепту
     buildReducers(builder, addRecipe, (state, action) => {
@@ -26,6 +32,15 @@ const slice = createSlice({
       state.items = state.items.filter(
         (recipe) => recipe.id !== action.payload.id
       );
+    });
+    
+    buildReducers(builder, addRecipeToFav, (state, action) => {
+      state.favorites = action.payload; 
+    });
+
+    // Видалити з улюблених
+    buildReducers(builder, removeRecipeFromFav, (state, action) => {
+      state.favorites = action.payload;
     });
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {

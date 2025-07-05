@@ -8,7 +8,7 @@ import {
 } from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { fetchRecipes } from "../../redux/recipes/operations.js";
+import { fetchRecipesWithFilters } from "../../redux/recipes/operations.js";
 import Loader from "../Loader/Loader.jsx"
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx"
 import { selectFilter } from "../../redux/filters/selectors.js"
@@ -22,8 +22,11 @@ function RecipesList() {
   const error = useSelector(selectRecipesError);
 
   useEffect(() => {
-    dispatch(fetchRecipes());
-  }, [dispatch]);
+    
+      dispatch(fetchRecipesWithFilters({ title: searchValue }));
+    
+  }, [dispatch, searchValue]);
+  
 
   return (
     <>

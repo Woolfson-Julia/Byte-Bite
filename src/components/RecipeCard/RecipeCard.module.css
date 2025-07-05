@@ -106,7 +106,19 @@ line-height: 1.1;
 }
 
 
+.removeBtn {
+  background-color: #c80000;
+  border: none;
+  stroke: #faf3e0;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  transition: all .25s cubic-bezier(.4, 0, .2, 1);
+}
 
+.removeBtn:hover{
+  background-color: #e91c1c;
+}
 
 @media screen and (min-width: 768px){
   .recipe {

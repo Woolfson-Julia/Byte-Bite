@@ -5,6 +5,9 @@
 
 .tittle {
     margin-top: 48px;
+    font-weight: 600;
+    font-size: 32px;
+    color: #000;
 }
 
 .list {
@@ -21,6 +24,10 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+
+        .tittle {
+            font-size: 40px;
+        }
 
     .list{
         flex-direction: row;
