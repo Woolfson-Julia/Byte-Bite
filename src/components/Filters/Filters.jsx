@@ -48,26 +48,23 @@ export default function Filter() {
     dispatch(fetchRecipesWithFilters({ category, ingredient, title }));
   }, [category, ingredient, title, dispatch]);
 
-  const handleResetClick = (e) => {
-    e.preventDefault();
+  const handleResetClick = () => {
+    //e.preventDefault();
     dispatch(changeCategoryFilter(""));
     dispatch(changeIngredientFilter(""));
-    // dispatch(fetchRecipesWithFilters({ category: "", ingredient: "" }));
   };
   const handleCategoryChange = (e) => {
     const filterValue = e.target.value;
     dispatch(changeCategoryFilter(filterValue));
-    // dispatch(fetchRecipesWithFilters({ category, ingredient }));
   };
   const handleIngredientChange = (e) => {
     const filterValue = e.target.value;
     dispatch(changeIngredientFilter(filterValue));
-    // dispatch(fetchRecipesWithFilters({ category, ingredient }));
   };
 
   return (
     <>
-      <div className="filtersContainer.section">
+      <div className={`${css.filtersContainer} section`}>
         <div className={css.filtersRow}>
           <span className={css.filtersCount}>
             {recipesCount}
@@ -116,16 +113,23 @@ export default function Filter() {
               </form>
             </div>
           )}
-          <IconButton
-            className="filtersModalOpenBtn"
-            aria-label="Open filters"
-            onClick={handleFiltersBtnClick}
-          >
-            <span className="filtersModalOpenBtnTxt">Filters</span>
-            <svg width="24" height="24">
-              <use xlinkHref="/sprite.svg#icon-filter-24px" />
-            </svg>
-          </IconButton>
+          {isMobileOrTablet && (
+            <IconButton
+              className={css.filtersModalOpenBtn}
+              aria-label="Open filters"
+              onClick={handleFiltersBtnClick}
+            >
+              <span className={css.filtersModalOpenBtnTxt}>Filters</span>
+              <svg
+                className={css.filtersModalOpenBtnSvg}
+                width="24"
+                height="24"
+              >
+                <use xlinkHref="/sprite.svg#icon-filter-24px" />
+              </svg>
+            </IconButton>
+          )}
+          {/* Modal for mobile and tablet devices */}
           {isMobileOrTablet && isModalOpen && (
             <div
               className={css.filtersModalOverlay}
@@ -134,6 +138,19 @@ export default function Filter() {
               aria-modal="true"
             >
               <div className={css.filtersModal}>
+                <div className={css.filtersModalHeader}>
+                  <span>Filters</span>
+                  <button
+                    className={css.filtersModalResetBtn}
+                    type="button"
+                    onClick={() => {
+                      handleResetClick();
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    Reset filters
+                  </button>
+                </div>
                 <form className={css.filtersModalForm}>
                   <label>
                     Category
@@ -169,13 +186,6 @@ export default function Filter() {
                       ))}
                     </select>
                   </label>
-                  <button
-                    className="filtersModalResetBtn"
-                    type="button"
-                    onClick={handleResetClick}
-                  >
-                    Reset filters
-                  </button>
                 </form>
               </div>
             </div>
