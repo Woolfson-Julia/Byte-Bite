@@ -1,6 +1,10 @@
-
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
+import {
+  fetchRecipes,
+  addRecipe,
+  fetchRecipeById,
+  fetchRecipesWithFilters,
+} from "./operations";
 import { logOut } from "../auth/operations";
 
 const slice = createSlice({
@@ -47,6 +51,10 @@ const slice = createSlice({
     builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
     }).addCase;
+
+    buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
+      state.items = action.payload;
+    });
   },
 });
 
@@ -69,4 +77,3 @@ function buildReducers(builder, operation, reducerFunc) {
 export default slice.reducer;
 
 export const { setDeleteRecipeId, setEditRecipeId } = slice.actions;
-
