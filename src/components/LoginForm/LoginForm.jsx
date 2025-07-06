@@ -37,80 +37,82 @@ export default function LoginForm() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={css.loginWrapper}>
-          <h1 className={css.heading}>Login</h1>
-          <Formik
-            initialValues={{
-              email: "",
-              password: "",
-            }}
-            onSubmit={handleSubmit}
-            validationSchema={validationSchema}
-          >
-            <Form className={css.form}>
-              <label htmlFor={emailFieldId} className={css.inputLabel}>
-                Enter your email address
-              </label>
-              <Field
-                className={css.inputField}
-                id={emailFieldId}
-                type="email"
-                name="email"
-                placeholder="email@gmail.com"
-              ></Field>
-              <FixedErrorMessage
-                name="email"
-                className={css.error}
-              ></FixedErrorMessage>
-
-              <label htmlFor={passwordFieldId} className={css.inputLabel}>
-                Enter your password
-              </label>
-              <div className={css.passwordWrapper}>
+        <div className={`${css.container} container`}>
+          <div className={css.loginWrapper}>
+            <h1 className={css.heading}>Login</h1>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchema}
+            >
+              <Form className={css.form}>
+                <label htmlFor={emailFieldId} className={css.inputLabel}>
+                  Enter your email address
+                </label>
                 <Field
                   className={css.inputField}
-                  id={passwordFieldId}
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="********"
+                  id={emailFieldId}
+                  type="email"
+                  name="email"
+                  placeholder="email@gmail.com"
                 ></Field>
-                <IconButton
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className={css.toggleButton}
-                  type="button"
-                  variantBtn="none"
-                  variantSvg="none"
+                <FixedErrorMessage
+                  name="email"
+                  className={css.error}
+                ></FixedErrorMessage>
+
+                <label htmlFor={passwordFieldId} className={css.inputLabel}>
+                  Enter your password
+                </label>
+                <div className={css.passwordWrapper}>
+                  <Field
+                    className={css.inputField}
+                    id={passwordFieldId}
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="********"
+                  ></Field>
+                  <IconButton
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className={css.toggleButton}
+                    type="button"
+                    variantBtn="none"
+                    variantSvg="none"
+                  >
+                    <svg className={css.eyeSvg}>
+                      {showPassword ? (
+                        <use xlinkHref="/sprite.svg#icon-eye-24px" />
+                      ) : (
+                        <use xlinkHref="/sprite.svg#icon-eye-close-24px" />
+                      )}
+                    </svg>
+                  </IconButton>
+                </div>
+
+                <FixedErrorMessage
+                  name="password"
+                  className={css.error}
+                ></FixedErrorMessage>
+
+                <Button
+                  type="submit"
+                  variant={`darkButton`}
+                  className={css.submitButton}
                 >
-                  <svg className={css.eyeSvg}>
-                    {showPassword ? (
-                      <use xlinkHref="/sprite.svg#icon-eye-24px" />
-                    ) : (
-                      <use xlinkHref="/sprite.svg#icon-eye-close-24px" />
-                    )}
-                  </svg>
-                </IconButton>
-              </div>
-
-              <FixedErrorMessage
-                name="password"
-                className={css.error}
-              ></FixedErrorMessage>
-
-              <Button
-                type="submit"
-                variant={`darkButton`}
-                className={css.submitButton}
-              >
-                Login
-              </Button>
-            </Form>
-          </Formik>
-          <p className={css.registerPrompt}>
-            Don&apos;t have an account?{" "}
-            <Link to="/auth/register" className={css.registerLink}>
-              Register
-            </Link>
-          </p>
+                  Login
+                </Button>
+              </Form>
+            </Formik>
+            <p className={css.registerPrompt}>
+              Don&apos;t have an account?{" "}
+              <Link to="/auth/register" className={css.registerLink}>
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       )}
       {isError && <ToastInfo />}

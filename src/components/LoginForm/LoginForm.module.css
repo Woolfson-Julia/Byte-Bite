@@ -1,3 +1,6 @@
+.container {
+  padding-bottom: 91px;
+}
 .loginWrapper {
   border-radius: 32px;
   padding: 48px 32px;
@@ -6,6 +9,7 @@
   max-width: 362px;
   background: #faf3e0;
   margin: 0 auto;
+  margin-top: 91px;
 }
 .heading {
   font-weight: 600;
@@ -108,15 +112,23 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    padding-bottom: 262px;
+  }
   .loginWrapper {
     max-width: 522px;
+    margin-top: 262px;
   }
   .checkBoxLabel {
     margin-right: 0px;
   }
 }
 @media screen and (min-width: 1440px) {
+  .container {
+    padding-bottom: 156.5px;
+  }
   .loginWrapper {
+    margin-top: 176.5px;
     max-width: 420px;
   }
 }

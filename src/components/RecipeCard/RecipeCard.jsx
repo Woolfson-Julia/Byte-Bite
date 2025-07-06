@@ -10,25 +10,15 @@ import {
 } from "../../redux/recipes/operations";
 
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { selectFavorites } from "../../redux/recipes/selectors";
 
-import { useState, useEffect } from "react";
 
-export default function RecipeCard({ recipe }) {
+
+export default function RecipeCard({ recipe, isFavorite }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const favorites = useSelector(selectFavorites);
-
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    if (Array.isArray(favorites)) {
-      setIsFavorite(favorites.includes(recipe._id));
-    }
-  }, [favorites, recipe._id]);
-
+  
   const handleBtnMore = (id) => {
     navigate(`/recipes/${id}`);
   };
@@ -38,10 +28,8 @@ export default function RecipeCard({ recipe }) {
       navigate("/auth/login");
       return;
     }
-
     try {
       await dispatch(addRecipeToFav(id)).unwrap();
-      setIsFavorite(true);
     } catch (error) {
       console.error("Ошибка при добавлении в избранное", error);
     }
@@ -50,7 +38,6 @@ export default function RecipeCard({ recipe }) {
   const handleRemoveFromFavorites = async (id) => {
     try {
       await dispatch(removeRecipeFromFav(id)).unwrap();
-      setIsFavorite(false);
     } catch (error) {
       console.error("Ошибка при удалении из избранного", error);
     }
@@ -68,13 +55,13 @@ export default function RecipeCard({ recipe }) {
           {recipe.time}
         </div>
       </div>
-
       <p className={css.desc}>{recipe.description}</p>
-      <p className={css.cals}>~{recipe.cals}cals</p>
+      <p className={css.cals}>~{recipe.cals} cals</p>
 
       <div className={css.buttonBox}>
         <Button
           className={css.button}
+          variant="lightButton"
           type="button"
           onClick={() => handleBtnMore(recipe._id)}
         >
@@ -85,7 +72,8 @@ export default function RecipeCard({ recipe }) {
           <IconButton
             className={`${css.buttonSvg} ${css.removeBtn}`}
             type="button"
-            variantBtn="removeBtn"
+            variantBtn="lightButtonSvg"
+            variantSvg="darkSvg"
             onClick={() => handleRemoveFromFavorites(recipe._id)}
           >
             <svg width="24" height="24" stroke="white">
@@ -94,9 +82,9 @@ export default function RecipeCard({ recipe }) {
           </IconButton>
         ) : (
           <IconButton
-              className={`${css.buttonSvg} ${css.addBtn}`}
-              variantBtn="lightButtonSvg"
-              variantSvg="lightButtonSvg"
+            className={css.buttonSvg}
+            variantBtn="lightButtonSvg"
+            variantSvg="darkSvg"
             type="button"
             onClick={() => handleAddToFavorites(recipe._id)}
           >
@@ -109,4 +97,5 @@ export default function RecipeCard({ recipe }) {
     </div>
   );
 }
+
 

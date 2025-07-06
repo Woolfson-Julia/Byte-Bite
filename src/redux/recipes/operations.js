@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../axiosConfig";
 
 export const genericErrorMessage =
   "There was an error. Try to update page a bit later";
 
-axios.defaults.baseURL = "https://byte-bitebd.onrender.com/api";
 
 export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
   return axios.get("/recipes");
@@ -69,6 +68,20 @@ export const removeRecipeFromFav = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || error.message || genericErrorMessage
+      );
+    }
+  }
+);
+
+export const fetchFavorites = createAsyncThunk(
+  "recipes/fetchFavorites",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/recipes/profile/favorites");
+      return response.data.data.recipes; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
       );
     }
   }

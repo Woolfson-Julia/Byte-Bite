@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
-import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav} from "./operations";
+import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav, fetchFavorites} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
@@ -37,11 +37,15 @@ const slice = createSlice({
     buildReducers(builder, addRecipeToFav, (state, action) => {
       state.favorites = action.payload; 
     });
-
-    // Видалити з улюблених
+    
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
     });
+    
+    buildReducers(builder, fetchFavorites, (state, action) => {
+      state.favorites = action.payload;
+    });
+    
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(

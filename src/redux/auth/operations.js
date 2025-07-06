@@ -15,7 +15,7 @@ export const register = createAsyncThunk(
         // credentials,
         // { withCredentials: true }
       );
-      setAuthHeader(`Bearer ${res.data.accessToken}`);
+      setAuthHeader(`Bearer ${res.data.data.accessToken}`);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -33,7 +33,7 @@ export const logIn = createAsyncThunk(
         // credentials,
         // { withCredentials: true }
       );
-      setAuthHeader(`Bearer ${res.data.accessToken}`); //тут стоял просто токен, исправила на accessToken
+      setAuthHeader(`Bearer ${res.data.data.accessToken}`); //тут стоял просто токен, исправила на accessToken
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
