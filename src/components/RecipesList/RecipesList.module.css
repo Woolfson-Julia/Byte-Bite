@@ -1,13 +1,7 @@
-.container {
-    margin: 0 auto;
-    max-width: 361px;
-}
-
 .tittle {
-    margin-top: 48px;
     font-weight: 600;
     font-size: 32px;
-    color: #000;
+    margin-bottom: 16px;
 }
 
 .list {
@@ -16,28 +10,12 @@
     gap: 24px;
 }
 
-
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 735px;
-        /* 705 контент (по макету) + 2*15 падинги */
-        padding-left: 15px;
-        padding-right: 15px;
+    .tittle {
+        font-size: 40px;
     }
 
-        .tittle {
-            font-size: 40px;
-        }
-
-    .list{
+    .list {
         flex-direction: row;
         flex-wrap: wrap;
-        
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    .container {
-        max-width: 1254px;
-        /* 1224 контент (по макету) + 2*15 падинги */
     } }

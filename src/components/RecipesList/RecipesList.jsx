@@ -35,7 +35,8 @@ function RecipesList() {
 
   return (
     <>
-      <div className={css.container}>
+      <div className="section">
+      <div className="container">
         <h2 className={css.tittle}>
           {searchValue ? `Search results for "${searchValue}"` : 'Recepies'}
         </h2>
@@ -57,6 +58,8 @@ function RecipesList() {
 
         <LoadMoreBtn />
       </div>
+      </div>
+      
     </>
   );
 }
