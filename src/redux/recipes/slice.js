@@ -1,16 +1,14 @@
+
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchRecipes,
-  addRecipe,
-  fetchRecipeById,
-  fetchRecipesWithFilters,
-} from "./operations";
+import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
+import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav, fetchFavorites} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    favorites: [],
     loading: false,
     error: null,
   },
@@ -19,6 +17,10 @@ const slice = createSlice({
     buildReducers(builder, fetchRecipes, (state, action) => {
       state.items = action.payload;
     });
+    buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
+      state.items = action.payload;
+    });
+
 
     // Додавання рецепту
     buildReducers(builder, addRecipe, (state, action) => {
@@ -31,6 +33,19 @@ const slice = createSlice({
         (recipe) => recipe.id !== action.payload.id
       );
     });
+    
+    buildReducers(builder, addRecipeToFav, (state, action) => {
+      state.favorites = action.payload; 
+    });
+    
+    buildReducers(builder, removeRecipeFromFav, (state, action) => {
+      state.favorites = action.payload;
+    });
+    
+    buildReducers(builder, fetchFavorites, (state, action) => {
+      state.favorites = action.payload;
+    });
+    
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(
@@ -51,10 +66,6 @@ const slice = createSlice({
     builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
     }).addCase;
-
-    buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
-      state.items = action.payload;
-    });
   },
 });
 
@@ -77,3 +88,4 @@ function buildReducers(builder, operation, reducerFunc) {
 export default slice.reducer;
 
 export const { setDeleteRecipeId, setEditRecipeId } = slice.actions;
+

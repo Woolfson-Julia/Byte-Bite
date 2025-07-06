@@ -1,0 +1,21 @@
+.tittle {
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .tittle {
+        font-size: 40px;
+    }
+
+    .list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    } }

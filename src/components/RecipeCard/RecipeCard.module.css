@@ -1,8 +1,123 @@
+.recipeTittle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
 .recipe {
-  border: 1px solid black;
-  border-radius: 10px;
-  position: relative;
-  padding: 10px;
-  line-height: 1.7;
-  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: 12px;
+  width: 361px;
+  height: 455px;
+  background-color: #FAF3E0;
+}
+
+.recipe img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 337px;
+  height: 230px;
+  margin-bottom: 16px;
+}
+
+.tittleBox {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 8px;
+  width: 53px;
+  height: 28px;
+  padding: 2px 8px 2px 4px;
+}
+
+.desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.cals {
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  padding: 8px;
+  width: 289px;
+  height: 40px;
+}
+
+.buttonSvg {
+  border-radius: 8px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.removeBtn {
+  background-color: #C80000;
+  border: none;
+  stroke: #FAF3E0;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.removeBtn:hover {
+  background-color: #E91C1C;
+}
+
+@media screen and (min-width: 768px) {
+  .recipe {
+    width: 339px;
+    height: 483px;
+  }
+
+  .button {
+    width: 267px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .recipe {
+    width: 288px;
+    height: 431px;
+  }
+
+  .recipe img {
+    max-width: 264px;
+    height: 178px;
+  }
+
+  .button {
+    width: 216px;
+  }
 }
