@@ -22,7 +22,7 @@ export const validationSchema = Yup.object({
   instructions: Yup.string()
     .max(1200, "Maximum length is 1200 characters")
     .required("This field is required"),
-  ingredients: Yup.array()
+  ingredientsList: Yup.array()
     .of(
       Yup.object({
         id: Yup.string().required("Please select an ingredient"),

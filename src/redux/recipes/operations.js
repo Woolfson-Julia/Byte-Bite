@@ -10,7 +10,7 @@ export const fetchRecipes = generateThunk("recipes/fetchRecipes", () => {
 });
 
 export const addRecipe = generateThunk("recipes/addRecipe", (formData) => {
-  return axios.post("/recipes/add-recipe", formData, {
+  return axios.post("/recipes", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

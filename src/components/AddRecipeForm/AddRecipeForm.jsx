@@ -82,7 +82,7 @@ export default function AddRecipeForm() {
       if (values.thumb) {
         formData.append("thumb", values.thumb);
       }
-      await axios.post("/recipes/add-recipe", formData, {
+      await axios.post("/recipes", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Recipe added successfully!");
