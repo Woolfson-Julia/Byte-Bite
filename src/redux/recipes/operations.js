@@ -27,16 +27,13 @@ function generateThunk(name, requestFunc) {
       const response = await requestFunc(arg);
       return response.data.data.recipes;
     } catch (error) {
-      if (error.response?.status === 404) {
-        return [];
-      }
       return thunkAPI.rejectWithValue(
+        // error
         error.response?.data?.message || error.message || genericErrorMessage
       );
     }
   });
 }
-
 
 export const fetchRecipesWithFilters = generateThunk(
   "recipes/fetchRecipesWithFilters",
