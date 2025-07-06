@@ -35,12 +35,7 @@ function RecipesList() {
 
   return (
     <>
-      <div className="section">
-      <div className="container">
-        <h2 className={css.tittle}>
-          {searchValue ? `Search results for "${searchValue}"` : 'Recepies'}
-        </h2>
-
+      <div className="">
         {isLoading && <Loader />}
         {error && <p>{genericErrorMessage}</p>}
         {!isLoading && !error && recipes.length > 0 && (
@@ -57,9 +52,7 @@ function RecipesList() {
         )}
 
         <LoadMoreBtn />
-      </div>
-      </div>
-      
+      </div>      
     </>
   );
 }

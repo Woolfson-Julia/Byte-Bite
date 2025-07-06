@@ -13,7 +13,10 @@ export default function UserMenu({ onLinkClick }) {
   // тимчасово поки не створили модалку
   const handleLogout = () => {
     dispatch(logOut());
-    onLinkClick();
+    // onLinkClick();
+    if (typeof onLinkClick === "function") {
+      onLinkClick();
+    }
   };
 
   return (

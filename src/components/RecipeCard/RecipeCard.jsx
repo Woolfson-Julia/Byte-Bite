@@ -68,16 +68,15 @@ export default function RecipeCard({ recipe, isFavorite }) {
           Learn More
         </Button>
 
-        {isFavorite ? (
-          <IconButton
-            className={`${css.buttonSvg} ${css.removeBtn}`}
+        {isFavorite ? (<IconButton
+            className={css.buttonSvg}
+            variantBtn="darkButtonSvg"
+            variantSvg="lightSvg"
             type="button"
-            variantBtn="lightButtonSvg"
-            variantSvg="darkSvg"
             onClick={() => handleRemoveFromFavorites(recipe._id)}
           >
-            <svg width="24" height="24" stroke="white">
-              <use href="/sprite.svg#icon-delete-24px" />
+            <svg width="24" height="24" stroke="currentColor">
+              <use href="/sprite.svg#icon-add-to-favorite-24px" />
             </svg>
           </IconButton>
         ) : (
@@ -91,7 +90,8 @@ export default function RecipeCard({ recipe, isFavorite }) {
             <svg width="24" height="24" stroke="currentColor">
               <use href="/sprite.svg#icon-add-to-favorite-24px" />
             </svg>
-          </IconButton>
+            </IconButton>
+            
         )}
       </div>
     </div>

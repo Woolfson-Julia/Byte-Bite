@@ -65,7 +65,7 @@ export default function Filter() {
 
   return (
     <>
-      <div className={`${css.filtersContainer} section`}>
+      <div className={`${css.filtersContainer}`}>
         <div className={css.filtersRow}>
           <span className={css.filtersCount}>
             {recipesCount}

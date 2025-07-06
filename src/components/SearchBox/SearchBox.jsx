@@ -11,7 +11,6 @@ import Button from "../Button/Button";
 const validationSchema = Yup.object({
   searchQuery: Yup.string()
     .trim()
-    .required("This field is required")
     .max(64, "Maximum 64 characters allowed"),
 });
 
