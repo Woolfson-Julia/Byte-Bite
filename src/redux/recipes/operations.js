@@ -35,7 +35,6 @@ function generateThunk(name, requestFunc) {
   });
 }
 
-
 export const fetchRecipesWithFilters = generateThunk(
   "recipes/fetchRecipesWithFilters",
   (filters = {}) => {

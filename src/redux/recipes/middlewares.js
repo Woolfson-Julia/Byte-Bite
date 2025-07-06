@@ -1,5 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { fetchRecipes, fetchRecipeById, addRecipe } from "./operations";
+import {
+  fetchRecipes,
+  fetchRecipeById,
+  addRecipe,
+  fetchRecipesWithFilters,
+} from "./operations";
 import toast from "react-hot-toast";
 
 const recipesListenerMiddleware = createListenerMiddleware();
@@ -29,6 +34,14 @@ recipesListenerMiddleware.startListening({
   actionCreator: addRecipe.rejected,
   effect: async () => {
     toast.error("Failed to add the recipe");
+  },
+});
+
+recipesListenerMiddleware.startListening({
+  actionCreator: fetchRecipesWithFilters.rejected,
+  effect: async () => {
+    console.log("REJECTED!");
+    toast.error("Failed to load the recipes with such filters");
   },
 });
 
