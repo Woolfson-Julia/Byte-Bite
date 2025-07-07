@@ -56,9 +56,9 @@ export default function RecipeDetails({ recipe }) {
 
           {recipe.isFavorite ? (
             <Button variant="darkButton" className={css.btn} onClick={handleButtonClick}>
-              Remove
+              Saved
               <svg className={css.icon_saved} width="24" height="24">
-                <use href="../public/sprite.svg#icon-add-to-favorite-24px"></use>
+                <use href="/sprite.svg#icon-add-to-favorite-24px"></use>
               </svg>
             </Button>
           )
@@ -67,7 +67,7 @@ export default function RecipeDetails({ recipe }) {
             <Button variant="darkButton" className={css.btn} onClick={handleButtonClick}>
               Save
               <svg width="24" height="24">
-                <use href="../public/sprite.svg#icon-add-to-favorite-24px"></use>
+                <use href="/sprite.svg#icon-add-to-favorite-24px"></use>
               </svg>
             </Button>
           )}
