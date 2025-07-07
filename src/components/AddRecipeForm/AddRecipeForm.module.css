@@ -47,7 +47,18 @@ textarea {
 .label {
   font-size: 18px;
 }
-
+.tableHeader {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 50px 8px 0;
+}
+.tableCell {
+  border-bottom: 1px solid #c5c5c5;
+  padding: 8px 50px 8px 0;
+}
+table .button {
+  padding: 0;
+}
 .input,
 .textarea {
   width: 100%;
@@ -55,7 +66,7 @@ textarea {
   border-radius: 8px;
   padding: 12px;
   outline: none;
-  transition: border-color .25s cubic-bezier(.4,0,.2,1);
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 18px;
   /* color: #595d62; */
   color: var(--color-black);
@@ -105,8 +116,7 @@ textarea {
   pointer-events: none;
   stroke-width: 1px;
   stroke: #000;
-  fill:none;
-
+  fill: none;
 }
 .input:focus,
 .textarea:focus {
