@@ -5,12 +5,12 @@
   /* Neutral colors */
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-bg-light: #fbfcf8; 
+  --color-bg-light: #fbfcf8;
 
   /* Brown palette */
-  --color-brown-500: #9b6c43; 
-  --color-brown-700: #6d554b; 
-/*500 — базовый, основной цвет (часто используется как default)
+  --color-brown-500: #9b6c43;
+  --color-brown-700: #6d554b;
+  /*500 — базовый, основной цвет (часто используется как default)
   700 — тёмный оттенок этого цвета */
 
   /* Container paddings */
@@ -20,18 +20,24 @@
   /* Container widths */
   --max-width-mobile: 380px; /* 360 контент (по макету) + 2*10 падинги */
   --max-width-tablet: 735px; /* 705 контент (по макету) + 2*15 падинги */
-  --max-width-desktop: 1254px;  /* 1224 контент (по макету) + 2*15 падинги */
+  --max-width-desktop: 1254px; /* 1224 контент (по макету) + 2*15 падинги */
 
   /* Section padding */
   --section-padding: 48px;
 }
 
-
+html,
+body,
+#root {
+  height: 100%;
+}
 
 body {
   font-family: var(--font-family);
   background-color: var(--color-bg);
   color: var(--color-text);
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -69,7 +75,7 @@ button {
 }
 
 svg {
-  fill:none;
+  fill: none;
 }
 
 .container {
