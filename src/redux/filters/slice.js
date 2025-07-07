@@ -22,6 +22,11 @@ const slice = createSlice({
     changeIngredientFilter: (state, action) => {
       state.ingredient = action.payload;
     },
+    resetFilters: (state) => {
+      state.recipe = "";
+      state.category = "";
+      state.ingredient = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,5 +59,9 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const { changeFilter, changeCategoryFilter, changeIngredientFilter } =
-  slice.actions;
+export const {
+  changeFilter,
+  changeCategoryFilter,
+  changeIngredientFilter,
+  resetFilters,
+} = slice.actions;

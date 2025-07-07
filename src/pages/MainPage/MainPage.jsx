@@ -5,15 +5,13 @@ import Pagination from "../../components/Pagination/Pagination";
 
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { selectFilter } from "../../redux/filters/selectors";
+import { resetFilters } from "../../redux/filters/slice";
 import { useSelector } from "react-redux";
 import css from "./MainPage.module.css";
-
 
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { fetchRecipes } from "../../redux/recipes/operations";
-
-
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -21,6 +19,7 @@ export default function MainPage() {
   const searchValue = useSelector(selectFilter);
 
   useEffect(() => {
+    dispatchRef.current(resetFilters());
     dispatchRef.current(fetchRecipes());
   }, []);
 
