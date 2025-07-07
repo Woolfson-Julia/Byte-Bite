@@ -36,6 +36,8 @@ export default function UserMenu({ onLinkClick }) {
         <IconButton
           onClick={handleLogout}
           className={css.btnSvg}
+          variantBtn="none"
+          variantSvg="none"
           type="button"
           aria-label="Log out"
         >
