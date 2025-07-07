@@ -41,12 +41,11 @@ function RecipesList() {
 
   const recipesCount = useSelector(selectRecipesCount);
   const hasMore = recipesCount > recipes.length;
-  
+
   const [page, setPage] = useState(1);
 
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
-
   };
 
   useEffect(() => {
@@ -71,9 +70,8 @@ function RecipesList() {
   return (
     <>
       <div className="">
-        {isLoading && <Loader />}
         {error && <p>{genericErrorMessage}</p>}
-        {!isLoading && !error && recipes.length > 0 && (
+        {!error && recipes.length > 0 && (
           <ul className={css.list}>
             {recipes.map((recipe) => (
               <li key={recipe._id}>
@@ -85,6 +83,8 @@ function RecipesList() {
             ))}
           </ul>
         )}
+        {isLoading && <Loader />}
+
         {!isLoading && hasMore && <LoadMoreBtn onClick={handleLoadMore} />}
         {/* <LoadMoreBtn onClick={handleLoadMore} /> */}
       </div>
