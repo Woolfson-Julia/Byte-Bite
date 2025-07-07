@@ -7,13 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   addRecipeToFav,
   removeRecipeFromFav,
+  removeOwnRecipes
 } from "../../redux/recipes/operations";
 
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 
 
-export default function RecipeCard({ recipe, isFavorite }) {
+export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = true, showRemoveButton=true}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,6 +44,14 @@ export default function RecipeCard({ recipe, isFavorite }) {
     }
   };
 
+  const deleteOwnRecipes = async (id) => {
+    try {
+      await dispatch(removeOwnRecipes(id)).unwrap();
+    } catch (error) {
+      console.error("Ошибка при удалении", error);
+    }
+  };
+
   return (
     <div className={css.recipe}>
       <img src={recipe.thumb} alt={recipe.title} />
@@ -58,44 +67,59 @@ export default function RecipeCard({ recipe, isFavorite }) {
       <p className={css.desc}>{recipe.description}</p>
       <p className={css.cals}>~{recipe.cals} cals</p>
 
-      <div className={css.buttonBox}>
-        <Button
-          className={css.button}
-          variant="lightButton"
-          type="button"
-          onClick={() => handleBtnMore(recipe._id)}
-        >
-          Learn More
-        </Button>
+      <div className={css.buttonBox} style={{ display: "flex" }}>
+  <Button
+    className={css.button}
+    variant="lightButton"
+    type="button"
+    onClick={() => handleBtnMore(recipe._id)}
+  >
+    Learn More
+  </Button>
 
-        {isFavorite ? (<IconButton
-            className={css.buttonSvg}
-            variantBtn="darkButtonSvg"
-            variantSvg="lightSvg"
-            type="button"
-            onClick={() => handleRemoveFromFavorites(recipe._id)}
-          >
-            <svg width="24" height="24" stroke="currentColor">
-              <use href="/sprite.svg#icon-add-to-favorite-24px" />
-            </svg>
-          </IconButton>
-        ) : (
-          <IconButton
-            className={css.buttonSvg}
-            variantBtn="lightButtonSvg"
-            variantSvg="darkSvg"
-            type="button"
-            onClick={() => handleAddToFavorites(recipe._id)}
-          >
-            <svg width="24" height="24" stroke="currentColor">
-              <use href="/sprite.svg#icon-add-to-favorite-24px" />
-            </svg>
-            </IconButton>
-            
-        )}
-      </div>
+  {showFavoriteButton && (
+    isFavorite ? (
+      <IconButton
+        className={css.buttonSvg}
+        variantBtn="darkButtonSvg"
+        variantSvg="lightSvg"
+        type="button"
+        onClick={() => handleRemoveFromFavorites(recipe._id)}
+      >
+        <svg width="24" height="24" stroke="currentColor">
+          <use href="/sprite.svg#icon-add-to-favorite-24px" />
+        </svg>
+      </IconButton>
+    ) : (
+      <IconButton
+        className={css.buttonSvg}
+        variantBtn="lightButtonSvg"
+        variantSvg="darkSvg"
+        type="button"
+        onClick={() => handleAddToFavorites(recipe._id)}
+      >
+        <svg width="24" height="24" stroke="currentColor">
+          <use href="/sprite.svg#icon-add-to-favorite-24px" />
+        </svg>
+      </IconButton>
+    )
+  )}
+
+  {showRemoveButton && (
+    <IconButton
+      className={css.removeBtn}
+      variantBtn="removeBtn"
+      variantSvg="removeBtn"
+      type="button"
+      onClick={() => deleteOwnRecipes(recipe._id)}
+    >
+      <svg width="24" height="24" stroke="white">
+        <use href="/sprite.svg#icon-delete-24px" />
+      </svg>
+    </IconButton>
+  )}
+</div>
+
     </div>
   );
 }
-
-

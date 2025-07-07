@@ -2,12 +2,6 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 1.1;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .recipe {
@@ -16,7 +10,8 @@
   justify-content: space-between;
   border-radius: 16px;
   padding: 12px;
-  /* width: 360px; */
+  width: 100%;
+  max-width: 361px;
   height: 455px;
   background-color: #FAF3E0;
 }
@@ -26,7 +21,7 @@
   object-position: center;
   border-radius: 16px;
   width: 100%;
-  /* width: 336px; */
+  max-width: 337px;
   height: 230px;
   margin-bottom: 16px;
 }
@@ -76,7 +71,7 @@
 
 .button {
   padding: 8px;
-  width: 289px;
+  width: 100%;
   height: 40px;
 }
 
@@ -95,6 +90,9 @@
   width: 40px;
   height: 40px;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .removeBtn:hover {
@@ -107,9 +105,6 @@
     height: 483px;
   }
 
-  .button {
-    width: 267px;
-  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -123,7 +118,5 @@
     height: 178px;
   }
 
-  .button {
-    width: 216px;
-  }
+
 }

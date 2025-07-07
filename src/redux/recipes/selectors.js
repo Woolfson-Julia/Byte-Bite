@@ -6,7 +6,7 @@ export const selectRecipesLoading = (state) => state.recipes.loading;
 export const selectRecipesError = (state) => state.recipes.error;
 
 export const selectFavorites = (state) => state.recipes.favorites || [];
-
+export const selectOwnRecipes = (state) => state.recipes.own || [];
 
 export const selectRecipesCount = (state) =>
   state.recipes.items.totalItems || 0;

@@ -60,6 +60,7 @@ function RecipesList() {
                 <RecipeCard
                   recipe={recipe}
                   isFavorite={favorites.some((fav) => fav._id === recipe._id)}
+                  showRemoveButton={false} 
                 />
               </li>
             ))}

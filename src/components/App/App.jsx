@@ -9,6 +9,9 @@ import Loader from "../Loader/Loader";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 
+import SavedRecipes from "../SavedRecipes/SavedRecipes";
+import MyRecipes from "../MyRecipesList/MyRecipesList";
+
 const Layout = lazy(() => import("../Layout/Layout"));
 
 const NotFoundPage = lazy(() =>
@@ -54,14 +57,13 @@ export default function App() {
             }
           />
           <Route
-            path="profile/:recipeType"
-            element={
-              <PrivateRoute
-                component={<ProfilePage />}
-                redirectTo="/auth/login"
-              />
-            }
-          />
+             path="profile"
+             element={<PrivateRoute component={<ProfilePage />}
+            redirectTo="/auth/login"
+             />}
+>          <Route path="own" element={<MyRecipes />} />
+           <Route path="favorites" element={<SavedRecipes />} />
+          </Route>
 
           {/* Обмежені роути - тільки для незалогінених */}
           <Route
