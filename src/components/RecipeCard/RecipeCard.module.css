@@ -2,6 +2,12 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 1.1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recipe {
@@ -10,7 +16,7 @@
   justify-content: space-between;
   border-radius: 16px;
   padding: 12px;
-  width: 361px;
+  /* width: 360px; */
   height: 455px;
   background-color: #FAF3E0;
 }
@@ -20,7 +26,7 @@
   object-position: center;
   border-radius: 16px;
   width: 100%;
-  max-width: 337px;
+  /* width: 336px; */
   height: 230px;
   margin-bottom: 16px;
 }
