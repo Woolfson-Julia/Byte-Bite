@@ -1,6 +1,18 @@
-export const selectRecipes = (state) => state.recipes.items;
+import { createSelector } from "@reduxjs/toolkit";
+
 
 export const selectCurrentRecipe = (state) => state.recipes.currentRecipe;
 export const selectRecipesLoading = (state) => state.recipes.loading;
 export const selectRecipesError = (state) => state.recipes.error;
 
+export const selectFavorites = (state) => state.recipes.favorites || [];
+
+
+export const selectRecipesCount = (state) =>
+  state.recipes.items.totalItems || 0;
+
+export const selectRecipesItems = (state) => state.recipes.items;
+export const selectRecipes = createSelector(
+  [selectRecipesItems],
+  (items) => items.recipes || []
+);

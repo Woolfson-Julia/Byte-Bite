@@ -29,7 +29,13 @@
 .registerBtn:focus {
   background-color: #6d554b;
 }
+.link {
+  display: inline-block;
+}
 
+.active {
+  border-bottom: 2px solid #fff;
+}
 
 @media screen and (min-width: 768px) {
   .wrapper {

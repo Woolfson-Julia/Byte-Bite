@@ -25,12 +25,12 @@
 
 .darkButton:focus {
   background: var(--color-brown-500);
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
+  box-shadow: 0 4px 10px #0000004d;
 }
 
 .darkButton:disabled {
   background: #9b6c43;
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
+  box-shadow: 0 4px 10px #0000004d;
 }
 
 
@@ -50,13 +50,13 @@
   background: var(--color-brown-500);
   color: var(--color-white);
   border-color: var(--color-brown-700);
-  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+  box-shadow: 0 4px 10px #0000004d;
 }
 
 .lightButton:disabled {
   background:  var(--color-brown-500);
   color: var(--color-white);
   border-color: var(--color-brown-700);
-  box-shadow: 0 0 0 6px rgba(101, 80, 35, 0.12);
+  box-shadow:0 4px 10px #0000004d;
 }
 

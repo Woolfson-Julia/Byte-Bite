@@ -13,8 +13,11 @@ import storage from "redux-persist/lib/storage";
 import filtersReducer from "./filters/slice";
 import authReducer from "./auth/slice";
 import recipesReducer from "./recipes/slice";
-import modalReducer from "./modal/slice.js";
+
 import recipesListenerMiddleware from "./recipes/middlewares";
+import filtersListenerMiddleware from "./filters/middlewares";
+import modalReducer from "./modal/slice.js";
+
 
 const persistedAuthReducer = persistReducer(
   {
@@ -37,7 +40,9 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(recipesListenerMiddleware.middleware),
+    })
+      .concat(recipesListenerMiddleware.middleware)
+      .concat(filtersListenerMiddleware.middleware),
 });
 
 export default store;
