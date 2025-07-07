@@ -1,0 +1,49 @@
+.modalContent {
+  max-width: 90vw;
+  width: 362px;
+  padding: 56px 24px 32px 24px;
+}
+
+.savedContent {
+  padding: 64px 16px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+}
+
+.icon {
+  stroke: var(--color-black);
+}
+
+.title {
+  color: var(--color-black);
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.message {
+  color: var(--color-black);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24.8px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .modalContent {
+    padding: 56px 32px 32px 32px;
+    width: 420px;
+  }
+  .closeBtn {
+    top: 16px;
+    right: 32px;
+  }
+}

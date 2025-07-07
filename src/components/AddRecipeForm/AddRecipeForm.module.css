@@ -1,0 +1,281 @@
+.title {
+  margin-bottom: 16px;
+  font-size: 40px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.phoneTabletGroup {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.lastButton {
+  display: flex;
+  flex-direction: column;
+}
+.leftside {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 40px;
+}
+.rightside {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+textarea {
+  resize: none;
+}
+.group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  position: relative;
+}
+.ingredients .group {
+  flex-direction: column;
+}
+.formField {
+  gap: 8px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.label {
+  font-size: 18px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 12px;
+  outline: none;
+  transition: border-color .25s cubic-bezier(.4,0,.2,1);
+  font-size: 18px;
+  /* color: #595d62; */
+  color: var(--color-black);
+  text-overflow: ellipsis;
+}
+/* .input:focus,
+.textarea:focus {
+  color: var(--color-black);
+} */
+
+.textarea {
+  height: 144px;
+}
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+.select {
+  width: 100%;
+  padding: 12px;
+  padding-right: 40px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #d9d9d9;
+  color: var(--color-black);
+  border-radius: 8px;
+  max-height: 48px;
+  font-weight: 400;
+  font-size: 18px;
+  /* color: #595d62; */
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+/* .select:focus {
+  border-color: #a0a0a0;
+  color: var(--color-black);
+} */
+.selectIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  stroke-width: 1px;
+  stroke: #000;
+  fill:none;
+
+}
+.input:focus,
+.textarea:focus {
+  border: 1.5px solid #9b6c43;
+  box-shadow: 0 4px 10px #0000004d;
+}
+.input:active,
+.textarea:active {
+  border: 1px solid #d9d9d9;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.general,
+.ingredients,
+.instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rightside input {
+  display: none;
+}
+
+.instructions {
+  position: relative;
+}
+.upload {
+  width: 100%;
+  height: 383px;
+  background: #9f9f9f;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtitle {
+  font-size: 24px;
+  margin-top: 12px;
+}
+.svgPhoto {
+  stroke-width: 2.56px;
+  stroke: #070707;
+}
+.button {
+  padding: 12px 16px;
+}
+.removeButton {
+  border: 1px solid #d9d9d9;
+}
+.lastButton {
+  margin-top: 40px;
+}
+
+.phoneTabletRemove {
+  display: none;
+}
+.ingredientList {
+  position: relative;
+}
+.error {
+  position: absolute;
+  color: red;
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  bottom: -15px;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  .error {
+    font-size: 15px;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: 32px;
+  }
+  .ingredients .group {
+    flex-direction: row;
+  }
+  .group {
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .ingredients .formField:last-child {
+    max-width: 249px;
+  }
+  .smallbutton {
+    /* margin-top: 24px; */
+    width: 249px;
+    align-self: flex-end;
+  }
+  .general {
+    gap: 32px;
+  }
+  .ingredients {
+    gap: 0;
+  }
+  .ingredients .subtitle {
+    margin-bottom: 32px;
+  }
+  .instructions {
+    gap: 16px;
+  }
+  .removeButton {
+    display: none;
+  }
+  /* .lastButtonValid {
+
+
+  } */
+}
+
+@media screen and (min-width: 1440px) {
+  .phoneTabletGroup {
+    width: 100%;
+    flex-direction: row;
+  }
+  .textarea {
+    height: 144px;
+  }
+  .form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .leftside {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+    margin-right: 24px;
+  }
+  .rightside {
+    width: 391px;
+    flex-shrink: 0;
+  }
+  .upload {
+    width: 391px;
+    height: 374px;
+  }
+  .lastButton {
+    margin-top: 32px;
+  }
+  .ingredients .button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .title {
+    margin-bottom: 40px;
+  }
+  .subtitle {
+    font-size: 32px;
+  }
+  .descRemove {
+    display: none;
+  }
+  .phoneTabletRemove {
+    display: block;
+  }
+  .uploadWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}

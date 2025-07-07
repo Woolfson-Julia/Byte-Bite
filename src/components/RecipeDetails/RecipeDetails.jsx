@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useEffect,  } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addRecipeToFavorite, deleteRecipeFromFavorite } from "../../redux/recipes/operations";
+import { addRecipeToFav, removeRecipeFromFav } from "../../redux/recipes/operations";
 import { selectRecipesError } from "../../redux/recipes/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./RecipeDetails.module.css";
@@ -14,7 +14,6 @@ export default function RecipeDetails({ recipe }) {
   const dispatch = useDispatch();
   const error = useSelector(selectRecipesError);
 
-  console.log(recipe);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
   
@@ -28,9 +27,9 @@ export default function RecipeDetails({ recipe }) {
     }
 
     if(recipe.isFavorite) {
-      dispatch(deleteRecipeFromFavorite(recipe._id));
+      dispatch(removeRecipeFromFav(recipe._id));
     } else {
-      dispatch(addRecipeToFavorite(recipe._id));
+      dispatch(addRecipeToFav(recipe._id));
     }
   }
   

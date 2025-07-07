@@ -2,8 +2,8 @@ import css from "./IconButton.module.css";
 
 export default function IconButton({
   children,
-  variantBtn = "dark-button-svg",
-  variantSvg = "light-svg",
+  variantBtn = "lightButtonSvg",
+  variantSvg = "darkSvg",
   type = "button",
   disabled = false,
   className = "",

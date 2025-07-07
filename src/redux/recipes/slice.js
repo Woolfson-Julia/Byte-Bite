@@ -1,12 +1,18 @@
-
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes, addRecipe, fetchRecipeById, addRecipeToFavorite, deleteRecipeFromFavorite } from "./operations";
+import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
+import {
+  fetchRecipesWithFilters,
+  removeRecipeFromFav,
+  addRecipeToFav,
+  fetchFavorites,
+} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    favorites: [],
     recipe: null,
     loading: false,
     error: null,
@@ -14,6 +20,9 @@ const slice = createSlice({
   extraReducers: (builder) => {
     // Отримати всі рецепти
     buildReducers(builder, fetchRecipes, (state, action) => {
+      state.items = action.payload;
+    });
+    buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
       state.items = action.payload;
     });
 
@@ -27,14 +36,18 @@ const slice = createSlice({
       state.recipe = action.payload.recipes;
     });
 
-    // Додавання до улюблених
-    buildReducers(builder, addRecipeToFavorite, (state) => {
-      state.recipe.isFavorite = true;
+    buildReducers(builder, addRecipeToFav, (state, action) => {
+      state.favorites = action.payload;
+      state.recipe.isFavorite = true; 
     });
 
-    // Видалення з улюблених
-    buildReducers(builder, deleteRecipeFromFavorite, (state) => {
-      state.recipe.isFavorite = false;
+    buildReducers(builder, removeRecipeFromFav, (state, action) => {
+      state.favorites = action.payload;
+      state.recipe.isFavorite = false; 
+    });
+
+    buildReducers(builder, fetchFavorites, (state, action) => {
+      state.favorites = action.payload;
     });
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
@@ -73,10 +86,10 @@ function buildReducers(builder, operation, reducerFunc) {
     .addCase(operation.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+      state.items = [];
     });
 }
 
 export default slice.reducer;
 
 export const { setDeleteRecipeId, setEditRecipeId } = slice.actions;
-

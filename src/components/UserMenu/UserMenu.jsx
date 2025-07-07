@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
-import { logOut } from "../../redux/auth/operations.js";
-import css from "./UserMenu.module.css";
+import { openModal } from "../../redux/modal/slice.js";
 import IconButton from "../IconButton/IconButton.jsx";
+import css from "./UserMenu.module.css";
 
 export default function UserMenu({ onLinkClick }) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const firstLetter = user.name.split("")[0].toUpperCase();
 
-  // тимчасово поки не створили модалку
   const handleLogout = () => {
-    dispatch(logOut());
-    onLinkClick();
+    if (typeof onLinkClick === "function") {
+      onLinkClick();
+    }
+    dispatch(openModal({ modalType: "logout" }));
+    // dispatch(openModal({ modalType: "not-auth" }));
+    // dispatch(openModal({ modalType: "saved" }));
   };
 
   return (
@@ -33,6 +36,8 @@ export default function UserMenu({ onLinkClick }) {
         <IconButton
           onClick={handleLogout}
           className={css.btnSvg}
+          variantBtn="none"
+          variantSvg="none"
           type="button"
           aria-label="Log out"
         >

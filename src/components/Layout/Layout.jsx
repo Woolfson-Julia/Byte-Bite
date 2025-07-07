@@ -1,17 +1,20 @@
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 
-export default function Layout() {
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import BaseModal from "../BaseModal/BaseModal.jsx";
+import css from "./Layout.module.css";
 
-  
+
+export default function Layout() {
   return (
-    <>
+    <div className={css.layout}>
       <Header />
-      <main>
+      <main className={css.main}>
         <Outlet />
       </main>
       <Footer />
-    </>
+      <BaseModal />
+    </div>
   );
 }

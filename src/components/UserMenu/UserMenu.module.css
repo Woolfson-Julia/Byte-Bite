@@ -60,6 +60,7 @@
 
 .btnSvg {
   background-color: transparent;
+  border: none;
   padding: 0;
   width: 24px;
   height: 24px;

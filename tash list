@@ -1,0 +1,196 @@
+*   [33m36c08f8[m[33m ([m[1;35mrefs/stash[m[33m)[m On footer: !!GitHub_Desktop<footer>
+[31m|[m[32m\[m  
+[31m|[m * [33md3cc816[m index on footer: a70e317 fix main page
+[31m|[m[31m/[m  
+* [33ma70e317[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/footer[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mrestore-my-changes[m[33m, [m[1;32mmain[m[33m)[m fix main page
+* [33m5e2f76d[m Update IconButton.jsx
+*   [33meb31f7f[m Merge pull request #15 from Woolfson-Julia/RecipeCard
+[33m|[m[34m\[m  
+[33m|[m * [33mdc5fb84[m fixfix
+[33m|[m *   [33m5301ee4[m Merge branch 'RecipeCard' of https://github.com/Woolfson-Julia/Byte-Bite into RecipeCard
+[33m|[m [35m|[m[36m\[m  
+[33m|[m [35m|[m *   [33m2423138[m Merge branch 'main' into RecipeCard
+[33m|[m [35m|[m [1;31m|[m[33m\[m  
+[33m|[m [35m|[m[33m_[m[1;31m|[m[33m/[m  
+[33m|[m[33m/[m[35m|[m [1;31m|[m   
+* [35m|[m [1;31m|[m   [33m7394e97[m[33m ([m[1;36mHEAD -> [m[1;32mfooter[m[33m, [m[1;32mrestore-my-code[m[33m, [m[1;32mbackup-footer[m[33m)[m Merge pull request #20 from Woolfson-Julia/filter-option
+[1;33m|[m[1;34m\[m [35m\[m [1;31m\[m  
+[1;33m|[m * [35m\[m [1;31m\[m   [33m62d0687[m Merge branch 'filter-option' of https://github.com/Woolfson-Julia/Byte-Bite into filter-option
+[1;33m|[m [1;35m|[m[1;36m\[m [35m\[m [1;31m\[m  
+[1;33m|[m [1;35m|[m * [35m\[m [1;31m\[m   [33m7e97a31[m Merge branch 'main' into filter-option
+[1;33m|[m [1;35m|[m [31m|[m[1;33m\[m [35m\[m [1;31m\[m  
+[1;33m|[m [1;35m|[m[1;33m_[m[31m|[m[1;33m/[m [35m/[m [1;31m/[m  
+[1;33m|[m[1;33m/[m[1;35m|[m [31m|[m [35m|[m [1;31m|[m   
+* [1;35m|[m [31m|[m [35m|[m [1;31m|[m   [33mc8e8b38[m Merge pull request #19 from Woolfson-Julia/bugfix/add-recipe
+[33m|[m[34m\[m [1;35m\[m [31m\[m [35m\[m [1;31m\[m  
+[33m|[m * [1;35m|[m [31m|[m [35m|[m [1;31m|[m [33m87502d2[m rework form
+[33m|[m[33m/[m [1;35m/[m [31m/[m [35m/[m [1;31m/[m  
+[33m|[m * [31m/[m [35m/[m [1;31m/[m [33m6c535b2[m Add ToastInfo and delete Toaster in App
+[33m|[m [31m|[m[31m/[m [35m/[m [1;31m/[m  
+[33m|[m * [35m|[m [1;31m|[m [33m068f25f[m Add some styles  and change axios link
+[33m|[m * [35m|[m [1;31m|[m [33m3a600eb[m Modal style
+[33m|[m * [35m|[m [1;31m|[m [33m3550438[m Connect search by title with filters. Some changes in modal
+[33m|[m * [35m|[m [1;31m|[m [33mbbf9389[m Add middleware and toaster. Modal window
+[33m|[m * [35m|[m [1;31m|[m   [33m4aa212f[m Merge remote-tracking branch 'origin' into filter-option
+[33m|[m [35m|[m[36m\[m [35m\[m [1;31m\[m  
+[33m|[m * [36m|[m [35m|[m [1;31m|[m [33md4b7b5d[m Add Filter component
+[33m|[m [36m|[m [36m|[m * [1;31m|[m [33m839a491[m fixfix
+[33m|[m [36m|[m [36m|[m [1;31m|[m[1;31m/[m  
+[33m|[m [36m|[m [36m|[m * [33me1a1b93[m fix
+[33m|[m [36m|[m [36m|[m *   [33mbc6e0c2[m Recipe fix
+[33m|[m [36m|[m [36m|[m [1;31m|[m[33m\[m  
+[33m|[m [36m|[m[33m_[m[36m|[m[33m_[m[1;31m|[m[33m/[m  
+[33m|[m[33m/[m[36m|[m [36m|[m [1;31m|[m   
+* [36m|[m [36m|[m [1;31m|[m   [33m6a207e9[m Merge pull request #17 from Woolfson-Julia/test
+[36m|[m[1;34m\[m [36m\[m [36m\[m [1;31m\[m  
+[36m|[m [1;34m|[m[36m_[m[36m|[m[36m/[m [1;31m/[m  
+[36m|[m[36m/[m[1;34m|[m [36m|[m [1;31m|[m   
+[36m|[m * [36m|[m [1;31m|[m [33m42e2a26[m fix formik for add card
+[36m|[m[36m/[m [36m/[m [1;31m/[m  
+[36m|[m [36m|[m * [33m282050f[m RecipeCard+SearchBox
+[36m|[m [36m|[m * [33m13afd1f[m RecipeCard & RecipeList
+[36m|[m [36m|[m [1;34m|[m * [33m9b54559[m[33m ([m[1;31morigin/feature/recipe-view-page[m[33m)[m refactor states to redux
+[36m|[m [36m|[m [1;34m|[m *   [33ma18a8f2[m pull changes from main
+[36m|[m [36m|[m [1;34m|[m [1;36m|[m[36m\[m  
+[36m|[m [36m|[m[36m_[m[1;34m|[m[36m_[m[1;36m|[m[36m/[m  
+[36m|[m[36m/[m[36m|[m [1;34m|[m [1;36m|[m   
+[36m|[m [36m|[m [1;34m|[m *   [33m59576b8[m add favorite button
+[36m|[m [36m|[m [1;34m|[m [32m|[m[33m\[m  
+[36m|[m [36m|[m [1;34m|[m * [33m|[m [33mdd87a89[m add component recipeDetails
+[36m|[m [36m|[m [1;34m|[m [33m|[m [33m|[m * [33m5287528[m[33m ([m[1;31morigin/modals[m[33m)[m add modals with react state
+[36m|[m [36m|[m [1;34m|[m [33m|[m [33m|[m *   [33m2af9f84[m Merge branch 'main' into modals
+[36m|[m [36m|[m [1;34m|[m [33m|[m [33m|[m [35m|[m[36m\[m  
+[36m|[m [36m|[m[36m_[m[1;34m|[m[36m_[m[33m|[m[36m_[m[33m|[m[36m_[m[35m|[m[36m/[m  
+[36m|[m[36m/[m[36m|[m [1;34m|[m [33m|[m [33m|[m [35m|[m   
+* [36m|[m [1;34m|[m [33m|[m [33m|[m [35m|[m [33macb5afc[m Update Header.jsx
+* [36m|[m [1;34m|[m [33m|[m [33m|[m [35m|[m [33mecff152[m Update MobileMenu.module.css
+* [36m|[m [1;34m|[m [33m|[m [33m|[m [35m|[m   [33m5363f02[m Merge pull request #13 from Woolfson-Julia/headercss
+[33m|[m[1;32m\[m [36m\[m [1;34m\[m [33m\[m [33m\[m [35m\[m  
+[33m|[m [1;32m|[m[33m_[m[36m|[m[33m_[m[1;34m|[m[33m_[m[33m|[m[33m/[m [35m/[m  
+[33m|[m[33m/[m[1;32m|[m [36m|[m [1;34m|[m [33m|[m [35m|[m   
+[33m|[m * [36m|[m [1;34m|[m [33m|[m [35m|[m [33me4568c8[m add header media
+[33m|[m[33m/[m [36m/[m [1;34m/[m [33m/[m [35m/[m  
+[33m|[m [36m|[m [1;34m|[m [33m|[m *   [33mea2fb26[m Merge branch 'main' into modals
+[33m|[m [36m|[m [1;34m|[m [33m|[m [1;33m|[m[33m\[m  
+[33m|[m [36m|[m[33m_[m[1;34m|[m[33m_[m[33m|[m[33m_[m[1;33m|[m[33m/[m  
+[33m|[m[33m/[m[36m|[m [1;34m|[m [33m|[m [1;33m|[m   
+* [36m|[m [1;34m|[m [33m|[m [1;33m|[m [33m37273c7[m fix css for form
+* [36m|[m [1;34m|[m [33m|[m [1;33m|[m [33m43ca08d[m Update Header.jsx
+* [36m|[m [1;34m|[m [33m|[m [1;33m|[m [33m64a78ea[m Update UserMenu.jsx
+* [36m|[m [1;34m|[m [33m|[m [1;33m|[m   [33m9ba23be[m Merge pull request #8 from Woolfson-Julia/header
+[36m|[m[1;36m\[m [36m\[m [1;34m\[m [33m\[m [1;33m\[m  
+[36m|[m [1;36m|[m[36m/[m [1;34m/[m [33m/[m [1;33m/[m  
+[36m|[m[36m/[m[1;36m|[m [1;34m|[m [33m|[m [1;33m|[m   
+[36m|[m * [1;34m|[m [33m|[m [1;33m|[m   [33m0755697[m Merge branch 'main' into header
+[36m|[m [31m|[m[36m\[m [1;34m\[m [33m\[m [1;33m\[m  
+[36m|[m [31m|[m[36m/[m [1;34m/[m [33m/[m [1;33m/[m  
+[36m|[m[36m/[m[31m|[m [1;34m|[m [33m|[m [1;33m|[m   
+* [31m|[m [1;34m|[m [33m|[m [1;33m|[m [33m2840095[m add new root
+* [31m|[m [1;34m|[m [33m|[m [1;33m|[m [33mcf1db46[m add root
+[1;34m|[m [31m|[m[1;34m/[m [33m/[m [1;33m/[m  
+[1;34m|[m[1;34m/[m[31m|[m [33m|[m [1;33m|[m   
+* [31m|[m [33m|[m [1;33m|[m   [33m146663d[m Merge pull request #5 from Woolfson-Julia/front/recipes-redux-core
+[33m|[m[34m\[m [31m\[m [33m\[m [1;33m\[m  
+[33m|[m * [31m\[m [33m\[m [1;33m\[m   [33m451b78c[m Merge branch 'main' into front/recipes-redux-core
+[33m|[m [35m|[m[33m\[m [31m\[m [33m\[m [1;33m\[m  
+[33m|[m [35m|[m[33m/[m [31m/[m [33m/[m [1;33m/[m  
+[33m|[m[33m/[m[35m|[m [31m|[m [33m|[m [1;33m|[m   
+* [35m|[m [31m|[m [33m|[m [1;33m|[m [33m9331133[m fix search css
+* [35m|[m [31m|[m [33m|[m [1;33m|[m [33m0400af4[m check redux auth
+* [35m|[m [31m|[m [33m|[m [1;33m|[m   [33mfbcac5b[m Merge pull request #9 from Woolfson-Julia/SearchBox
+[1;31m|[m[1;32m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;31m|[m * [35m\[m [31m\[m [33m\[m [1;33m\[m   [33m3fc6d4c[m Merge branch 'main' into SearchBox
+[1;31m|[m [1;33m|[m[1;31m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;31m|[m [1;33m|[m[1;31m/[m [35m/[m [31m/[m [33m/[m [1;33m/[m  
+[1;31m|[m[1;31m/[m[1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m   
+* [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m   [33m733a19a[m Merge pull request #12 from Woolfson-Julia/auth-forms
+[1;35m|[m[1;36m\[m [1;33m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;35m|[m * [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m [33m1a479e7[m bugs fixed
+[1;35m|[m * [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m [33m1c189e7[m errors toasts + loader indicators
+[1;35m|[m * [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m   [33m4d62f1b[m Merge branch 'main' into auth-forms.
+[1;35m|[m [31m|[m[32m\[m [1;33m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;35m|[m * [32m|[m [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m [33m3ec54b1[m login logic added
+[1;35m|[m * [32m|[m [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m   [33m54fe43c[m Merge branch 'main' into auth-forms .
+[1;35m|[m [33m|[m[34m\[m [32m\[m [1;33m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;35m|[m * [34m|[m [32m|[m [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m [33mb6ac3f2[m password show logic
+[1;35m|[m * [34m|[m [32m|[m [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m [33m49a2f0d[m errors + validation added
+[1;35m|[m * [34m|[m [32m|[m [1;33m|[m [35m|[m [31m|[m [33m|[m [1;33m|[m   [33m78bae63[m desktop register page
+[1;35m|[m [35m|[m[33m\[m [34m\[m [32m\[m [1;33m\[m [35m\[m [31m\[m [33m\[m [1;33m\[m  
+[1;35m|[m [35m|[m [33m|[m [34m|[m[33m_[m[32m|[m[33m_[m[1;33m|[m[33m_[m[35m|[m[33m_[m[31m|[m[33m/[m [1;33m/[m  
+[1;35m|[m [35m|[m [33m|[m[33m/[m[34m|[m [32m|[m [1;33m|[m [35m|[m [31m|[m [1;33m|[m   
+[1;35m|[m * [33m|[m [34m|[m [32m|[m [1;33m|[m [35m|[m [31m|[m [1;33m|[m [33mefdee6f[m register skelly added
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [35m|[m [31m|[m [1;33m|[m [33mf98ed11[m searchbox
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [35m|[m [31m|[m [1;33m|[m [33mb329cc3[m SearchBox with Redux
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [35m|[m [31m|[m [1;33m|[m [33m03d264a[m SearchBox
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [35m|[m [31m|[m [1;33m|[m   [33ma901dac[m Merge main into SearchBox
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m [1;31m|[m[32m\[m [35m\[m [31m\[m [1;33m\[m  
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m [1;31m|[m[32m/[m [35m/[m [31m/[m [1;33m/[m  
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m[32m/[m[1;31m|[m [35m|[m [31m|[m [1;33m|[m   
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [35m|[m [31m|[m [1;33m|[m [33mb5ff3aa[m SearchBox
+[1;35m|[m [36m|[m [33m|[m[36m_[m[34m|[m[36m_[m[32m|[m[36m/[m [35m/[m [31m/[m [1;33m/[m  
+[1;35m|[m [36m|[m[36m/[m[33m|[m [34m|[m [32m|[m [35m|[m [31m|[m [1;33m|[m   
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [31m|[m [1;33m|[m [33mc601a07[m RecipesList basic implementation (no RecipeCard)
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [31m|[m [1;33m|[m [33m33670ab[m Fixes and improvements for the recipes block of the Redux part. Added prettierrc.json
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [31m|[m [1;33m|[m [33m94dccde[m Updated packages. Initial Redux part for the recipes.
+[1;35m|[m [36m|[m[1;35m_[m[33m|[m[1;35m_[m[34m|[m[1;35m_[m[32m|[m[1;35m/[m [31m/[m [1;33m/[m  
+[1;35m|[m[1;35m/[m[36m|[m [33m|[m [34m|[m [32m|[m [31m|[m [1;33m|[m   
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [1;33m|[m [33mb38aa20[m Update Header layout, add mobile-first styles and logout functionality
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [1;33m|[m   [33m6674325[m Merge branch 'main' into header
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m [1;33m|[m[1;34m\[m [1;33m\[m  
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m * [1;34m|[m [1;33m|[m [33me80fa58[m add header markup
+[1;35m|[m [36m|[m [33m|[m [34m|[m[33m_[m[32m|[m[33m/[m [1;34m/[m [1;33m/[m  
+[1;35m|[m [36m|[m [33m|[m[33m/[m[34m|[m [32m|[m [1;34m|[m [1;33m|[m   
+[1;35m|[m [36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m * [33m3ffd0e7[m add base modal, logout modal
+[1;35m|[m [36m|[m[1;35m_[m[33m|[m[1;35m_[m[34m|[m[1;35m_[m[32m|[m[1;35m_[m[1;34m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m   
+* [36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m [33md4bc3c3[m Update Button.jsx
+* [36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m [33m7471abc[m Update IconButton.jsx
+* [36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m [33mc1c3013[m change search
+* [36m|[m [33m|[m [34m|[m [32m|[m [1;34m|[m [33m0002756[m fix title page
+[32m|[m [36m|[m[32m_[m[33m|[m[32m_[m[34m|[m[32m/[m [1;34m/[m  
+[32m|[m[32m/[m[36m|[m [33m|[m [34m|[m [1;34m|[m   
+[32m|[m [36m|[m [33m|[m [34m|[m [1;34m|[m * [33mdee1ac5[m[33m ([m[1;31morigin/feature/add-recipe[m[33m)[m handlers. preview, selectors
+[32m|[m [36m|[m [33m|[m [34m|[m [1;34m|[m * [33me8c387a[m add styles, api fetch
+[32m|[m [36m|[m [33m|[m [34m|[m [1;34m|[m *   [33m05816ba[m Merge remote-tracking branch 'origin/main' into feature/add-recipe
+[32m|[m [36m|[m [33m|[m [34m|[m [1;34m|[m [1;36m|[m[32m\[m  
+[32m|[m [36m|[m[32m_[m[33m|[m[32m_[m[34m|[m[32m_[m[1;34m|[m[32m_[m[1;36m|[m[32m/[m  
+[32m|[m[32m/[m[36m|[m [33m|[m [34m|[m [1;34m|[m [1;36m|[m   
+* [36m|[m [33m|[m [34m|[m [1;34m|[m [1;36m|[m [33m49bd5fe[m fix app.jsx
+* [36m|[m [33m|[m [34m|[m [1;34m|[m [1;36m|[m   [33mbf5bef7[m Merge pull request #10 from Woolfson-Julia/404-page
+[32m|[m[33m\[m [36m\[m [33m\[m [34m\[m [1;34m\[m [1;36m\[m  
+[32m|[m * [36m|[m [33m|[m [34m|[m [1;34m|[m [1;36m|[m [33m88a451d[m 404 page not found
+[32m|[m[32m/[m [36m/[m [33m/[m [34m/[m [1;34m/[m [1;36m/[m  
+* [36m|[m [33m|[m [34m|[m [1;34m/[m [1;36m/[m [33m6a4c402[m add svg and notfoundpage
+[1;34m|[m [36m|[m[1;34m_[m[33m|[m[1;34m_[m[34m|[m[1;34m/[m [1;36m/[m  
+[1;34m|[m[1;34m/[m[36m|[m [33m|[m [34m|[m [1;36m|[m   
+* [36m|[m [33m|[m [34m|[m [1;36m|[m   [33mc86c36a[m Merge pull request #7 from Woolfson-Julia/button
+[34m|[m[35m\[m [36m\[m [33m\[m [34m\[m [1;36m\[m  
+[34m|[m [35m|[m[34m_[m[36m|[m[34m_[m[33m|[m[34m/[m [1;36m/[m  
+[34m|[m[34m/[m[35m|[m [36m|[m [33m|[m [1;36m|[m   
+[34m|[m * [36m|[m [33m|[m [1;36m|[m [33mfad04d0[m fix style btn
+* [35m|[m [36m|[m [33m|[m [1;36m|[m [33m0a5f7ee[m Merge pull request #6 from Woolfson-Julia/button
+[33m|[m[35m\[m[35m|[m [36m|[m [33m|[m [1;36m|[m 
+[33m|[m [35m|[m[33m_[m[36m|[m[33m/[m [1;36m/[m  
+[33m|[m[33m/[m[35m|[m [36m|[m [1;36m|[m   
+[33m|[m * [36m|[m [1;36m|[m [33m89a9f54[m add common style btn and svg
+[33m|[m[33m/[m [36m/[m [1;36m/[m  
+[33m|[m [36m|[m * [33m163ba9c[m add styles, html
+[33m|[m [36m|[m[33m/[m  
+[33m|[m[33m/[m[36m|[m   
+* [36m|[m   [33m51eebfc[m Merge pull request #4 from Woolfson-Julia/route
+[36m|[m[1;33m\[m [36m\[m  
+[36m|[m [1;33m|[m[36m/[m  
+[36m|[m[36m/[m[1;33m|[m   
+[36m|[m * [33ma9245e9[m fix app.js, privateroute.js
+[36m|[m[36m/[m  
+[36m|[m * [33m8cb8867[m[33m ([m[1;31morigin/fix-routing[m[33m)[m fix redirectTo="auth/login"
+[36m|[m * [33m9e626ea[m fix routing and layout
+[36m|[m[36m/[m  
+*   [33md16f35e[m Merge pull request #2 from Woolfson-Julia/basic-settings
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33mf95ec50[m add svg and img
+* [1;36m|[m [33mf4f97e3[m Merge pull request #1 from Woolfson-Julia/basic-settings
+[31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m * [33mc66018e[m add basic-settings
+[31m|[m[31m/[m  
+* [33m5690d84[m Initial commit
