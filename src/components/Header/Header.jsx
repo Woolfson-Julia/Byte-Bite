@@ -23,6 +23,8 @@ export default function Header() {
             <IconButton
               onClick={openMobileMenu}
               className={css.btnSvg}
+              variantBtn="none"
+              variantSvg="none"
               type="button"
               aria-label="Open mobile menu"
             >
