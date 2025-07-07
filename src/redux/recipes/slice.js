@@ -1,8 +1,12 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
-import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav, fetchFavorites} from "./operations";
+import {
+  fetchRecipesWithFilters,
+  removeRecipeFromFav,
+  addRecipeToFav,
+  fetchFavorites,
+} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
@@ -21,7 +25,6 @@ const slice = createSlice({
       state.items = action.payload;
     });
 
-
     // Додавання рецепту
     buildReducers(builder, addRecipe, (state, action) => {
       state.items.push(action.payload);
@@ -33,19 +36,18 @@ const slice = createSlice({
         (recipe) => recipe.id !== action.payload.id
       );
     });
-    
+
     buildReducers(builder, addRecipeToFav, (state, action) => {
-      state.favorites = action.payload; 
+      state.favorites = action.payload;
     });
-    
+
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
     });
-    
+
     buildReducers(builder, fetchFavorites, (state, action) => {
       state.favorites = action.payload;
     });
-    
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(
@@ -82,10 +84,10 @@ function buildReducers(builder, operation, reducerFunc) {
     .addCase(operation.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+      state.items = [];
     });
 }
 
 export default slice.reducer;
 
 export const { setDeleteRecipeId, setEditRecipeId } = slice.actions;
-
