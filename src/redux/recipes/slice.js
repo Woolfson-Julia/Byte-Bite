@@ -1,13 +1,18 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes, addRecipe, fetchRecipeById } from "./operations";
 import { logOut } from "../auth/operations";
-import { fetchRecipesWithFilters,removeRecipeFromFav, addRecipeToFav, fetchFavorites} from "./operations";
+import {
+  fetchRecipesWithFilters,
+  removeRecipeFromFav,
+  addRecipeToFav,
+  fetchFavorites,
+} from "./operations";
 
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    // тут object
     favorites: [],
     loading: false,
     error: null,
@@ -18,9 +23,20 @@ const slice = createSlice({
       state.items = action.payload;
     });
     buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
-      state.items = action.payload;
-    });
+      const page = action.meta.arg?.page || 1;
 
+      if (page === 1) {
+        state.items = action.payload; // первая страница — замена
+      } else {
+        // остальные страницы — добавляем рецепты, остальные поля сохраняем
+        state.items = {
+          ...state.items,
+          recipes: [...state.items.recipes, ...action.payload.recipes],
+        };
+      }
+
+      // state.items = action.payload;
+    });
 
     // Додавання рецепту
     buildReducers(builder, addRecipe, (state, action) => {
@@ -33,19 +49,18 @@ const slice = createSlice({
         (recipe) => recipe.id !== action.payload.id
       );
     });
-    
+
     buildReducers(builder, addRecipeToFav, (state, action) => {
-      state.favorites = action.payload; 
+      state.favorites = action.payload;
     });
-    
+
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
     });
-    
+
     buildReducers(builder, fetchFavorites, (state, action) => {
       state.favorites = action.payload;
     });
-    
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(
@@ -82,10 +97,10 @@ function buildReducers(builder, operation, reducerFunc) {
     .addCase(operation.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+      state.items = [];
     });
 }
 
 export default slice.reducer;
 
 export const { setDeleteRecipeId, setEditRecipeId } = slice.actions;
-

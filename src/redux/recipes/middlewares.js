@@ -40,8 +40,7 @@ recipesListenerMiddleware.startListening({
 recipesListenerMiddleware.startListening({
   actionCreator: fetchRecipesWithFilters.rejected,
   effect: async () => {
-    console.log("REJECTED!");
-    toast.error("Failed to load the recipes with such filters");
+    toast.error("There are no recipes matching your search!");
   },
 });
 

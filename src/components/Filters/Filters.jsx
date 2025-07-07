@@ -4,7 +4,7 @@ import {
   changeCategoryFilter,
   changeIngredientFilter,
 } from "../../redux/filters/slice";
-import { fetchRecipesWithFilters } from "../../redux/recipes/operations";
+// import { fetchRecipesWithFilters } from "../../redux/recipes/operations";
 import {
   fetchCategories,
   fetchIngredients,
@@ -14,7 +14,7 @@ import {
   selectIngredients,
   selectCategory,
   selectIngredient,
-  selectFilter,
+  // selectFilter,
 } from "../../redux/filters/selectors";
 import { selectRecipesCount } from "../../redux/recipes/selectors.js";
 import IconButton from "../IconButton/IconButton";
@@ -39,18 +39,17 @@ export default function Filter() {
   const ingredients = useSelector(selectIngredients);
   const category = useSelector(selectCategory);
   const ingredient = useSelector(selectIngredient);
-  const title = useSelector(selectFilter);
+  // const title = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchIngredients());
   }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchRecipesWithFilters({ category, ingredient, title }));
-  }, [category, ingredient, title, dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchRecipesWithFilters({ category, ingredient, title }));
+  // }, [category, ingredient, title, dispatch]);
 
   const handleResetClick = () => {
-    //e.preventDefault();
     dispatch(changeCategoryFilter(""));
     dispatch(changeIngredientFilter(""));
   };
@@ -130,7 +129,6 @@ export default function Filter() {
               </svg>
             </IconButton>
           )}
-          {/* Modal for mobile and tablet devices */}
           {isMobileOrTablet && isModalOpen && (
             <div
               className={css.filtersModalOverlay}
