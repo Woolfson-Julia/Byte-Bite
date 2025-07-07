@@ -11,7 +11,7 @@ import css from "./MainPage.module.css";
 
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { fetchRecipes } from "../../redux/recipes/operations";
+// import { fetchRecipes } from "../../redux/recipes/operations";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -20,7 +20,11 @@ export default function MainPage() {
 
   useEffect(() => {
     dispatchRef.current(resetFilters());
-    dispatchRef.current(fetchRecipes());
+    // dispatchRef.current(fetchRecipes());
+
+    return () => {
+      dispatchRef.current(resetFilters());
+    };
   }, []);
 
   return (

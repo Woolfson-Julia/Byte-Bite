@@ -5,33 +5,48 @@ import {
   selectRecipesError,
   selectRecipes,
   selectRecipesLoading,
-  selectFavorites,          
+  selectFavorites,
 } from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { fetchRecipesWithFilters, fetchFavorites } from "../../redux/recipes/operations.js"; 
+import {
+  fetchRecipesWithFilters,
+  fetchFavorites,
+} from "../../redux/recipes/operations.js";
 import Loader from "../Loader/Loader.jsx";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
-import { selectFilter } from "../../redux/filters/selectors.js";
-import { selectIsLoggedIn } from "../../redux/auth/selectors"; 
+import {
+  selectFilter,
+  selectCategory,
+  selectIngredient,
+} from "../../redux/filters/selectors.js";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 function RecipesList() {
   const dispatch = useDispatch();
 
   const searchValue = useSelector(selectFilter);
+  const categoryValue = useSelector(selectCategory);
+  const ingredientValue = useSelector(selectIngredient);
   const recipes = useSelector(selectRecipes);
-  const favorites = useSelector(selectFavorites);  
+  const favorites = useSelector(selectFavorites);
   const isLoading = useSelector(selectRecipesLoading);
   const error = useSelector(selectRecipesError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(fetchRecipesWithFilters({ title: searchValue }));
+    dispatch(
+      fetchRecipesWithFilters({
+        title: searchValue,
+        category: categoryValue,
+        ingredient: ingredientValue,
+      })
+    );
 
     if (isLoggedIn) {
-      dispatch(fetchFavorites()); 
+      dispatch(fetchFavorites());
     }
-  }, [dispatch, searchValue, isLoggedIn]);
+  }, [dispatch, searchValue, categoryValue, ingredientValue, isLoggedIn]);
 
   return (
     <>
@@ -44,7 +59,7 @@ function RecipesList() {
               <li key={recipe._id}>
                 <RecipeCard
                   recipe={recipe}
-                  isFavorite={favorites.some(fav => fav._id === recipe._id)}
+                  isFavorite={favorites.some((fav) => fav._id === recipe._id)}
                 />
               </li>
             ))}
@@ -52,7 +67,7 @@ function RecipesList() {
         )}
 
         <LoadMoreBtn />
-      </div>      
+      </div>
     </>
   );
 }
