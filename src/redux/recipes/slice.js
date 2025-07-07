@@ -14,6 +14,7 @@ const slice = createSlice({
     items: [],
     // тут object
     favorites: [],
+    recipe: null,
     loading: false,
     error: null,
   },
@@ -45,17 +46,17 @@ const slice = createSlice({
 
     // Один рецепт по ID
     buildReducers(builder, fetchRecipeById, (state, action) => {
-      state.items = state.items.filter(
-        (recipe) => recipe.id !== action.payload.id
-      );
+      state.recipe = action.payload.recipes;
     });
 
     buildReducers(builder, addRecipeToFav, (state, action) => {
       state.favorites = action.payload;
+      state.recipe.isFavorite = true; 
     });
 
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
+      state.recipe.isFavorite = false; 
     });
 
     buildReducers(builder, fetchFavorites, (state, action) => {
@@ -80,6 +81,7 @@ const slice = createSlice({
 
     builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
+      state.recipe.isFavorite = false; 
     }).addCase;
   },
 });

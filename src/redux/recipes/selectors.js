@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 
-export const selectCurrentRecipe = (state) => state.recipes.currentRecipe;
+export const selectCurrentRecipe = (state) => state.recipes.recipe;
 export const selectRecipesLoading = (state) => state.recipes.loading;
 export const selectRecipesError = (state) => state.recipes.error;
 
