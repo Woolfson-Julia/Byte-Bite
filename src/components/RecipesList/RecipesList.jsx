@@ -1,37 +1,46 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import css from "./RecipesList.module.css";
 import {
   selectRecipesError,
   selectRecipes,
   selectRecipesLoading,
-  selectFavorites,          
+  selectFavorites,
 } from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { fetchRecipesWithFilters, fetchFavorites } from "../../redux/recipes/operations.js"; 
+import {
+  fetchRecipesWithFilters,
+  fetchFavorites,
+} from "../../redux/recipes/operations.js";
 import Loader from "../Loader/Loader.jsx";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
 import { selectFilter } from "../../redux/filters/selectors.js";
-import { selectIsLoggedIn } from "../../redux/auth/selectors"; 
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 function RecipesList() {
   const dispatch = useDispatch();
 
   const searchValue = useSelector(selectFilter);
   const recipes = useSelector(selectRecipes);
-  const favorites = useSelector(selectFavorites);  
+  const favorites = useSelector(selectFavorites);
   const isLoading = useSelector(selectRecipesLoading);
   const error = useSelector(selectRecipesError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  const [page, setPage] = useState(1);
+
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 1);
+    console.log("-age", page);
+  };
   useEffect(() => {
-    dispatch(fetchRecipesWithFilters({ title: searchValue }));
+    dispatch(fetchRecipesWithFilters({ title: searchValue, page }));
 
     if (isLoggedIn) {
-      dispatch(fetchFavorites()); 
+      dispatch(fetchFavorites());
     }
-  }, [dispatch, searchValue, isLoggedIn]);
+  }, [dispatch, searchValue, isLoggedIn, page]);
 
   return (
     <>
@@ -44,15 +53,15 @@ function RecipesList() {
               <li key={recipe._id}>
                 <RecipeCard
                   recipe={recipe}
-                  isFavorite={favorites.some(fav => fav._id === recipe._id)}
+                  isFavorite={favorites.some((fav) => fav._id === recipe._id)}
                 />
               </li>
             ))}
           </ul>
         )}
 
-        <LoadMoreBtn />
-      </div>      
+        <LoadMoreBtn onClick={handleLoadMore} />
+      </div>
     </>
   );
 }

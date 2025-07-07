@@ -1,19 +1,16 @@
 import Filter from "../../components/Filters/Filters";
 import RecipesList from "../../components/RecipesList/RecipesList";
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-import Pagination from "../../components/Pagination/Pagination";
+// import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+// import Pagination from "../../components/Pagination/Pagination";
 
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { selectFilter } from "../../redux/filters/selectors";
 import { useSelector } from "react-redux";
 import css from "./MainPage.module.css";
 
-
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { fetchRecipes } from "../../redux/recipes/operations";
-
-
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -34,8 +31,8 @@ export default function MainPage() {
           </h2>
           <Filter />
           <RecipesList />
-          <LoadMoreBtn />
-          <Pagination />
+          {/* <LoadMoreBtn /> */}
+          {/* <Pagination /> */}
         </div>
       </div>
     </>
