@@ -12,6 +12,7 @@ const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    // тут object
     favorites: [],
     loading: false,
     error: null,
@@ -22,7 +23,19 @@ const slice = createSlice({
       state.items = action.payload;
     });
     buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
-      state.items = action.payload;
+      const page = action.meta.arg?.page || 1;
+
+      if (page === 1) {
+        state.items = action.payload; // первая страница — замена
+      } else {
+        // остальные страницы — добавляем рецепты, остальные поля сохраняем
+        state.items = {
+          ...state.items,
+          recipes: [...state.items.recipes, ...action.payload.recipes],
+        };
+      }
+
+      // state.items = action.payload;
     });
 
     // Додавання рецепту

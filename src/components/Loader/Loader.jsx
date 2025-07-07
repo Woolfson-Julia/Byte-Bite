@@ -8,8 +8,10 @@ export default function Loader() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        width: "100%",  // position it in the middle
+        width: "100%",
+        flexDirection: "row", 
+        gap: 1, 
+        padding: 2, 
       }}
     >
       <CircularProgress />
