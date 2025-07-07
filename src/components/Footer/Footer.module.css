@@ -1,72 +1,75 @@
 .footer {
-  height: 94px;
   background-color: #3d2218;
-  padding: 24px 108px;
-  font-family: Montserrat, sans-serif;
+  padding: 24px 20px;
   font-size: 12px;
   line-height: normal;
-  color: #ffffff;
+  color: var(--color-white);
+  text-align: center;
 }
 
 .inner {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  gap: 32px;
 }
 
 .logo {
   font-size: 18px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-white);
+  order: 1;
 }
 
 .copy {
   opacity: 0.8;
   text-align: center;
-  flex: 1;
   font-size: 12px;
   font-weight: 400;
+  order: 2;
 }
 
 .nav {
   display: flex;
+  justify-content: center;
   gap: 24px;
+  order: 3;
 }
 
 .link {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-white);
   font-weight: 500;
   font-size: 14px;
 }
 
-/* Адаптив — для моб/таб */
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 768px) {
   .footer {
-    height: auto;
-    padding: 24px 20px;
-    text-align: center;
+    height: 94px;
+    padding: 24px 108px;
+    text-align: left;
   }
 
   .inner {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
   .logo {
-    order: 1;
+    order: 0;
   }
 
   .copy {
-    order: 2;
-    flex: unset;
+    flex: 1;
+    order: 0;
+    text-align: center;
   }
 
   .nav {
-    order: 3;
-    justify-content: center;
+    order: 0;
+    justify-content: flex-end;
   }
 }

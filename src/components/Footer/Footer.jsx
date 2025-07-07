@@ -21,11 +21,11 @@ export default function Footer() {
           </p>
 
           <nav className={css.nav}>
-            <NavLink to="/recipes" className={css.link}>
+            <NavLink to="/" className={css.link}>
               Recipes
             </NavLink>
 
-            {/* Рендеримо "Account" тільки, якщо користувач не залогінений і не на сторінці логіну/реєстрації */}
+            {/* Рендеримо "Account" тільки, якщо користувач НЕ залогінений і НЕ на сторінці логіну/реєстрації */}
             {!isLoggedIn && !isAuthPage && (
               <NavLink to="/auth/login" className={css.link}>
                 Account
