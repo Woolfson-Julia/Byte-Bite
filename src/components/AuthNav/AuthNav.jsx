@@ -16,9 +16,7 @@ export default function AuthNav({ onLinkClick }) {
         Log in
       </NavLink>
       <NavLink
-        className={(props) =>
-          clsx(css.registerBtn, css.link, props.isActive && css.active)
-        }
+        className={css.registerBtn}
         onClick={onLinkClick}
         to="/auth/register"
       >
