@@ -26,6 +26,18 @@ export default function Filter() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobileOrTablet = useIsMobileOrTablet();
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isModalOpen]);
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
@@ -86,8 +98,11 @@ export default function Filter() {
                   value={category}
                   onChange={handleCategoryChange}
                 >
-                  <option key="all-categories" value="" disabled>
+                  <option key="exp-categories" value="" disabled>
                     Category
+                  </option>
+                  <option key="all-categories" value="">
+                    All
                   </option>
                   {categories.map((category) => (
                     <option key={category._id} value={category.name}>
@@ -101,8 +116,11 @@ export default function Filter() {
                   value={ingredient}
                   onChange={handleIngredientChange}
                 >
-                  <option key="all-ingredients" value="" disabled>
+                  <option key="exp-ingredients" value="" disabled>
                     Ingredient
+                  </option>
+                  <option key="all-ingredients" value="">
+                    All
                   </option>
                   {ingredients.map((ingredient) => (
                     <option key={ingredient._id} value={ingredient._id}>
@@ -158,8 +176,11 @@ export default function Filter() {
                       value={category}
                       onChange={handleCategoryChange}
                     >
-                      <option key="modal-all-categories" value="" disabled>
+                      <option key="modal-exp-categories" value="" disabled>
                         e.g. Soup
+                      </option>
+                      <option key="modal-all-categories" value="">
+                        All
                       </option>
                       {categories.map((category) => (
                         <option key={category._id} value={category.name}>
@@ -175,8 +196,11 @@ export default function Filter() {
                       value={ingredient}
                       onChange={handleIngredientChange}
                     >
-                      <option key="all-ingredients" value="" disabled>
+                      <option key="modal-exp-ingredients" value="" disabled>
                         e.g. Broccoli
+                      </option>
+                      <option key="modal-all-ingredients" value="">
+                        All
                       </option>
                       {ingredients.map((ingredient) => (
                         <option key={ingredient._id} value={ingredient._id}>
