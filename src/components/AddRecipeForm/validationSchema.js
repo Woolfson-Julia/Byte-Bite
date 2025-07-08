@@ -29,6 +29,6 @@ export const validationSchema = Yup.object({
         measure: Yup.string().required("Please enter the amount"),
       })
     )
-    // .min(2, "Please add at least 2 ingredients")
-    // .required("Please select a ingredient"),
+    .min(2, "Please add at least 2 ingredients")
+    .required(),
 });
