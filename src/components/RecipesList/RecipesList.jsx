@@ -85,7 +85,7 @@ function RecipesList() {
         )}
         {isLoading && <Loader />}
 
-        {!isLoading && hasMore && <LoadMoreBtn onClick={handleLoadMore} />}
+        {!isLoading && hasMore && !error &&<LoadMoreBtn onClick={handleLoadMore} />}
         {/* <LoadMoreBtn onClick={handleLoadMore} /> */}
       </div>
     </>
