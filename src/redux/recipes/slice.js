@@ -7,7 +7,7 @@ import {
   addRecipeToFav,
   fetchFavorites,
   fetchOwnRecipes,
-  removeOwnRecipes
+  removeOwnRecipes,
 } from "./operations";
 
 const slice = createSlice({
@@ -15,8 +15,10 @@ const slice = createSlice({
   initialState: {
     items: [],
     // тут object
-    favorites: [],
-    own:[],
+    // favorites: [],
+    // own:[],
+    favorites: {},
+    own: {},
     recipe: null,
     loading: false,
     error: null,
@@ -58,14 +60,13 @@ const slice = createSlice({
         state.recipe.isFavorite = true;
       }
     });
-    
+
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
       if (state.recipe) {
         state.recipe.isFavorite = false;
       }
     });
-    
 
     buildReducers(builder, fetchFavorites, (state, action) => {
       state.favorites = action.payload;
@@ -76,8 +77,11 @@ const slice = createSlice({
     });
 
     buildReducers(builder, removeOwnRecipes, (state, action) => {
-  state.own = state.own.filter(recipe => recipe._id !== action.payload);
-});
+      // state.own = state.own.filter((recipe) => recipe._id !== action.payload);
+      state.own.recipes = state.own.recipes.filter(
+        (recipe) => recipe._id !== action.payload
+      );
+    });
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(
@@ -101,8 +105,10 @@ const slice = createSlice({
         state.recipe.isFavorite = false;
       }
       state.recipe = null;
-      state.favorites = [];
-      state.own = [];
+      // state.favorites = [];
+      // state.own = [];
+      state.favorites = {};
+      state.own = {};
     });
   },
 });

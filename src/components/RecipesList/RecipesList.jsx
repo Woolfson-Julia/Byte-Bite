@@ -63,7 +63,13 @@ function RecipesList() {
     );
 
     if (isLoggedIn) {
-      dispatch(fetchFavorites());
+      // dispatch(fetchFavorites());
+      dispatch(
+        fetchFavorites({
+          category: categoryValue,
+          ingredient: ingredientValue,
+        })
+      );
     }
   }, [dispatch, searchValue, categoryValue, ingredientValue, isLoggedIn, page]);
 
@@ -78,7 +84,7 @@ function RecipesList() {
                 <RecipeCard
                   recipe={recipe}
                   isFavorite={favorites.some((fav) => fav._id === recipe._id)}
-                  showRemoveButton={false} 
+                  showRemoveButton={false}
                 />
               </li>
             ))}
@@ -86,7 +92,9 @@ function RecipesList() {
         )}
         {isLoading && <Loader />}
 
-        {!isLoading && hasMore && !error &&<LoadMoreBtn onClick={handleLoadMore} />}
+        {!isLoading && hasMore && !error && (
+          <LoadMoreBtn onClick={handleLoadMore} />
+        )}
         {/* <LoadMoreBtn onClick={handleLoadMore} /> */}
       </div>
     </>
