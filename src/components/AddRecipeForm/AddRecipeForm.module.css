@@ -55,7 +55,7 @@ textarea {
   border-radius: 8px;
   padding: 12px;
   outline: none;
-  transition: border-color .25s cubic-bezier(.4,0,.2,1);
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 18px;
   /* color: #595d62; */
   color: var(--color-black);
@@ -105,8 +105,7 @@ textarea {
   pointer-events: none;
   stroke-width: 1px;
   stroke: #000;
-  fill:none;
-
+  fill: none;
 }
 .input:focus,
 .textarea:focus {
@@ -140,6 +139,7 @@ textarea {
 .upload {
   width: 100%;
   height: 383px;
+  padding: 0;
   background: #9f9f9f;
   border-radius: 16px;
   display: flex;
@@ -222,10 +222,6 @@ textarea {
   .removeButton {
     display: none;
   }
-  /* .lastButtonValid {
-
-
-  } */
 }
 
 @media screen and (min-width: 1440px) {
