@@ -88,7 +88,7 @@ export const removeRecipeFromFav = createAsyncThunk(
 // );
 export const fetchFavorites = createAsyncThunk(
   "recipes/fetchFavorites",
-  async (filters, thunkAPI) => {
+  async (filters = {}, thunkAPI) => {
     try {
       const response = await axios.get("/recipes/profile/favorites", {
         params: filters,
