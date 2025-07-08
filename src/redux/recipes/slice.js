@@ -14,8 +14,10 @@ const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    // тут object
     favorites: [],
     own:[],
+    recipe: null,
     loading: false,
     error: null,
   },
@@ -25,7 +27,19 @@ const slice = createSlice({
       state.items = action.payload;
     });
     buildReducers(builder, fetchRecipesWithFilters, (state, action) => {
-      state.items = action.payload;
+      const page = action.meta.arg?.page || 1;
+
+      if (page === 1) {
+        state.items = action.payload; // первая страница — замена
+      } else {
+        // остальные страницы — добавляем рецепты, остальные поля сохраняем
+        state.items = {
+          ...state.items,
+          recipes: [...state.items.recipes, ...action.payload.recipes],
+        };
+      }
+
+      // state.items = action.payload;
     });
 
     // Додавання рецепту
@@ -35,18 +49,23 @@ const slice = createSlice({
 
     // Один рецепт по ID
     buildReducers(builder, fetchRecipeById, (state, action) => {
-      state.items = state.items.filter(
-        (recipe) => recipe.id !== action.payload.id
-      );
+      state.recipe = action.payload.recipes;
     });
 
     buildReducers(builder, addRecipeToFav, (state, action) => {
       state.favorites = action.payload;
+      if (state.recipe) {
+        state.recipe.isFavorite = true;
+      }
     });
-
+    
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
+      if (state.recipe) {
+        state.recipe.isFavorite = false;
+      }
     });
+    
 
     buildReducers(builder, fetchFavorites, (state, action) => {
       state.favorites = action.payload;
@@ -78,6 +97,7 @@ const slice = createSlice({
 
     builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
+      state.recipe.isFavorite = false; 
     }).addCase;
   },
 });

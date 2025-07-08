@@ -1,7 +1,10 @@
 import { Outlet } from "react-router-dom";
+
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import BaseModal from "../BaseModal/BaseModal.jsx";
 import css from "./Layout.module.css";
+
 
 export default function Layout() {
   return (
@@ -11,6 +14,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <BaseModal />
     </div>
   );
 }
