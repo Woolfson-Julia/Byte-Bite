@@ -36,8 +36,9 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
       return;
     }
     try {
-      await dispatch(addRecipeToFav(id)).unwrap();
+      await dispatch(addRecipeToFav(id)).unwrap();    
       dispatch(openModal({ modalType: "saved" }));
+      dispatch(fetchFavorites());
     } catch (error) {
       console.error("Ошибка при добавлении в избранное", error);
     }
