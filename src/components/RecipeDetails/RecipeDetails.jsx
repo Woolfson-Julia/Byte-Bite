@@ -11,15 +11,19 @@ import css from "./RecipeDetails.module.css";
 
 import Button from "../Button/Button";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { selectCategories } from "../../redux/filters/selectors";
+
+import { openModal } from "../../redux/modal/slice";
+
 
 export default function RecipeDetails({ recipe }) {
   const dispatch = useDispatch();
   const error = useSelector(selectRecipesError);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  
 
   const categories = useSelector(selectCategories);
   const category = categories.find((cat) => cat._id === recipe.category);
@@ -29,17 +33,22 @@ export default function RecipeDetails({ recipe }) {
 
   const handleButtonClick = async () => {
     if (!isLoggedIn) {
-      navigate("/auth/login", { replace: true });
+      dispatch(openModal({ modalType: "not-auth" }));
       return;
     }
 
-    if (recipe.isFavorite) {
-      dispatch(removeRecipeFromFav(recipe._id));
-    } else {
-      dispatch(addRecipeToFav(recipe._id));
+    try {
+      if (recipe.isFavorite) {
+        await dispatch(removeRecipeFromFav(recipe._id)).unwrap();
+        // здесь можно, например, открыть другую модалку или обновить список
+      } else {
+        await dispatch(addRecipeToFav(recipe._id)).unwrap();
+        dispatch(openModal({ modalType: "saved" }));
+      }
+    } catch (error) {
+      console.error("Ошибка при обновлении избранного", error);
     }
-  };
-
+  }
   useEffect(() => {
     if (error) {
       toast.error("Something went wrong... Please try again");
