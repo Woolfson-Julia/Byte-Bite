@@ -18,7 +18,12 @@ export const register = createAsyncThunk(
       setAuthHeader(`Bearer ${res.data.data.accessToken}`);
       return res.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response && error.response.status === 409) {
+        return thunkAPI.rejectWithValue("This email is already registered");
+      }
+      return thunkAPI.rejectWithValue(
+        "Registration failed. Please try again later."
+      );
     }
   }
 );
@@ -41,9 +46,14 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async () => {
-  await axios.post("/auth/logout");
-  setAuthHeader("");
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/auth/logout");
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  } finally {
+    setAuthHeader("");
+  }
 });
 
 export const refreshUser = createAsyncThunk(
