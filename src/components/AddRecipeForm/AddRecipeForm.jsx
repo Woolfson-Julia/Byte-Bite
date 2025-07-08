@@ -220,76 +220,151 @@ export default function AddRecipeForm() {
                   </div>
                   <FieldArray name="ingredientList" className="ingredientList">
                     {({ push, remove }) => (
-                      <div className={css.ingredients}>
-                        <h3 className={css.subtitle}>Ingredients</h3>
-                        {values.ingredientList.map((item, index) => (
-                          <div className={css.group} key={index}>
-                            <div className={css.formField}>
-                              <label className={css.label}>Name</label>
-                              <div className={css.selectWrapper}>
+                        <div className={css.ingredients}>
+                          <h3 className={css.subtitle}>Ingredients</h3>
+                          {values.ingredientList.map((item, index) => (
+                            <div className={css.group} key={index}>
+                              <div className={css.formField}>
+                                <label className={css.label}>Name</label>
+                                <div className={css.selectWrapper}>
+                                  <Field
+                                    as="select"
+                                    className={css.select}
+                                    name={`ingredientList[${index}].id`}
+                                    value={item.id || ""}
+                                    onChange={(e) =>
+                                      setFieldValue(
+                                        `ingredientList[${index}].id`,
+                                        e.target.value
+                                      )
+                                    }
+                                    required
+                                  >
+                                    <option value="">
+                                      -- Select an ingredient --
+                                    </option>
+                                    {ingredientOptions}
+                                  </Field>
+                                  <svg className={css.selectIcon}>
+                                    <use href="/sprite.svg#icon-down-24px" />
+                                  </svg>
+                                </div>
+                              </div>
+                              <div className={css.formField}>
+                                <label className={css.label}>Amount</label>
                                 <Field
-                                  as="select"
-                                  className={css.select}
-                                  name={`ingredientList[${index}].id`}
-                                  value={item.id || ""}
+                                  className={css.input}
+                                  type="text"
+                                  placeholder="100g"
+                                  name={`ingredientList[${index}].measure`}
+                                  value={item.measure || ""}
                                   onChange={(e) =>
                                     setFieldValue(
-                                      `ingredientList[${index}].id`,
+                                      `ingredientList[${index}].measure`,
                                       e.target.value
                                     )
                                   }
                                   required
-                                >
-                                  <option value="">
-                                    -- Select an ingredient --
-                                  </option>
-                                  {ingredientOptions}
-                                </Field>
-                                <svg className={css.selectIcon}>
-                                  <use href="/sprite.svg#icon-down-24px" />
-                                </svg>
+                                />
                               </div>
                             </div>
-                            <div className={css.formField}>
-                              <label className={css.label}>Amount</label>
-                              <Field
-                                className={css.input}
-                                type="text"
-                                placeholder="100g"
-                                name={`ingredientList[${index}].measure`}
-                                value={item.measure || ""}
-                                onChange={(e) =>
-                                  setFieldValue(
-                                    `ingredientList[${index}].measure`,
-                                    e.target.value
-                                  )
+                          ))}
+                          {values.ingredientList.length >= 0 &&
+                            values.ingredientList.length < 2 && (
+                              <Button
+                                type="button"
+                                variant="lightButton"
+                                onClick={() =>
+                                  remove(values.ingredientList.length - 1)
                                 }
-                                required
-                              />
+                                className={`${css.button} ${css.removeButton} ${css.smallbutton}`}
+                              >
+                                Remove last ingredient
+                              </Button>
+                            )}
+                          <Button
+                            type="button"
+                            variant="darkButton"
+                            onClick={() => push({ id: "", measure: "" })}
+                            className={`${css.button} ${css.smallbutton}`}
+                          >
+                            Add new ingredient
+                          </Button>
+                          {values.ingredientList.length > 1 && (
+                            <div className={css.addedIngredients}>
+                              <table className={css.ingredientTable}>
+                                <thead>
+                                  <tr className={css.tr}>
+                                    <th
+                                      className={`${css.tableHeader} ${css.name}`}
+                                    >
+                                      Name:
+                                    </th>
+                                    <th
+                                      className={`${css.tableHeader} ${css.amount}`}
+                                    >
+                                      Amount:
+                                    </th>
+                                    <th
+                                      className={`${css.tableHeader} ${css.action}`}
+                                    ></th>
+                                  </tr>
+                                </thead>
+                                <tbody className={css.tbody}>
+                                  {values.ingredientList
+                                    .filter((item) => item.id && item.measure)
+                                    .map((item, idx) => {
+                                      const ingredient = ingredients.find(
+                                        (ing) => ing._id === item.id
+                                      );
+                                      return (
+                                        <tr key={idx} className={css.tableRow}>
+                                          <td className={css.tableCell}>
+                                            {ingredient
+                                              ? ingredient.name
+                                              : "Unknown"}
+                                          </td>
+                                          <td className={css.tableCell}>
+                                            {item.measure}
+                                          </td>
+                                          <td className={css.tableCell}>
+                                            <button
+                                              type="button"
+                                              style={{
+                                                backgroundColor: "transparent",
+                                                border: "none",
+                                              }}
+                                              className={css.button}
+                                              onClick={() => {
+                                                const newList =
+                                                  values.ingredientList.filter(
+                                                    (_, i) => i !== idx
+                                                  );
+                                                setFieldValue(
+                                                  "ingredientList",
+                                                  newList
+                                                );
+                                              }}
+                                            >
+                                              <svg
+                                                className={css.svgPhoto}
+                                                width="24"
+                                                height="24"
+                                              >
+                                                <use href="/sprite.svg#icon-delete-24px" />
+                                              </svg>
+                                            </button>
+                                          </td>
+                                        </tr>
+                                      );
+                                    })}
+                                </tbody>
+                              </table>
                             </div>
-                          </div>
-                        ))}
-                        <Button
-                          type="button"
-                          variant="lightButton"
-                          onClick={() =>
-                            values.ingredientList.length > 1 &&
-                            remove(values.ingredientList.length - 1)
-                          }
-                          className={`${css.button} ${css.removeButton} ${css.smallbutton}`}
-                        >
-                          Remove last ingredient
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="darkButton"
-                          onClick={() => push({ id: "", measure: "" })}
-                          className={`${css.button} ${css.smallbutton}`}
-                        >
-                          Add new ingredient
-                        </Button>
-                      </div>
-                    )}
+                          )}
+                        </div>
+                      )
+                    }
                   </FieldArray>
                   <div className={css.instructions}>
                     <h3 className={css.subtitle}>Instructions</h3>
