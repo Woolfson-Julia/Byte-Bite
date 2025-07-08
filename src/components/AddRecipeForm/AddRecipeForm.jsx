@@ -78,7 +78,11 @@ export default function AddRecipeForm() {
       formData.append("description", values.description);
       formData.append("time", Number(values.time));
       formData.append("instructions", values.instructions);
-      formData.append("category", values.category);
+      // formData.append("category", values.category);
+      const selectedCategory = categories.find(
+        (cat) => cat._id === values.category
+      );
+      formData.append("category", selectedCategory?.name || "");
       if (values.cals) {
         formData.append("cals", Number(values.cals));
       }
