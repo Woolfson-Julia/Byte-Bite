@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   addRecipeToFav,
+  fetchFavorites,
   removeRecipeFromFav,
 } from "../../redux/recipes/operations";
 
