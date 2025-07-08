@@ -6,38 +6,43 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   addRecipeToFav,
+  fetchFavorites,
   removeRecipeFromFav,
 } from "../../redux/recipes/operations";
 
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-
-
 
 export default function RecipeCard({ recipe, isFavorite }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  
+
   const handleBtnMore = (id) => {
     navigate(`/recipes/${id}`);
   };
 
-  const handleAddToFavorites = async (id) => {
+  const handleAddToFavorites = async (id, e) => {
+    e.currentTarget.blur(); // 👈 Убираем фокус с кнопки
+
     if (!isLoggedIn) {
       navigate("/auth/login");
       return;
     }
     try {
       await dispatch(addRecipeToFav(id)).unwrap();
+      dispatch(fetchFavorites());
     } catch (error) {
       console.error("Ошибка при добавлении в избранное", error);
     }
   };
 
-  const handleRemoveFromFavorites = async (id) => {
+  const handleRemoveFromFavorites = async (id, e) => {
+    e.currentTarget.blur(); // 👈 Убираем фокус с кнопки
+
     try {
       await dispatch(removeRecipeFromFav(id)).unwrap();
+      dispatch(fetchFavorites());
     } catch (error) {
       console.error("Ошибка при удалении из избранного", error);
     }
@@ -68,12 +73,13 @@ export default function RecipeCard({ recipe, isFavorite }) {
           Learn More
         </Button>
 
-        {isFavorite ? (<IconButton
+        {isFavorite ? (
+          <IconButton
             className={css.buttonSvg}
             variantBtn="darkButtonSvg"
             variantSvg="lightSvg"
             type="button"
-            onClick={() => handleRemoveFromFavorites(recipe._id)}
+            onClick={(e) => handleRemoveFromFavorites(recipe._id, e)}
           >
             <svg width="24" height="24" stroke="currentColor">
               <use href="/sprite.svg#icon-add-to-favorite-24px" />
@@ -85,17 +91,14 @@ export default function RecipeCard({ recipe, isFavorite }) {
             variantBtn="lightButtonSvg"
             variantSvg="darkSvg"
             type="button"
-            onClick={() => handleAddToFavorites(recipe._id)}
+            onClick={(e) => handleAddToFavorites(recipe._id, e)}
           >
             <svg width="24" height="24" stroke="currentColor">
               <use href="/sprite.svg#icon-add-to-favorite-24px" />
             </svg>
-            </IconButton>
-            
+          </IconButton>
         )}
       </div>
     </div>
   );
 }
-
-
