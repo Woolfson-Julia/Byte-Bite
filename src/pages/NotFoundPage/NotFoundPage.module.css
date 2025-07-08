@@ -155,54 +155,6 @@
   animation-delay: 5s;
 }
 
-.ingredient:nth-child(9) {
-  top: 8%;
-  left: 50%;
-  animation-delay: 2.5s;
-}
-
-.ingredient:nth-child(10) {
-  bottom: 8%;
-  left: 45%;
-  animation-delay: 4s;
-}
-
-.ingredient:nth-child(11) {
-  top: 35%;
-  right: 45%;
-  animation-delay: 1.2s;
-}
-
-.ingredient:nth-child(12) {
-  bottom: 35%;
-  left: 35%;
-  animation-delay: 3.8s;
-}
-
-.ingredient:nth-child(13) {
-  top: 75%;
-  left: 8%;
-  animation-delay: 0.5s;
-}
-
-.ingredient:nth-child(14) {
-  top: 55%;
-  right: 8%;
-  animation-delay: 4.2s;
-}
-
-.ingredient:nth-child(15) {
-  bottom: 55%;
-  left: 55%;
-  animation-delay: 2.8s;
-}
-
-.ingredient:nth-child(16) {
-  top: 85%;
-  right: 35%;
-  animation-delay: 5.5s;
-}
-
 @keyframes bounce {
   0%,
   20%,
