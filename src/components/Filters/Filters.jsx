@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategoryFilter,
@@ -16,7 +17,10 @@ import {
   selectIngredient,
   // selectFilter,
 } from "../../redux/filters/selectors";
-import { selectRecipesCount } from "../../redux/recipes/selectors.js";
+import {
+  selectRecipesCount,
+  selectRecipesCountByPage,
+} from "../../redux/recipes/selectors.js";
 import IconButton from "../IconButton/IconButton";
 import { useIsMobileOrTablet } from "./useIsMobileOrTablet.js";
 import css from "./Filters.module.css";
@@ -46,7 +50,17 @@ export default function Filter() {
   const handleFiltersBtnClick = () => {
     setIsModalOpen(true);
   };
-  const recipesCount = useSelector(selectRecipesCount);
+
+  const location = useLocation();
+
+  let page = "main";
+  if (location.pathname.includes("favorites")) page = "favorites";
+  if (location.pathname.includes("own")) page = "own";
+  console.log("page: ", page);
+  // const recipesCount = useSelector(selectRecipesCount);
+  const recipesCount = useSelector((state) =>
+    selectRecipesCountByPage(state, page)
+  );
   const categories = useSelector(selectCategories);
   const ingredients = useSelector(selectIngredients);
   const category = useSelector(selectCategory);

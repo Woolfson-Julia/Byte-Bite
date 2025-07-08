@@ -4,19 +4,36 @@ import css from "./SavedRecipes.module.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import Loader from "../Loader/Loader";
 import { fetchFavorites } from "../../redux/recipes/operations";
-import { selectFavorites, selectRecipesLoading, selectRecipesError } from "../../redux/recipes/selectors";
+import {
+  selectFavorites,
+  selectRecipesLoading,
+  selectRecipesError,
+} from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
+import {
+  selectCategory,
+  selectIngredient,
+} from "../../redux/filters/selectors.js";
 
 export default function SavedRecipes() {
   const dispatch = useDispatch();
-    const favorites = useSelector(selectFavorites);
-    
+  const favorites = useSelector(selectFavorites);
+  const categoryValue = useSelector(selectCategory);
+  const ingredientValue = useSelector(selectIngredient);
   const isLoading = useSelector(selectRecipesLoading);
   const error = useSelector(selectRecipesError);
 
+  // useEffect(() => {
+  //   dispatch(fetchFavorites());
+  // }, [dispatch]);
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+    dispatch(
+      fetchFavorites({
+        category: categoryValue,
+        ingredient: ingredientValue,
+      })
+    );
+  }, [dispatch, categoryValue, ingredientValue]);
 
   return (
     <>
@@ -26,9 +43,12 @@ export default function SavedRecipes() {
         <ul className={css.list}>
           {favorites.map((recipe) => (
             <li key={recipe._id}>
-              <RecipeCard recipe={recipe} isFavorite={true}
+              <RecipeCard
+                recipe={recipe}
+                isFavorite={true}
                 showFavoriteButton={true}
-                showRemoveButton={false} />
+                showRemoveButton={false}
+              />
             </li>
           ))}
         </ul>

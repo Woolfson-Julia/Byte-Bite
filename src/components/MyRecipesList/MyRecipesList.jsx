@@ -10,16 +10,31 @@ import {
   selectRecipesError,
 } from "../../redux/recipes/selectors";
 import { genericErrorMessage } from "../../redux/recipes/operations";
+import {
+  selectCategory,
+  selectIngredient,
+} from "../../redux/filters/selectors.js";
 
 export default function MyRecipes() {
   const dispatch = useDispatch();
   const ownRecipes = useSelector(selectOwnRecipes);
   const isLoading = useSelector(selectRecipesLoading);
   const error = useSelector(selectRecipesError);
+  const categoryValue = useSelector(selectCategory);
+  const ingredientValue = useSelector(selectIngredient);
+
+  // useEffect(() => {
+  //   dispatch(fetchOwnRecipes());
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchOwnRecipes());
-  }, [dispatch]);
+    dispatch(
+      fetchOwnRecipes({
+        category: categoryValue,
+        ingredient: ingredientValue,
+      })
+    );
+  }, [dispatch, categoryValue, ingredientValue]);
 
   return (
     <>
@@ -34,7 +49,6 @@ export default function MyRecipes() {
                 showFavoriteButton={false}
                 showRemoveButton={true}
               />
-
             </li>
           ))}
         </ul>
