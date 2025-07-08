@@ -30,7 +30,7 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 export default function BaseModal() {
   const isOpen = useSelector(selectIsModalOpen);

@@ -97,8 +97,13 @@ const slice = createSlice({
 
     builder.addCase(logOut.fulfilled, (state) => {
       state.items = [];
-      state.recipe.isFavorite = false; 
-    }).addCase;
+      if (state.recipe) {
+        state.recipe.isFavorite = false;
+      }
+      state.recipe = null;
+      state.favorites = [];
+      state.own = [];
+    });
   },
 });
 

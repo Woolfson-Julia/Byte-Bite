@@ -57,14 +57,17 @@ export default function App() {
             }
           />
           <Route
-             path="profile"
-             element={<PrivateRoute component={<ProfilePage />}
-            redirectTo="/auth/login"
-             />}
->          <Route path="own" element={<MyRecipes />} />
-           <Route path="favorites" element={<SavedRecipes />} />
+            path="profile"
+            element={
+              <PrivateRoute
+                component={<ProfilePage />} // ProfilePage должен содержать <Outlet />
+                redirectTo="/auth/login"
+              />
+            }
+          >
+            <Route path="own" element={<MyRecipes />} />
+            <Route path="favorites" element={<SavedRecipes />} />
           </Route>
-
           {/* Обмежені роути - тільки для незалогінених */}
           <Route
             path="auth/:authType"

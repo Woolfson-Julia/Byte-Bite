@@ -136,6 +136,7 @@
 @media screen and (min-width: 1440px) { 
     .wrapper {
         flex-direction: row-reverse;
+        justify-content: space-between;
     }
 
     .info_container {
