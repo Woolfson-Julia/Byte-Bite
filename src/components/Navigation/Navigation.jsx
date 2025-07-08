@@ -19,7 +19,7 @@ export default function Navigation({ onLinkClick }) {
         Recipes
       </NavLink>
       {isLoggedIn && (
-        <NavLink className={buildLinkClass} onClick={onLinkClick} to="/profile">
+        <NavLink className={buildLinkClass} onClick={onLinkClick} to="/profile/favorites">
           My Profile
         </NavLink>
       )}

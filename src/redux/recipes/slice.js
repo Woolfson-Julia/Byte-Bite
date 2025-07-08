@@ -6,6 +6,8 @@ import {
   removeRecipeFromFav,
   addRecipeToFav,
   fetchFavorites,
+  fetchOwnRecipes,
+  removeOwnRecipes
 } from "./operations";
 
 const slice = createSlice({
@@ -14,6 +16,7 @@ const slice = createSlice({
     items: [],
     // тут object
     favorites: [],
+    own:[],
     recipe: null,
     loading: false,
     error: null,
@@ -51,17 +54,30 @@ const slice = createSlice({
 
     buildReducers(builder, addRecipeToFav, (state, action) => {
       state.favorites = action.payload;
-      state.recipe.isFavorite = true; 
+      if (state.recipe) {
+        state.recipe.isFavorite = true;
+      }
     });
-
+    
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
-      state.recipe.isFavorite = false; 
+      if (state.recipe) {
+        state.recipe.isFavorite = false;
+      }
     });
+    
 
     buildReducers(builder, fetchFavorites, (state, action) => {
       state.favorites = action.payload;
     });
+
+    buildReducers(builder, fetchOwnRecipes, (state, action) => {
+      state.own = action.payload;
+    });
+
+    buildReducers(builder, removeOwnRecipes, (state, action) => {
+  state.own = state.own.filter(recipe => recipe._id !== action.payload);
+});
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(

@@ -84,5 +84,32 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
+export const fetchOwnRecipes = createAsyncThunk(
+  "recipes/fetchOwnRecipes",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/recipes/profile/own");
+      return response.data.data.recipes; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
+export const removeOwnRecipes = createAsyncThunk(
+  "recipes/removeOwnRecipes",
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`/recipes/profile/own/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
 
 

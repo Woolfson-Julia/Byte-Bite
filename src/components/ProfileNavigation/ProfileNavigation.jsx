@@ -1,35 +1,24 @@
+import { NavLink } from "react-router-dom";
+import clsx from "clsx";
+
 import css from "./ProfileNavigation.module.css";
 
+const buildLinkClass = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
+
 export default function ProfileNavigation() {
-  return <>
-  </>;
-}
-
-// import { useSelector } from "react-redux";
-// import { NavLink } from "react-router-dom";
-// import clsx from "clsx";
-
-// import { selectIsLoggedIn } from "../../redux/auth/selectors";
-// import css from "./Navigation.module.css";
-
-// const buildLinkClass = ({ isActive }) => {
-//   return clsx(css.link, isActive && css.active);
-// };
-
-// export default function Navigation({ onLinkClick }) {
-//   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   
-//   return (
-//     <nav className={css.nav}>
-//       <NavLink className={buildLinkClass} onClick={onLinkClick} to="/">
-//         MyResipes
-//       </NavLink>
-//       {isLoggedIn && (
-//         <NavLink className={buildLinkClass} onClick={onLinkClick} to="/own">
-//           Saved
-//         </NavLink>
-//       )}
-//     </nav>
-//   );
-// }
+  return (
+    <nav className={css.nav}>
+      <NavLink className={buildLinkClass}  to="/profile/own">
+        My Recipes
+      </NavLink>
+      
+        <NavLink className={buildLinkClass}  to="/profile/favorites">
+          Saved Recipes
+        </NavLink>
+    </nav>
+  );
+}

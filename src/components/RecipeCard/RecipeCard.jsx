@@ -8,11 +8,17 @@ import {
   addRecipeToFav,
   fetchFavorites,
   removeRecipeFromFav,
+  removeOwnRecipes
 } from "../../redux/recipes/operations";
 
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { openModal } from "../../redux/modal/slice";
 
-export default function RecipeCard({ recipe, isFavorite }) {
+
+
+
+
+export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = true, showRemoveButton=true}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,12 +32,12 @@ export default function RecipeCard({ recipe, isFavorite }) {
     e.currentTarget.blur(); // 👈 Убираем фокус с кнопки
 
     if (!isLoggedIn) {
-      navigate("/auth/login");
+      dispatch(openModal({ modalType: "not-auth" }));
       return;
     }
     try {
       await dispatch(addRecipeToFav(id)).unwrap();
-      dispatch(fetchFavorites());
+      dispatch(openModal({ modalType: "saved" }));
     } catch (error) {
       console.error("Ошибка при добавлении в избранное", error);
     }
@@ -45,6 +51,14 @@ export default function RecipeCard({ recipe, isFavorite }) {
       dispatch(fetchFavorites());
     } catch (error) {
       console.error("Ошибка при удалении из избранного", error);
+    }
+  };
+
+  const deleteOwnRecipes = async (id) => {
+    try {
+      await dispatch(removeOwnRecipes(id)).unwrap();
+    } catch (error) {
+      console.error("Ошибка при удалении", error);
     }
   };
 
@@ -63,42 +77,59 @@ export default function RecipeCard({ recipe, isFavorite }) {
       <p className={css.desc}>{recipe.description}</p>
       <p className={css.cals}>~{recipe.cals} cals</p>
 
-      <div className={css.buttonBox}>
-        <Button
-          className={css.button}
-          variant="lightButton"
-          type="button"
-          onClick={() => handleBtnMore(recipe._id)}
-        >
-          Learn More
-        </Button>
+      <div className={css.buttonBox} style={{ display: "flex" }}>
+  <Button
+    className={css.button}
+    variant="lightButton"
+    type="button"
+    onClick={(e) => handleBtnMore(recipe._id, e)}
+  >
+    Learn More
+  </Button>
 
-        {isFavorite ? (
-          <IconButton
-            className={css.buttonSvg}
-            variantBtn="darkButtonSvg"
-            variantSvg="lightSvg"
-            type="button"
-            onClick={(e) => handleRemoveFromFavorites(recipe._id, e)}
-          >
-            <svg width="24" height="24" stroke="currentColor">
-              <use href="/sprite.svg#icon-add-to-favorite-24px" />
-            </svg>
-          </IconButton>
-        ) : (
-          <IconButton
-            className={css.buttonSvg}
-            variantBtn="lightButtonSvg"
-            variantSvg="darkSvg"
-            type="button"
-            onClick={(e) => handleAddToFavorites(recipe._id, e)}
-          >
-            <svg width="24" height="24" stroke="currentColor">
-              <use href="/sprite.svg#icon-add-to-favorite-24px" />
-            </svg>
-          </IconButton>
-        )}
-      </div>
+  {showFavoriteButton && (
+    isFavorite ? (
+      <IconButton
+        className={css.buttonSvg}
+        variantBtn="darkButtonSvg"
+        variantSvg="lightSvg"
+        type="button"
+        onClick={(e) => handleRemoveFromFavorites(recipe._id, e)}
+      >
+        <svg width="24" height="24" stroke="currentColor">
+          <use href="/sprite.svg#icon-add-to-favorite-24px" />
+        </svg>
+      </IconButton>
+    ) : (
+      <IconButton
+        className={css.buttonSvg}
+        variantBtn="lightButtonSvg"
+        variantSvg="darkSvg"
+        type="button"
+        onClick={(e) => handleAddToFavorites(recipe._id, e)}
+      >
+        <svg width="24" height="24" stroke="currentColor">
+          <use href="/sprite.svg#icon-add-to-favorite-24px" />
+        </svg>
+      </IconButton>
+    )
+  )}
+
+  {showRemoveButton && (
+    <IconButton
+      className={css.removeBtn}
+      variantBtn="removeBtn"
+      variantSvg="removeBtn"
+      type="button"
+      onClick={(e) => deleteOwnRecipes(recipe._id, e)}
+    >
+      <svg width="24" height="24" stroke="white">
+        <use href="/sprite.svg#icon-delete-24px" />
+      </svg>
+    </IconButton>
+  )}
+</div>
+
     </div>
   );
 }

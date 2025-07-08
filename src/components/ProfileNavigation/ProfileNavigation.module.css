@@ -1,0 +1,22 @@
+.nav {
+    display: flex;
+    gap: 38px;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.link {
+    display: inline-block;
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    text-decoration: none;
+}
+
+.active {
+    border-bottom-color: #000;
+}
