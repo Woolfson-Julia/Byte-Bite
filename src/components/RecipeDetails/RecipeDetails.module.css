@@ -10,7 +10,10 @@
     line-height: normal;
     white-space: normal;   
 }
-
+.wrapperImage {
+    border-radius: 8px;
+    background-color: rgba(43, 45, 48, 1);
+}
 .image {
     width: 100%;
     height: 276px;
@@ -155,5 +158,13 @@
 
     .subtitle {
         font-size: 32px;
+    }
+    .image {   
+        object-fit: contain;
+    }
+    
+    .wrapperImage {
+        border-radius: 8px;
+        background-color: rgba(43, 45, 48, 1);
     }
 }

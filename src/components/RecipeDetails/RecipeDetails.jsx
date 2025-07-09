@@ -58,12 +58,13 @@ export default function RecipeDetails({ recipe }) {
     <section className="section">
       <div className={clsx("container", css.container)}>
         <h1 className={css.title}>{recipe.title}</h1>
-        <img
-          className={css.image}
-          src={recipe.thumb}
-          alt={recipe.description}
-        />
-
+        <div className={css.wrapperImage}>
+          <img
+            className={css.image}
+            src={recipe.thumb}
+            alt={recipe.description}
+          />
+        </div>
         <div className={css.wrapper}>
           <div className={css.info_container}>
             <div className={css.info_wrapper}>
