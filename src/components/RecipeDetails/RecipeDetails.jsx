@@ -12,10 +12,9 @@ import css from "./RecipeDetails.module.css";
 import Button from "../Button/Button";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 // import { useNavigate } from "react-router-dom";
-import { selectCategories } from "../../redux/filters/selectors";
+// import { selectCategories } from "../../redux/filters/selectors";
 
 import { openModal } from "../../redux/modal/slice";
-
 
 export default function RecipeDetails({ recipe }) {
   const dispatch = useDispatch();
@@ -23,11 +22,11 @@ export default function RecipeDetails({ recipe }) {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   // const navigate = useNavigate();
-  
 
-  const categories = useSelector(selectCategories);
-  const category = categories.find((cat) => cat._id === recipe.category);
-  const categoryName = category ? category.name : "Unknown";
+  // const categories = useSelector(selectCategories);
+  // const category = categories.find((cat) => cat._id === recipe.category);
+  // const categoryName = category ? category.name : "Unknown";
+  const categoryName = recipe.category ? recipe.category : "Unknown";
 
   const instruction = recipe.instructions.split(/\n/g);
 
@@ -48,7 +47,7 @@ export default function RecipeDetails({ recipe }) {
     } catch (error) {
       console.error("Ошибка при обновлении избранного", error);
     }
-  }
+  };
   useEffect(() => {
     if (error) {
       toast.error("Something went wrong... Please try again");

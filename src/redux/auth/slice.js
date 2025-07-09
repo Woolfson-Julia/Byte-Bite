@@ -27,10 +27,12 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.loading = false;
       })
-      .addCase(register.rejected, (state) => {
+      .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
-        toast.error("Invalid email or password. Try again");
+        toast.error(
+          action.payload || "Something went wrong. Please try again."
+        );
       })
       .addCase(logIn.pending, (state) => {
         state.loading = true;
@@ -62,7 +64,6 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.accessToken = null;
         state.isLoggedIn = false;
-        toast.error("Session expired. Please log in again.");
       })
       .addCase(refreshUser.pending, (state) => {
         state.loading = true;

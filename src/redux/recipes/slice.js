@@ -81,6 +81,10 @@ const slice = createSlice({
       state.own.recipes = state.own.recipes.filter(
         (recipe) => recipe._id !== action.payload
       );
+      // to update totalItems
+      if (typeof state.own.totalItems === "number") {
+        state.own.totalItems = state.own.recipes.length;
+      }
     });
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {

@@ -168,7 +168,7 @@ textarea {
 .phoneTabletRemove {
   display: none;
 }
-.ingredientList {
+.ingredients {
   position: relative;
 }
 .error {
@@ -178,6 +178,16 @@ textarea {
   line-height: 1;
   white-space: nowrap;
   bottom: -15px;
+  font-weight: 600;
+}
+
+.errorIngredient {
+  position: absolute;
+  color: red;
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  bottom: -10px;
   font-weight: 600;
 }
 
@@ -221,6 +231,9 @@ textarea {
 
 @media screen and (min-width: 768px) {
   .error {
+    font-size: 15px;
+  }
+  .errorIngredient {
     font-size: 15px;
   }
   .title {
