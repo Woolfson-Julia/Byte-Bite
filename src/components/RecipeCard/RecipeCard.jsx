@@ -13,6 +13,8 @@ import {
 
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { openModal } from "../../redux/modal/slice";
+import toast from "react-hot-toast";
+import ToastInfo from "../ToastInfo/ToastInfo";
 
 
 
@@ -39,6 +41,7 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
       await dispatch(addRecipeToFav(id)).unwrap();    
       // dispatch(openModal({ modalType: "saved" }));
       dispatch(fetchFavorites());
+      toast.success("Recipe added to favorites!");
     } catch (error) {
       console.error("Ошибка при добавлении в избранное", error);
     }
@@ -50,6 +53,7 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
     try {
       await dispatch(removeRecipeFromFav(id)).unwrap();
       dispatch(fetchFavorites());
+      toast.success("Recipe delete from favorites!");
     } catch (error) {
       console.error("Ошибка при удалении из избранного", error);
     }
@@ -128,7 +132,8 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
         <use href="/sprite.svg#icon-delete-24px" />
       </svg>
     </IconButton>
-  )}
+        )}
+        <ToastInfo/>
 </div>
 
     </div>
