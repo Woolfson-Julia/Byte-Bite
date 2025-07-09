@@ -22,7 +22,7 @@ export default function UserMenu({ onLinkClick }) {
   return (
     <div className={css.menu}>
       <Link className={css.addRecipeBtn} onClick={onLinkClick} to="/add-recipe">
-        Add Recepy
+        Add Recipe
       </Link>
 
       <div className={css.info}>

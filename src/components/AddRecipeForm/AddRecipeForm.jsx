@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage, FastField } from "formik";
 import toast from "react-hot-toast";
 import ToastInfo from "../ToastInfo/ToastInfo";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   selectCategories,
   selectIngredients,
@@ -32,7 +33,7 @@ export default function AddRecipeForm() {
   const imageRef = useRef();
   const [imagePreview, setImagePreview] = useState(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchIngredients());
@@ -93,12 +94,18 @@ export default function AddRecipeForm() {
       if (values.thumb) {
         formData.append("thumb", values.thumb);
       }
-      await axios.post("/recipes", formData, {
+      // await axios.post("/recipes", formData, {
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
+      const response = await axios.post("/recipes", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Recipe added successfully!");
       resetForm();
       setImagePreview(null);
+      //redirection to the new recipe detailes
+      const recipeId = response.data.data.recipes._id;
+      navigate(`/recipes/${recipeId}`);
     } catch (error) {
       console.error("Failed to add recipe:", error);
       toast.error("Please add at least 2 ingredients");
@@ -113,6 +120,8 @@ export default function AddRecipeForm() {
           enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
+          validateOnBlur={false}
+          validateOnChange={false}
           onSubmit={handleSubmit}
         >
           {({ values, setFieldValue }) => (
@@ -200,7 +209,7 @@ export default function AddRecipeForm() {
                             className={css.select}
                             id="category"
                             name="category"
-                            required
+                            // required
                           >
                             <option value="">-- Select a category --</option>
                             {categoryOptions}
