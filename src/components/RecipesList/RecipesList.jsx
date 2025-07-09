@@ -91,7 +91,6 @@ function RecipesList() {
     </ul>
   )}
         {isLoading && <Loader />}
-
         {!isLoading && hasMore && !error && (
           <LoadMoreBtn onClick={handleLoadMore} />
         )}
