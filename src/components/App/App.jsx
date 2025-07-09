@@ -32,10 +32,15 @@ export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   const dispatch = useDispatch();
-
+  const accessToken = useSelector((state) => state.auth.accessToken);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (accessToken) {
+      dispatch(refreshUser());
+    }
+  }, [accessToken, dispatch]);
 
   return isRefreshing ? (
     <Loader />
