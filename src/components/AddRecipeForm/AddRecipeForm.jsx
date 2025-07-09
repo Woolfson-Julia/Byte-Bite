@@ -108,7 +108,9 @@ export default function AddRecipeForm() {
       navigate(`/recipes/${recipeId}`);
     } catch (error) {
       console.error("Failed to add recipe:", error);
-      toast.error("Please add at least 2 ingredients");
+      toast.error(
+        "Oops! Something went wrong. Please review your inputs and try again."
+      );
     }
   };
 
@@ -256,6 +258,11 @@ export default function AddRecipeForm() {
                         />
                       </div>
                     </div>
+                    <ErrorMessage
+                      name="ingredientList"
+                      component="div"
+                      className={css.errorIngredient}
+                    />
                     <Button
                       type="button"
                       variant="darkButton"
