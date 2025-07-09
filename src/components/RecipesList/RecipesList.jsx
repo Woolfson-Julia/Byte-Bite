@@ -74,22 +74,22 @@ function RecipesList() {
   }, [dispatch, searchValue, categoryValue, ingredientValue, isLoggedIn, page]);
 
   return (
-    <>
+    <> 
       <div className="">
-        {error && <p>{genericErrorMessage}</p>}
-        {!error && recipes.length > 0 && (
+      {!isLoading && error && <p>{genericErrorMessage}</p>}
+        {!isLoading && !error && recipes.length > 0 && (
           <ul className={css.list}>
             {recipes.map((recipe) => (
               <li key={recipe._id}>
                 <RecipeCard
-                  recipe={recipe}
-                  isFavorite={favorites.some((fav) => fav._id === recipe._id)}
-                  showRemoveButton={false}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
+                recipe={recipe}
+                isFavorite={favorites.some((fav) => fav._id === recipe._id)}
+            showRemoveButton={false}
+          />
+        </li>
+      ))}
+    </ul>
+  )}
         {isLoading && <Loader />}
 
         {!isLoading && hasMore && !error && (
