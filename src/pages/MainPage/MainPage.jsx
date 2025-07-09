@@ -1,33 +1,26 @@
 import Filter from "../../components/Filters/Filters";
 import RecipesList from "../../components/RecipesList/RecipesList";
-// import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-// import Pagination from "../../components/Pagination/Pagination";
-
+import Loader from "../../components/Loader/Loader"
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { selectFilter } from "../../redux/filters/selectors";
 import { resetFilters } from "../../redux/filters/slice";
-import { useSelector } from "react-redux";
 import css from "./MainPage.module.css";
 
-import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {selectRecipesLoading} from "../../redux/recipes/selectors"
 
-import { fetchRecipes } from "../../redux/recipes/operations";
 
 export default function MainPage() {
   const dispatch = useDispatch();
-  const dispatchRef = useRef(dispatch); // used to remove dependencies from effect
+
   const searchValue = useSelector(selectFilter);
+  const isLoading = useSelector(selectRecipesLoading);
 
   useEffect(() => {
-    dispatchRef.current(resetFilters());
-    // dispatchRef.current(fetchRecipes());
-
-    return () => {
-      dispatchRef.current(resetFilters());
-    };
-  }, []);
-
+    dispatch(resetFilters());
+    return () => dispatch(resetFilters());
+  }, [dispatch]);
   return (
     <>
       <SearchBox />
@@ -37,9 +30,7 @@ export default function MainPage() {
             {searchValue ? `Search results for "${searchValue}"` : "Recipes"}
           </h2>
           <Filter />
-          <RecipesList />
-          {/* <LoadMoreBtn /> */}
-          {/* <Pagination /> */}
+          {isLoading && searchValue ? <Loader /> : <RecipesList />}
         </div>
       </div>
     </>
