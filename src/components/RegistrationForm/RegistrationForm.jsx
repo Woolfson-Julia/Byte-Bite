@@ -164,35 +164,35 @@ export default function RegistrationForm() {
                   name="checkPassword"
                   className={css.error}
                 ></FixedErrorMessage>
-
-                <label
-                  htmlFor={privacyPolicyId}
-                  className={`${css.inputLabel} ${css.checkBoxLabel}`}
-                >
-                  <Field
-                    as="input"
-                    className={css.checkBox}
-                    type="checkbox"
+                <div className={css.wrapperCheck}>
+                  <label
+                    htmlFor={privacyPolicyId}
+                    className={`${css.inputLabel} ${css.checkBoxLabel}`}
+                  >
+                    <Field
+                      as="input"
+                      className={css.checkBox}
+                      type="checkbox"
+                      name="acceptedTerms"
+                      id={privacyPolicyId}
+                    />
+                    <span className={css.customCheckbox}>
+                      <svg className={css.checkmark}>
+                        <use xlinkHref="/sprite.svg#icon-check"></use>
+                      </svg>
+                    </span>
+                    <span>
+                      I agree to the{" "}
+                      <a href="#" className={css.termsLink}>
+                        Terms of Service and Privacy Policy
+                      </a>
+                    </span>
+                  </label>
+                  <FixedErrorMessage
                     name="acceptedTerms"
-                    id={privacyPolicyId}
-                  />
-                  <span className={css.customCheckbox}>
-                    <svg className={css.checkmark}>
-                      <use xlinkHref="/sprite.svg#icon-check"></use>
-                    </svg>
-                  </span>
-                  <span>
-                    I agree to the{" "}
-                    <a href="#" className={css.termsLink}>
-                      Terms of Service and Privacy Policy
-                    </a>
-                  </span>
-                </label>
-
-                <FixedErrorMessage
-                  name="acceptedTerms"
-                  className={css.error}
-                ></FixedErrorMessage>
+                    className={css.errorCheck}
+                  ></FixedErrorMessage>
+                </div>
                 <Button
                   type="submit"
                   variant={`darkButton`}

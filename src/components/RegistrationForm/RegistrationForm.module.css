@@ -64,6 +64,16 @@
   margin-top: 4px;
   margin-bottom: 5px;
 }
+.wrapperCheck {
+position: relative;
+margin-bottom: 27px;
+}
+.errorCheck {
+  position: absolute;
+  color: red;
+  font-size: 0.875rem;
+  top: 18px;
+}
 /* -------/general field--------- */
 
 /* ----------------password--------- */
@@ -188,6 +198,13 @@
   }
   .checkBoxLabel {
     margin-right: 0px;
+  }
+  .error {
+    font-size: 0.7rem;
+  }
+
+  .errorCheck {
+    font-size: 0.7rem;
   }
 }
 @media screen and (min-width: 1440px) {
