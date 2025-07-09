@@ -5,8 +5,9 @@ import {
   addRecipeToFav,
   removeRecipeFromFav,
 } from "../../redux/recipes/operations";
-import { selectRecipesError } from "../../redux/recipes/selectors";
-import toast, { Toaster } from "react-hot-toast";
+import { selectRecipesError, selectRecipesLoading, } from "../../redux/recipes/selectors";
+import toast from "react-hot-toast";
+import ToastInfo from "../ToastInfo/ToastInfo";
 import css from "./RecipeDetails.module.css";
 
 import Button from "../Button/Button";
@@ -19,6 +20,7 @@ import { openModal } from "../../redux/modal/slice";
 export default function RecipeDetails({ recipe }) {
   const dispatch = useDispatch();
   const error = useSelector(selectRecipesError);
+  const isLoading = useSelector(selectRecipesLoading);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   // const navigate = useNavigate();
@@ -39,10 +41,11 @@ export default function RecipeDetails({ recipe }) {
     try {
       if (recipe.isFavorite) {
         await dispatch(removeRecipeFromFav(recipe._id)).unwrap();
+        toast.success("Recipe delete from favorites!");
         // здесь можно, например, открыть другую модалку или обновить список
       } else {
         await dispatch(addRecipeToFav(recipe._id)).unwrap();
-        dispatch(openModal({ modalType: "saved" }));
+        toast.success("Recipe added to favorites!");
       }
     } catch (error) {
       console.error("Ошибка при обновлении избранного", error);
@@ -56,7 +59,8 @@ export default function RecipeDetails({ recipe }) {
 
   return (
     <section className="section">
-      <div className={clsx("container", css.container)}>
+      {!isLoading && !error && (
+        <div className={clsx("container", css.container)}>
         <h1 className={css.title}>{recipe.title}</h1>
         <img
           className={css.image}
@@ -145,7 +149,9 @@ export default function RecipeDetails({ recipe }) {
           </div>
         </div>
       </div>
-      <Toaster />
+      )}
+      
+      <ToastInfo />
     </section>
   );
 }
