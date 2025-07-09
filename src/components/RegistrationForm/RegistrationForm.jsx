@@ -1,6 +1,6 @@
 import css from "./RegistrationForm.module.css";
 
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,6 +64,8 @@ export default function RegistrationForm() {
               }}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
+              validateOnBlur={false}
+              validateOnChange={false}
             >
               <Form className={css.form}>
                 <label htmlFor={nameFieldId} className={css.inputLabel}>

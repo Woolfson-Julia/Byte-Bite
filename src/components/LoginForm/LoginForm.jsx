@@ -3,7 +3,7 @@ import css from "./LoginForm.module.css";
 import { Formik, Form, Field } from "formik";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Loader from "../Loader/Loader";
@@ -47,6 +47,8 @@ export default function LoginForm() {
               }}
               onSubmit={handleSubmit}
               validationSchema={validationSchema}
+              validateOnBlur={false}
+              validateOnChange={false}
             >
               <Form className={css.form}>
                 <label htmlFor={emailFieldId} className={css.inputLabel}>
