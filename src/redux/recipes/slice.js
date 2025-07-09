@@ -7,7 +7,7 @@ import {
   addRecipeToFav,
   fetchFavorites,
   fetchOwnRecipes,
-  removeOwnRecipes
+  removeOwnRecipes,
 } from "./operations";
 
 const slice = createSlice({
@@ -16,7 +16,9 @@ const slice = createSlice({
     items: [],
     // тут object
     favorites: [],
-    own:[],
+    favoritesTotalItems: 1,
+    ownTotalItems: 1,
+    own: [],
     recipe: null,
     loading: false,
     error: null,
@@ -30,16 +32,16 @@ const slice = createSlice({
       const page = action.meta.arg?.page || 1;
 
       if (page === 1) {
-        state.items = action.payload; // первая страница — замена
+        state.items = action.payload; 
       } else {
-        // остальные страницы — добавляем рецепты, остальные поля сохраняем
+        
         state.items = {
           ...state.items,
           recipes: [...state.items.recipes, ...action.payload.recipes],
         };
       }
 
-      // state.items = action.payload;
+
     });
 
     // Додавання рецепту
@@ -58,26 +60,42 @@ const slice = createSlice({
         state.recipe.isFavorite = true;
       }
     });
-    
+
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
       if (state.recipe) {
         state.recipe.isFavorite = false;
       }
     });
-    
 
     buildReducers(builder, fetchFavorites, (state, action) => {
-      state.favorites = action.payload;
+      const { recipes, totalItems, page } = action.payload;
+
+      if (page === 1) {
+        state.favorites = recipes;
+      } else {
+        state.favorites = [...state.favorites, ...recipes];
+      }
+
+      state.favoritesTotalItems = totalItems;
     });
 
     buildReducers(builder, fetchOwnRecipes, (state, action) => {
-      state.own = action.payload;
+      const { recipes, totalItems, page } = action.payload;
+
+      if (page === 1) {
+        state.own = recipes;
+      } else {
+        state.own = [...state.own, ...recipes];
+      }
+
+      state.ownPage = page;
+      state.ownTotalItems = totalItems;
     });
 
     buildReducers(builder, removeOwnRecipes, (state, action) => {
-  state.own = state.own.filter(recipe => recipe._id !== action.payload);
-});
+      state.own = state.own.filter((recipe) => recipe._id !== action.payload);
+    });
 
     /*buildReducers(builder, deleteRecipe, (state, action) => {
       state.items = state.items.filter(

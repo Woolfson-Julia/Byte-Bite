@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import css from "./RecipesList.module.css";
 
@@ -44,6 +44,9 @@ function RecipesList() {
 
   const [page, setPage] = useState(1);
 
+  const prevLengthRef = useRef(0);
+  const cardRef = useRef(null);
+
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
   };
@@ -67,27 +70,40 @@ function RecipesList() {
     }
   }, [dispatch, searchValue, categoryValue, ingredientValue, isLoggedIn, page]);
 
+  // Автоскролл при добавлении новых рецептов
+  useEffect(() => {
+    if (page > 1 && recipes.length > prevLengthRef.current && cardRef.current) {
+      const cardHeight = cardRef.current.getBoundingClientRect().height;
+      window.scrollBy({
+        top: cardHeight,
+        behavior: "smooth",
+      });
+    }
+
+    prevLengthRef.current = recipes.length;
+  }, [recipes, page]);
+
   return (
     <>
-      <div className="">
+      <div>
         {error && <p>{genericErrorMessage}</p>}
         {!error && recipes.length > 0 && (
           <ul className={css.list}>
-            {recipes.map((recipe) => (
-              <li key={recipe._id}>
+            {recipes.map((recipe, index) => (
+              <li key={recipe._id} ref={index === 0 ? cardRef : null}>
                 <RecipeCard
                   recipe={recipe}
                   isFavorite={favorites.some((fav) => fav._id === recipe._id)}
-                  showRemoveButton={false} 
+                  showRemoveButton={false}
                 />
               </li>
             ))}
           </ul>
         )}
         {isLoading && <Loader />}
-
-        {!isLoading && hasMore && !error &&<LoadMoreBtn onClick={handleLoadMore} />}
-        {/* <LoadMoreBtn onClick={handleLoadMore} /> */}
+        {!isLoading && hasMore && !error && (
+          <LoadMoreBtn onClick={handleLoadMore} />
+        )}
       </div>
     </>
   );
