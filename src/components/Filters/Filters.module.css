@@ -211,3 +211,9 @@
   background-position: right 8px center;
   background-size: 16px;
 }
+.filtersInputCategory {
+  width: 132px;
+}
+.filtersInputIngredient {
+  width: 281px;
+}

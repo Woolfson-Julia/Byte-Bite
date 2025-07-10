@@ -107,7 +107,7 @@ export default function Filter() {
                   Reset filters
                 </button>
                 <select
-                  className="filtersInputCategory"
+                  className={css.filtersInputCategory}
                   name="category"
                   value={category}
                   onChange={handleCategoryChange}
@@ -125,7 +125,7 @@ export default function Filter() {
                   ))}
                 </select>
                 <select
-                  className="filtersInputIngredient"
+                  className={css.filtersInputIngredient}
                   name="ingredient"
                   value={ingredient}
                   onChange={handleIngredientChange}
