@@ -17,6 +17,10 @@ export const selectRecipes = createSelector(
 );
 export const selectCurrentRecipe = (state) => state.recipes.recipe;
 
+export const selectFavoritesCount = (state) =>
+  state.recipes.favorites.totalItems || 0;
+export const selectOwnCount = (state) => state.recipes.own.totalItems || 0;
+
 export const selectRecipesCountByPage = (state, page) => {
   let recipesCounter = 0;
   switch (page) {

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import css from "./MyRecipesList.module.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
@@ -8,12 +8,14 @@ import {
   selectOwnRecipes,
   selectRecipesLoading,
   selectRecipesError,
+  selectOwnCount,
 } from "../../redux/recipes/selectors";
 import {
   selectCategory,
   selectIngredient,
 } from "../../redux/filters/selectors.js";
 import { genericErrorMessage } from "../../redux/recipes/operations";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
 export default function MyRecipes() {
   const dispatch = useDispatch();
@@ -22,27 +24,50 @@ export default function MyRecipes() {
   const error = useSelector(selectRecipesError);
   const categoryValue = useSelector(selectCategory);
   const ingredientValue = useSelector(selectIngredient);
+  const ownTotal = useSelector(selectOwnCount);
+  const hasMore = ownRecipes.length < ownTotal;
 
-  // useEffect(() => {
-  //   dispatch(fetchOwnRecipes());
-  // }, [dispatch]);
+  const [page, setPage] = useState(1);
+  const prevLengthRef = useRef(0);
+  const cardRef = useRef(null);
+
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
   useEffect(() => {
     dispatch(
       fetchOwnRecipes({
         category: categoryValue,
         ingredient: ingredientValue,
+        page: page,
       })
     );
-  }, [dispatch, categoryValue, ingredientValue]);
+  }, [dispatch, categoryValue, ingredientValue, page]);
+
+  useEffect(() => {
+    if (
+      page > 1 &&
+      ownRecipes.length > prevLengthRef.current &&
+      cardRef.current
+    ) {
+      const cardHeight = cardRef.current.getBoundingClientRect().height;
+      window.scrollBy({
+        top: cardHeight,
+        behavior: "smooth",
+      });
+    }
+
+    prevLengthRef.current = ownRecipes.length;
+  }, [ownRecipes, page]);
 
   return (
     <>
-      {isLoading && <Loader />}
-      {error && <p>{genericErrorMessage}</p>}
+      {!isLoading && error && <p>{genericErrorMessage}</p>}
       {!isLoading && !error && (
         <ul className={css.list}>
-          {ownRecipes.map((recipe) => (
-            <li key={recipe._id}>
+          {ownRecipes.map((recipe, index) => (
+            <li key={recipe._id} ref={index === 0 ? cardRef : null}>
               <RecipeCard
                 recipe={recipe}
                 showFavoriteButton={false}
@@ -52,6 +77,8 @@ export default function MyRecipes() {
           ))}
         </ul>
       )}
+      {isLoading && <Loader />}
+      {hasMore && !isLoading && <LoadMoreBtn onClick={handleLoadMore} />}
     </>
   );
 }

@@ -15,10 +15,22 @@ const slice = createSlice({
   initialState: {
     items: [],
     // тут object
+    //     favorites: [],
+    //     favoritesTotalItems: 1,
+    //     ownTotalItems: 1,
+    //     own: [],
     // favorites: [],
     // own:[],
-    favorites: {},
-    own: {},
+    favorites: {
+      recipes: [],
+      page: 1,
+      totalItems: 0,
+    },
+    own: {
+      recipes: [],
+      page: 1,
+      totalItems: 0,
+    },
     recipe: null,
     loading: false,
     error: null,
@@ -46,7 +58,8 @@ const slice = createSlice({
 
     // Додавання рецепту
     buildReducers(builder, addRecipe, (state, action) => {
-      state.items.push(action.payload);
+      // state.items.push(action.payload);
+      state.items.recipes.push(action.payload.recipes);
     });
 
     // Один рецепт по ID
@@ -60,6 +73,21 @@ const slice = createSlice({
         state.recipe.isFavorite = true;
       }
     });
+    // buildReducers(builder, addRecipeToFav, (state, action) => {
+    //   // Оновлюємо тільки потрібні поля
+    //   if (action.payload) {
+    //     state.favorites = {
+    //       recipes: action.payload.recipes || state.favorites.recipes || [],
+    //       page: action.payload.page || state.favorites.page || 1,
+    //       totalItems:
+    //         action.payload.totalItems || state.favorites.totalItems || 0,
+    //     };
+    //   }
+
+    //   if (state.recipe) {
+    //     state.recipe.isFavorite = true;
+    //   }
+    // });
 
     buildReducers(builder, removeRecipeFromFav, (state, action) => {
       state.favorites = action.payload;
@@ -68,12 +96,49 @@ const slice = createSlice({
       }
     });
 
+    // buildReducers(builder, removeRecipeFromFav, (state, action) => {
+    //   state.favorites = {
+    //     recipes: action.payload?.recipes || state.favorites.recipes || [],
+    //     page: action.payload?.page || state.favorites.page || 1,
+    //     totalItems:
+    //       action.payload?.totalItems || state.favorites.totalItems || 0,
+    //   };
+
+    //   if (state.recipe) {
+    //     state.recipe.isFavorite = false;
+    //   }
+    // });
+
+    // buildReducers(builder, fetchFavorites, (state, action) => {
+    //   state.favorites = action.payload;
+    // });
     buildReducers(builder, fetchFavorites, (state, action) => {
-      state.favorites = action.payload;
+      const { recipes, totalItems, page } = action.payload;
+
+      if (page === 1) {
+        state.favorites.recipes = recipes;
+      } else {
+        state.favorites.recipes = [...state.favorites.recipes, ...recipes];
+      }
+      state.favorites.page = page;
+      state.favorites.totalItems = totalItems;
     });
 
+    // buildReducers(builder, fetchOwnRecipes, (state, action) => {
+    //   state.own = action.payload;
+    // });
+
     buildReducers(builder, fetchOwnRecipes, (state, action) => {
-      state.own = action.payload;
+      const { recipes, totalItems, page } = action.payload;
+
+      if (page === 1) {
+        state.own.recipes = recipes;
+      } else {
+        state.own.recipes = [...state.own.recipes, ...recipes];
+      }
+
+      state.own.page = page;
+      state.own.totalItems = totalItems;
     });
 
     buildReducers(builder, removeOwnRecipes, (state, action) => {
@@ -111,8 +176,16 @@ const slice = createSlice({
       state.recipe = null;
       // state.favorites = [];
       // state.own = [];
-      state.favorites = {};
-      state.own = {};
+      state.favorites = {
+        recipes: [],
+        page: 1,
+        totalItems: 0,
+      };
+      state.own = {
+        recipes: [],
+        page: 1,
+        totalItems: 0,
+      };
     });
   },
 });
@@ -131,6 +204,16 @@ function buildReducers(builder, operation, reducerFunc) {
       state.loading = false;
       state.error = action.payload;
       state.items = [];
+      state.favorites = {
+        recipes: [],
+        page: 1,
+        totalItems: 0,
+      };
+      state.own = {
+        recipes: [],
+        page: 1,
+        totalItems: 0,
+      };
     });
 }
 
