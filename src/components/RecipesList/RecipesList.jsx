@@ -45,7 +45,7 @@ function RecipesList() {
   const [page, setPage] = useState(1);
 
   const prevLengthRef = useRef(0);
-  const cardRef = useRef(null);
+  // const cardRef = useRef(null);
 
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
@@ -78,15 +78,28 @@ function RecipesList() {
   }, [dispatch, searchValue, categoryValue, ingredientValue, isLoggedIn, page]);
 
   // Автоскролл при добавлении новых рецептов
-  useEffect(() => {
-    if (page > 1 && recipes.length > prevLengthRef.current && cardRef.current) {
-      const cardHeight = cardRef.current.getBoundingClientRect().height;
-      window.scrollBy({
-        top: cardHeight,
-        behavior: "smooth",
-      });
-    }
+  // useEffect(() => {
+  //   if (page > 1 && recipes.length > prevLengthRef.current && cardRef.current) {
+  //     const cardHeight = cardRef.current.getBoundingClientRect().height;
+  //     window.scrollBy({
+  //       top: cardHeight,
+  //       behavior: "smooth",
+  //     });
+  //   }
 
+  //   prevLengthRef.current = recipes.length;
+  // }, [recipes, page]);
+
+  const newItemRef = useRef(null);
+
+  useEffect(() => {
+    if (
+      page > 1 &&
+      recipes.length > prevLengthRef.current &&
+      newItemRef.current
+    ) {
+      newItemRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     prevLengthRef.current = recipes.length;
   }, [recipes, page]);
 
@@ -96,15 +109,18 @@ function RecipesList() {
         {!isLoading && error && <p>{genericErrorMessage}</p>}
         {!isLoading && !error && recipes.length > 0 && (
           <ul className={css.list}>
-            {recipes.map((recipe, index) => (
-              <li key={recipe._id} ref={index === 0 ? cardRef : null}>
-                <RecipeCard
-                  recipe={recipe}
-                  isFavorite={favorites.some((fav) => fav._id === recipe._id)}
-                  showRemoveButton={false}
-                />
-              </li>
-            ))}
+            {recipes.map((recipe, index) => {
+              const isFirstNew = page > 1 && index === prevLengthRef.current;
+              return (
+                <li key={recipe._id} ref={isFirstNew ? newItemRef : null}>
+                  <RecipeCard
+                    recipe={recipe}
+                    isFavorite={favorites.some((fav) => fav._id === recipe._id)}
+                    showRemoveButton={false}
+                  />
+                </li>
+              );
+            })}
           </ul>
         )}
         {isLoading && <Loader />}

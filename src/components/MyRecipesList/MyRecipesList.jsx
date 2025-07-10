@@ -29,7 +29,7 @@ export default function MyRecipes() {
 
   const [page, setPage] = useState(1);
   const prevLengthRef = useRef(0);
-  const cardRef = useRef(null);
+  //const cardRef = useRef(null);
 
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
@@ -45,19 +45,32 @@ export default function MyRecipes() {
     );
   }, [dispatch, categoryValue, ingredientValue, page]);
 
+  // useEffect(() => {
+  //   if (
+  //     page > 1 &&
+  //     ownRecipes.length > prevLengthRef.current &&
+  //     cardRef.current
+  //   ) {
+  //     const cardHeight = cardRef.current.getBoundingClientRect().height;
+  //     window.scrollBy({
+  //       top: cardHeight,
+  //       behavior: "smooth",
+  //     });
+  //   }
+
+  //   prevLengthRef.current = ownRecipes.length;
+  // }, [ownRecipes, page]);
+
+  const newItemRef = useRef(null);
+
   useEffect(() => {
     if (
       page > 1 &&
       ownRecipes.length > prevLengthRef.current &&
-      cardRef.current
+      newItemRef.current
     ) {
-      const cardHeight = cardRef.current.getBoundingClientRect().height;
-      window.scrollBy({
-        top: cardHeight,
-        behavior: "smooth",
-      });
+      newItemRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-
     prevLengthRef.current = ownRecipes.length;
   }, [ownRecipes, page]);
 
@@ -66,15 +79,18 @@ export default function MyRecipes() {
       {!isLoading && error && <p>{genericErrorMessage}</p>}
       {!isLoading && !error && (
         <ul className={css.list}>
-          {ownRecipes.map((recipe, index) => (
-            <li key={recipe._id} ref={index === 0 ? cardRef : null}>
-              <RecipeCard
-                recipe={recipe}
-                showFavoriteButton={false}
-                showRemoveButton={true}
-              />
-            </li>
-          ))}
+          {ownRecipes.map((recipe, index) => {
+            const isFirstNew = page > 1 && index === prevLengthRef.current;
+            return (
+              <li key={recipe._id} ref={isFirstNew ? newItemRef : null}>
+                <RecipeCard
+                  recipe={recipe}
+                  showFavoriteButton={false}
+                  showRemoveButton={true}
+                />
+              </li>
+            );
+          })}
         </ul>
       )}
       {isLoading && <Loader />}
