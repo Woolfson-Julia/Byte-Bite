@@ -83,59 +83,58 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
       <p className={css.cals}>~{recipe.cals} cals</p>
 
       <div className={css.buttonBox} style={{ display: "flex" }}>
-  <Button
-    className={css.button}
-    variant="lightButton"
-    type="button"
-    onClick={(e) => handleBtnMore(recipe._id, e)}
-  >
-    Learn More
-  </Button>
-
-  {showFavoriteButton && (
-    isFavorite ? (
-      <IconButton
-        className={css.buttonSvg}
-        variantBtn="darkButtonSvg"
-        variantSvg="lightSvg"
-        type="button"
-        onClick={(e) => handleRemoveFromFavorites(recipe._id, e)}
-      >
-        <svg width="24" height="24" stroke="currentColor">
-          <use href="/sprite.svg#icon-add-to-favorite-24px" />
-        </svg>
-      </IconButton>
-    ) : (
-      <IconButton
-        className={css.buttonSvg}
-        variantBtn="lightButtonSvg"
-        variantSvg="darkSvg"
-        type="button"
-        onClick={(e) => handleAddToFavorites(recipe._id, e)}
-      >
-        <svg width="24" height="24" stroke="currentColor">
-          <use href="/sprite.svg#icon-add-to-favorite-24px" />
-        </svg>
-      </IconButton>
-    )
-  )}
-
-  {showRemoveButton && (
-    <IconButton
-      className={css.removeBtn}
-      variantBtn="removeBtn"
-      variantSvg="removeBtn"
-      type="button"
-      onClick={(e) => deleteOwnRecipes(recipe._id, e)}
-    >
-      <svg width="24" height="24" stroke="white">
-        <use href="/sprite.svg#icon-delete-24px" />
-      </svg>
-    </IconButton>
+        <Button
+          className={css.button}
+          variant="lightButton"
+          type="button"
+          onClick={(e) => handleBtnMore(recipe._id, e)}
+        >
+          Learn More
+        </Button>
+        <div className={css.wrapperCount}>
+          {showFavoriteButton &&
+            (isFavorite ? (
+              <IconButton
+                className={css.buttonSvg}
+                variantBtn="darkButtonSvg"
+                variantSvg="lightSvg"
+                type="button"
+                onClick={(e) => handleRemoveFromFavorites(recipe._id, e)}
+              >
+                <svg width="24" height="24" stroke="currentColor">
+                  <use href="/sprite.svg#icon-add-to-favorite-24px" />
+                </svg>
+              </IconButton>
+            ) : (
+              <IconButton
+                className={css.buttonSvg}
+                variantBtn="lightButtonSvg"
+                variantSvg="darkSvg"
+                type="button"
+                onClick={(e) => handleAddToFavorites(recipe._id, e)}
+              >
+                <svg width="24" height="24" stroke="currentColor">
+                  <use href="/sprite.svg#icon-add-to-favorite-24px" />
+                </svg>
+              </IconButton>
+            ))}
+          <p className={css.favoritesCount}>{recipe.favoritesCount || 0}</p>
+        </div>
+        {showRemoveButton && (
+          <IconButton
+            className={css.removeBtn}
+            variantBtn="removeBtn"
+            variantSvg="removeBtn"
+            type="button"
+            onClick={(e) => deleteOwnRecipes(recipe._id, e)}
+          >
+            <svg width="24" height="24" stroke="white">
+              <use href="/sprite.svg#icon-delete-24px" />
+            </svg>
+          </IconButton>
         )}
-        <ToastInfo/>
-</div>
-
+        <ToastInfo />
+      </div>
     </div>
   );
 }
