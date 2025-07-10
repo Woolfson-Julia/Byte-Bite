@@ -17,7 +17,7 @@
   font-weight: 600;
   font-size: 32px;
   text-align: center;
-  color: #000;
+  color: var(--color-black);
   margin-bottom: 20px;
 }
 .description {
@@ -39,7 +39,7 @@
   padding: 8px;
   width: 100%;
 
-  background: #fff;
+  background: var(--color-white);
 
   line-height: 1.55;
 
@@ -48,14 +48,14 @@
 }
 .inputLabel {
   font-size: 12px;
-  color: #000;
+  color: var(--color-black);
   margin-bottom: 4px;
 }
 .inputField::placeholder {
   color: #9f9f9f;
 }
 .inputField:focus {
-  border: 1.5px solid #9b6c43;
+  border: 1.5px solid var(--color-brown-500);
   box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
 }
 .error {
@@ -95,7 +95,7 @@ margin-bottom: 27px;
 }
 .toggleButton:focus-visible {
   outline: none;
-  border: 1.5px solid #9b6c43;
+  border: 1.5px solid var(--color-brown-500);
   box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
 }
 .toggleButton:focus > .eyeSvg {
@@ -104,7 +104,7 @@ margin-bottom: 27px;
 .eyeSvg {
   width: 24px;
   height: 24px;
-  stroke: #000;
+  stroke: var(--color-black);
 }
 .eyeSvg:hover {
   stroke: rgb(92, 92, 92);
@@ -156,12 +156,12 @@ margin-bottom: 27px;
 }
 
 .checkBox:checked + .customCheckbox {
-  background-color: #9b6c43;
+  background-color: var(--color-brown-500);
   border: none;
 }
 /* for tab effect */
 .checkBox:focus + .customCheckbox {
-  border: 1.5px solid #9b6c43;
+  border: 1.5px solid var(--color-brown-500);
   outline: none;
 }
 

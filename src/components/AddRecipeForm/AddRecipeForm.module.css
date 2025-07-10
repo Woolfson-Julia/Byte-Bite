@@ -87,14 +87,10 @@ textarea {
   max-height: 48px;
   font-weight: 400;
   font-size: 18px;
-  /* color: #595d62; */
-  background-color: #fff;
+  background-color: var(--color-white);
   transition: border-color 0.2s ease;
 }
-/* .select:focus {
-  border-color: #a0a0a0;
-  color: var(--color-black);
-} */
+
 .selectIcon {
   position: absolute;
   right: 12px;
@@ -104,12 +100,12 @@ textarea {
   height: 24px;
   pointer-events: none;
   stroke-width: 1px;
-  stroke: #000;
+  stroke: var(--color-black);
   fill: none;
 }
 .input:focus,
 .textarea:focus {
-  border: 1.5px solid #9b6c43;
+  border: 1.5px solid var(--color-brown-500);
   box-shadow: 0 4px 10px #0000004d;
 }
 .input:active,

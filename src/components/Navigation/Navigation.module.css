@@ -9,13 +9,13 @@
 
 .link {
   display: inline-block;
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
   font-weight: 600;
 }
 
 .active {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--color-white);
 }
 
 @media screen and (min-width: 768px) {

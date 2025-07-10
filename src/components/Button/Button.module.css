@@ -29,7 +29,7 @@
 }
 
 .darkButton:disabled {
-  background: #9b6c43;
+  background: var(--color-brown-500);
   box-shadow: 0 4px 10px #0000004d;
 }
 

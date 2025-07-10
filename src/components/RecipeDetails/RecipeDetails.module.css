@@ -68,7 +68,7 @@
 
     font-size: 18px;
     line-height: normal;
-    stroke: #ffffff;
+    stroke: var(--color-white);
 
     display: flex;
     justify-content: center;
@@ -76,7 +76,7 @@
 }
 
 .icon_saved {
-    fill: #ffffff;
+    fill: var(--color-white);
 }
 
 .main_text_wrapper {

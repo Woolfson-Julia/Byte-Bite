@@ -15,7 +15,7 @@
 .text {
   font-weight: 600;
   font-size: 40px;
-  color: #fff;
+  color: var(--color-white);
   padding-top: 138px;
   margin-bottom: 24px;
 }
@@ -40,7 +40,7 @@
 .input:focus,
 .input:hover{
   box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
-  background: #fff;
+  background: var(--color-white);
   outline: none;
 }
 
@@ -58,19 +58,19 @@
   line-height: 1.4;
   font-weight: 600;
   font-size: 16px;
-  color: #fff;
-  background: #9b6c43;
+  color: var(--color-white);
+  background: var(--color-brown-500);
   border: 0px;
   transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #6d554b;
+  background-color: var(--color-brown-700);
 }
 
 .btn:focus {
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
-  background-color: #9b6c43;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--color-white);
+  background-color: var(--color-brown-500);
 }
 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px) {
@@ -95,7 +95,7 @@
     font-weight: 600;
     font-size: 48px;
     line-height: 1.1;
-    color: #fff;
+    color: var(--color-white);
     padding-top: 128px;
     width: 493px;
   }

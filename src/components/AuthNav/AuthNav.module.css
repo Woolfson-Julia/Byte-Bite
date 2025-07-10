@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
 
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
   font-weight: 600;
 }
@@ -13,7 +13,7 @@
 .registerBtn {
   display: block;
   width: 100%;
-  background-color: #9b6c43;
+  background-color: var(--color-brown-500);
   padding: 12px 0;
   text-align: center;
   border-radius: 8px;
@@ -27,14 +27,14 @@
 
 .registerBtn:hover,
 .registerBtn:focus {
-  background-color: #6d554b;
+  background-color: var(--color-brown-700);
 }
 .link {
   display: inline-block;
 }
 
 .active {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--color-white);
 }
 
 @media screen and (min-width: 768px) {

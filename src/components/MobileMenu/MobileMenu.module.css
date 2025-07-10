@@ -29,13 +29,5 @@
 .icon {
   width: 32px;
   height: 32px;
-  stroke: #fff;
-}
-
-@media screen and (min-width: 768px) {
-
-  
-}
-@media screen and (min-width: 1440px) {
-
+  stroke: var(--color-white);
 }

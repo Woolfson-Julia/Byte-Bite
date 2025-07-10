@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background-color: #fff;
+  background-color: var(--color-white);
   font-weight: 600;
   font-size: 12px;
   border-radius: 8px;
@@ -114,12 +114,11 @@
 .favoritesCount {
   position: absolute;
   bottom: 46px;
-  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background-color: #fff;
+  background-color: var(--color-white);
   font-weight: 600;
   font-size: 12px;
   border-radius: 8px;
