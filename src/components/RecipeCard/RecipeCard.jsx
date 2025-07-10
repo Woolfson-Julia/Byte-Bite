@@ -118,7 +118,12 @@ export default function RecipeCard({ recipe, isFavorite, showFavoriteButton = tr
                 </svg>
               </IconButton>
             ))}
-          <p className={css.favoritesCount}>{recipe.favoritesCount || 0}</p>
+          <div className={css.favoritesCount}>
+            <svg width="24" height="24" stroke="currentColor">
+              <use href="/sprite.svg#icon-add-to-favorite-24px" />
+            </svg>
+            <p className={css.f}>{recipe.favoritesCount || 0}</p>
+          </div>
         </div>
         {showRemoveButton && (
           <IconButton
